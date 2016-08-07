@@ -59,7 +59,9 @@ public class test_threshold extends AppCompatActivity {
                 // test - first we check "change" - if the test is over
                 if (change==7) {
                     Toast.makeText(test_threshold.this, Integer.toString(listTHR_turningLevels[3])+ Integer.toString(listTHR_turningLevels[4])+Integer.toString(listTHR_turningLevels[5])+listTHR_turningLevels[6] + " ", Toast.LENGTH_SHORT).show();
-                    testTHR_score=((double) ((listTHR_turningLevels[3]+listTHR_turningLevels[4]+listTHR_turningLevels[5]+listTHR_turningLevels[6]))/4);
+                    for(int i=3; i<6; i++){
+                        testTHR_score=testTHR_score + ((double) (listTHR_turningLevels[i]/4));
+                    }
                     NumberFormat nf = NumberFormat.getInstance();
                     nf.setMaximumFractionDigits(2);
                     nf.setMinimumFractionDigits(2);
