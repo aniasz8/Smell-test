@@ -16,17 +16,17 @@ public class Case_wrongAnswer {
     int [] listTHR_turningLevels = new int [8];
 
     public Case_wrongAnswer (int point, int change, int level,int index, ArrayList<Integer> listTHR_answers,
-                             ArrayList<Integer> listTHR_levels,int [] listTHR_turningLevels  ){
-        this.point=point;
-        this.level = level;
-        this.index=index;
-        this.change=change;
-        this.listTHR_answers =listTHR_answers;
-        this.listTHR_levels = listTHR_levels;
-        this.listTHR_turningLevels = listTHR_turningLevels;
-    }
+                             ArrayList<Integer> listTHR_levels,int [] listTHR_turningLevels  ) {
 
-    public int getPoint(){
+
+        this.listTHR_answers=listTHR_answers;
+        this.listTHR_turningLevels=listTHR_turningLevels;
+        this.listTHR_levels=listTHR_levels;
+        this.point=point;
+        this.change=change;
+        this.level=level;
+        this.index=index;
+
         switch (point) {
             case 0:
                 // check if previous there was any good answer- if not, decrese twice
@@ -84,16 +84,32 @@ public class Case_wrongAnswer {
                 // otherwise level stays the same
                 break;
         }
-        return point;
     }
-    public int getLevel(){
-        return level;
-    }
-    public int getIndex () {
+
+    public int getLevel () {
+        return level;}
+
+    public int getIndex() {
         return index;
     }
-    public int getChange (){
+
+    public int getChange() {
         return change;
     }
 
+    public int getPoint() {
+        return point;
+    }
+
+    public ArrayList<Integer> getListTHR_answers() {
+        return listTHR_answers;
+    }
+
+    public int[] getListTHR_turningLevels() {
+        return listTHR_turningLevels;
+    }
+
+    public ArrayList<Integer> getListTHR_levels() {
+        return listTHR_levels;
+    }
 }
