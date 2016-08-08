@@ -23,7 +23,7 @@ public class test_threshold extends AppCompatActivity {
     private Button testTHR_ok;
     private String patient_answer;
     private String yes = "YES";
-    private double testTHR_score;
+    private String testTHR_finalResult;
 
     ArrayList<Integer> listTHR_answers = new ArrayList<>();
     ArrayList<Integer> listTHR_levels = new ArrayList<>();
@@ -48,7 +48,7 @@ public class test_threshold extends AppCompatActivity {
                 radioButton = (RadioButton) findViewById(radioButtonID);
                 patient_answer = radioButton.getText().toString();
 
-                //  point = 1 -> answer = yes
+                //  checking if it is a good answer; point = 1 -> answer = yes
 
                 Question result = new Question(yes, patient_answer);
                 int point = result.result();
@@ -56,23 +56,22 @@ public class test_threshold extends AppCompatActivity {
                 listTHR_levels.add(index,level);
 
 
-                // test - first we check "change" - if the test is over
-                if (change==7) {
-                    Toast.makeText(test_threshold.this, Integer.toString(listTHR_turningLevels[3])+ Integer.toString(listTHR_turningLevels[4])+Integer.toString(listTHR_turningLevels[5])+listTHR_turningLevels[6] + " ", Toast.LENGTH_SHORT).show();
-                    testTHR_score=0;
-                    for(int i=3; i<6; i++){
-                        testTHR_score=testTHR_score + ((double) (listTHR_turningLevels[i]/4));
-                    }
-                    NumberFormat nf = NumberFormat.getInstance();
-                    nf.setMaximumFractionDigits(2);
-                    nf.setMinimumFractionDigits(2);
-                    String testTHR_score_string = nf.format(testTHR_score);
-                    Toast.makeText(test_threshold.this,testTHR_score_string , Toast.LENGTH_SHORT).show();
-
+                // check if the test is over
+                // 1) we always answered wrongly
+                // 2) change ==7, then we calculate the final score
+                if (level == -1) {
+                    int testTHR_score = 1;
                     Intent intent = new Intent(test_threshold.this, select_test.class);
-                    intent.putExtra("testTHR_score",testTHR_score_string);
+                    intent.putExtra("testTHR_score",Integer.toString(testTHR_score));
                     startActivity(intent);
-                    }
+                }
+                if (change==7) {
+                    TestTHR_score testTHR_score_string = new TestTHR_score(listTHR_turningLevels);
+                    testTHR_finalResult = testTHR_score_string.testTHR_StringResult();
+                    Intent intent = new Intent(test_threshold.this, select_test.class);
+                    intent.putExtra("testTHR_score",testTHR_finalResult);
+                    startActivity(intent);
+                }
 
                 // then we check if we are after first of second answering
                 else {
@@ -103,12 +102,6 @@ public class test_threshold extends AppCompatActivity {
                                             level = level - 1;
                                             break;
                                     }
-                                }
-                                // if we always answered wrongly = the end of test
-                                if (level == -1){
-                                    testTHR_score =1;
-                                    Intent intent = new Intent(test_threshold.this, select_test.class);
-                                    startActivity(intent);
                                 }
                                 break;
 
