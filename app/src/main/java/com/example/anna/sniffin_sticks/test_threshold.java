@@ -41,13 +41,11 @@ public class test_threshold extends AppCompatActivity {
             public void onClick(View v) {
 
                 // getting the patient's answer
-
                 int radioButtonID = radioGroup.getCheckedRadioButtonId();
                 radioButton = (RadioButton) findViewById(radioButtonID);
                 patient_answer = radioButton.getText().toString();
 
                 //  checking if it is a good answer; point = 1 -> answer = yes
-
                 Question result = new Question(yes, patient_answer);
                 int point = result.result();
                 listTHR_answers.add(index, point);
@@ -55,9 +53,8 @@ public class test_threshold extends AppCompatActivity {
 
 
                 // check if the test is over
-                // 1) we always answered wrongly
-                // 2) change ==7, then we calculate the final score
-                if (level == -1) {
+                // 1) we always answered wrongly  2) change ==7, then we calculate the final score
+                if (level < 1) {
                     int testTHR_score = 1;
                     Intent intent = new Intent(test_threshold.this, select_test.class);
                     intent.putExtra("testTHR_score",Integer.toString(testTHR_score));
@@ -66,6 +63,7 @@ public class test_threshold extends AppCompatActivity {
                 if (change==7) {
                     TestTHR_score testTHR_score_string = new TestTHR_score(listTHR_turningLevels);
                     testTHR_finalResult = testTHR_score_string.testTHR_StringResult();
+
                     Intent intent = new Intent(test_threshold.this, select_test.class);
                     intent.putExtra("testTHR_score",testTHR_finalResult);
                     startActivity(intent);
@@ -78,6 +76,7 @@ public class test_threshold extends AppCompatActivity {
                     index = current_answering.getIndex();
                     level = current_answering.getLevel();
                     index = current_answering.getIndex();
+                    change = current_answering.getChange();
                     listTHR_answers=current_answering.getListTHR_answers();
                     listTHR_levels =current_answering.getListTHR_levels();
                     listTHR_turningLevels =current_answering.getListTHR_turningLevels();
@@ -90,8 +89,5 @@ public class test_threshold extends AppCompatActivity {
                 index++;
             }
         });
-
-
-
     }
 }

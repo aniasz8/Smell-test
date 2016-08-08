@@ -7,7 +7,6 @@ import java.util.ArrayList;
  */
 public class Answering {
 
-    private int point;
     private int level;
     private int index;
     private int change;
@@ -79,7 +78,6 @@ public class Answering {
                     break;
             }
         }
-
         // or we are just after first answering
         else {
             switch (point) {
@@ -90,10 +88,10 @@ public class Answering {
                     break;
             }
         }
+
         this.listTHR_answers = listTHR_answers;
         this.listTHR_turningLevels = listTHR_turningLevels;
         this.listTHR_levels = listTHR_levels;
-        this.point = point;
         this.change = change;
         this.level = level;
         this.index = index;
@@ -110,10 +108,6 @@ public class Answering {
         return change;
     }
 
-    public int getPoint() {
-        return point;
-    }
-
     public ArrayList<Integer> getListTHR_answers() {
         return listTHR_answers;
     }
@@ -125,5 +119,4 @@ public class Answering {
     public ArrayList<Integer> getListTHR_levels() {
         return listTHR_levels;
     }
-
 }
