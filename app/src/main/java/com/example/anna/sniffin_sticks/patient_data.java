@@ -200,6 +200,8 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
                 int radioButtonID = radioGroup.getCheckedRadioButtonId();
                 radioButton = (RadioButton) findViewById(radioButtonID);
                 data_sex = radioButton.getText().toString();
+               // !!!!!!!!!!!!!!!!!!!
+                // co jesli nie klikniete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 intent.putExtra("sex", data_sex);
 
                 String researcher = patient_researcher.getText().toString();

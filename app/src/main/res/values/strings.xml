@@ -29,6 +29,12 @@
     <string name="testID_choice4"> Choice 4 </string>
     <string name="testID_ok"> OK </string>
 
+    <string name="testDIS_counter">Counter</string>
+    <string name="testDIS_ok">OK</string>
+    <string name="testDIS_blue">Blue</string>
+    <string name="testDIS_green">Green</string>
+    <string name="testDIS_red">Red</string>
+
     <string name="testTHR_title"> Level 15 </string>
     <string name="testTHR_button_yes"> YES </string>
     <string name="testTHR_button_no"> NO </string>

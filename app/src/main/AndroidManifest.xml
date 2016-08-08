@@ -19,7 +19,8 @@
         <activity android:name=".select_test" />
         <activity android:name=".test_identification" />
         <activity android:name=".pdfActivity" />
-        <activity android:name=".test_threshold"></activity>
+        <activity android:name=".test_threshold" />
+        <activity android:name=".test_discrimination"></activity>
     </application>
 
 </manifest>

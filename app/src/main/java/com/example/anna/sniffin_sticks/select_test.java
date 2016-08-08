@@ -22,6 +22,7 @@ import java.io.StreamCorruptedException;
 public class select_test extends AppCompatActivity {
 
     private Button test1;
+    private Button test2;
     private Button test3;
     private Button score;
     private Button export;
@@ -34,6 +35,7 @@ public class select_test extends AppCompatActivity {
         setContentView(R.layout.activity_select_test);
 
         test1 = (Button) findViewById(R.id.select_button_test1);
+        test2 = (Button) findViewById(R.id.select_button_test2);
         test3 = (Button) findViewById(R.id.select_button_test3);
         score =(Button) findViewById(R.id.select_button_score);
         export = (Button) findViewById(R.id.select_button_export);
@@ -123,6 +125,14 @@ public class select_test extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), test_threshold.class);
+                startActivity(intent);
+            }
+        });
+
+        test2.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), test_discrimination.class);
                 startActivity(intent);
             }
         });
