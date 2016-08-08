@@ -7,7 +7,9 @@
     <string name="data_name"> Vorname  </string>
     <string name="data_surname"> Name  </string>
     <string name="data_birth">  Geburtsdatum  </string>
-    <string name="data_sex"> Geschlecht (m/w)  </string>
+    <string name="data_sex"> Geschlecht </string>
+    <string name="data_sexFrau">Frau </string>
+    <string name="data_sexMann">Mann </string>
     <string name="data_researcher"> Untersucher  </string>
     <string name="data_date"> Datum (dd-MM-yyyy) </string>
     <string name="data_hour"> Uhrzeit  </string>

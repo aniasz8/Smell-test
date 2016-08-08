@@ -11,6 +11,8 @@ import android.view.View;
 import java.util.Date;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TimePicker;
 
 import java.text.SimpleDateFormat;
@@ -19,13 +21,15 @@ import java.util.Calendar;
 public class patient_data extends AppCompatActivity implements View.OnFocusChangeListener{
 
     private Button ok;
+    private String data_sex;
     private EditText patient_name;
     private EditText patient_surname;
     private EditText patient_birth;
-    private EditText patient_sex;
     private EditText patient_researcher;
     private EditText patient_date;
     private EditText patient_hour;
+    private RadioGroup radioGroup;
+    private RadioButton radioButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +40,10 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
         patient_name=(EditText) findViewById(R.id.data_name);
         patient_surname=(EditText) findViewById(R.id.data_surname);
         patient_birth = (EditText) findViewById(R.id.data_birth);
-        patient_sex = (EditText) findViewById(R.id.data_sex);
         patient_researcher = (EditText) findViewById(R.id.data_researcher);
         patient_date = (EditText) findViewById(R.id.data_date);
         patient_hour =(EditText) findViewById(R.id.data_hour);
+        radioGroup =(RadioGroup) findViewById(R.id.data_RadioGroup);
 
         // correct date of birth
         TextWatcher tw = new TextWatcher() {
@@ -168,49 +172,14 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
             }
         });
 
-        // clear EditText (name, surname, sex, researcher) when clicked
+        // clear EditText (name, surname,  researcher) when clicked
 
-//        patient_name.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick (View v) {
-//                if(v == patient_name) {
-//
-//                }
-//            }
-//        });
         patient_name.setOnFocusChangeListener(this);
-
-        patient_surname.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick (View v) {
-                if(v == patient_surname) {
-                    patient_surname.setText("");
-                }
-            }
-        });
-
-        patient_sex.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick (View v) {
-                if(v == patient_sex) {
-                    patient_sex.setText("");
-                }
-            }
-        });
-
-        patient_researcher.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick (View v) {
-                if(v == patient_researcher) {
-                    patient_researcher.setText("");
-                }
-            }
-        });
-
+        patient_surname.setOnFocusChangeListener(this);
+        patient_researcher.setOnFocusChangeListener(this);
 
 
         // after clicking a ok button
-
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -228,8 +197,10 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
                 String birth = patient_birth.getText().toString();
                 intent.putExtra("birth", birth);
 
-                String sex = patient_sex.getText().toString();
-                intent.putExtra("sex", sex);
+                int radioButtonID = radioGroup.getCheckedRadioButtonId();
+                radioButton = (RadioButton) findViewById(radioButtonID);
+                data_sex = radioButton.getText().toString();
+                intent.putExtra("sex", data_sex);
 
                 String researcher = patient_researcher.getText().toString();
                 intent.putExtra("researcher", researcher);
@@ -250,5 +221,11 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
     public void onFocusChange(View v, boolean hasFocus) {
         if(v.equals(patient_name) && hasFocus)
                 patient_name.setText("");
+
+        if(v.equals(patient_surname) && hasFocus)
+            patient_surname.setText("");
+
+        if(v.equals(patient_researcher) && hasFocus)
+            patient_researcher.setText("");
     }
 }
