@@ -26,4 +26,74 @@ public class Case_wrongAnswer {
         this.listTHR_turningLevels = listTHR_turningLevels;
     }
 
+    public int getPoint(){
+        switch (point) {
+            case 0:
+                // check if previous there was any good answer- if not, decrese twice
+                if (!listTHR_answers.contains(1)){
+                    level = level - 2;
+                }
+
+                // if it is a wrong answer during the test - decrease just once and sometimes increase change
+                else {
+                    //check what was before 0
+                    int previous = listTHR_answers.get(index - 1);
+
+                    switch (previous) {
+                        case 1:
+                            // if there is 10 - it means we should increase change and add level to table
+                            listTHR_turningLevels[change]=level;
+                            level = level - 1;
+                            change = change + 1;
+                            break;
+
+                        case 0:
+                            level = level - 1;
+                            break;
+                    }
+                }
+                break;
+
+            case 1:
+                //good answer = checking if the previous answer was also correct
+                if (listTHR_answers.get(index - 1) == 1) {
+                    // checking if good answers were at the same level
+                    switch (point){
+                        case 1:
+                            if (listTHR_levels.get(index) == listTHR_levels.get(index - 1)) {
+
+                                // if they were = going to higher level
+                                level = level + 1;
+
+                                //if there is 110 = increase change
+                                if (listTHR_answers.get(index - 2) == 0) {
+
+                                    listTHR_turningLevels[change]=level-1;
+                                    change = change + 1;
+                                }
+                            }
+                            break;
+
+                        case 0:
+                            listTHR_turningLevels[change]=level;
+                            level = level -1;
+                            change = change +1;
+                            break;
+                    }
+                }
+                // otherwise level stays the same
+                break;
+        }
+        return point;
+    }
+    public int getLevel(){
+        return level;
+    }
+    public int getIndex () {
+        return index;
+    }
+    public int getChange (){
+        return change;
+    }
+
 }
