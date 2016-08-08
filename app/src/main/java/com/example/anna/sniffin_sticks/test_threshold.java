@@ -148,7 +148,6 @@ public class test_threshold extends AppCompatActivity {
                     }
                 }
 
-
                 //setting the title
                 if (((TextView) findViewById(R.id.testTHR_title)) != null) {
                     ((TextView) findViewById(R.id.testTHR_title)).setText("Level" + String.valueOf(level));
