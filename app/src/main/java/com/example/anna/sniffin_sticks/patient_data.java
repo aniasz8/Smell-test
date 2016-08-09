@@ -21,7 +21,6 @@ import java.util.Calendar;
 public class patient_data extends AppCompatActivity implements View.OnFocusChangeListener{
 
     private Button ok;
-    private String patient_sex;
     private EditText patient_name;
     private EditText patient_surname;
     private EditText patient_birth;
@@ -74,7 +73,6 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
         });
 
         // clear EditText (name, surname,  researcher) when clicked
-
         patient_name.setOnFocusChangeListener(this);
         patient_surname.setOnFocusChangeListener(this);
         patient_researcher.setOnFocusChangeListener(this);
@@ -86,41 +84,31 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
             public void onClick(View v) {
 
                 if (filledFields()) {
-                    //passing values to next activity
+
                     Intent intent = new Intent(patient_data.this, select_test.class);
-                    // declaration of passed values (putExtra(name of value, passed value)
-                    String name=patient_name.getText().toString();
-                    intent.putExtra("name", name);
 
-                    String surname=patient_surname.getText().toString();
-                    intent.putExtra("surname", surname);
-
-                    String birth = patient_birth.getText().toString();
-                    intent.putExtra("birth", birth);
+                    intent.putExtra("name", patient_name.getText().toString());
+                    intent.putExtra("surname", patient_surname.getText().toString());
+                    intent.putExtra("birth", patient_birth.getText().toString());
+                    intent.putExtra("researcher", patient_researcher.getText().toString());
+                    intent.putExtra("date", patient_date.getText().toString());
+                    intent.putExtra("hour", patient_hour.getText().toString());
 
                     int radioButtonID = radioGroup.getCheckedRadioButtonId();
                     radioButton = (RadioButton) findViewById(radioButtonID);
-                    patient_sex = radioButton.getText().toString();
+                    intent.putExtra("sex", radioButton.getText().toString());
 
-                    intent.putExtra("sex", patient_sex);
-
-                    String researcher = patient_researcher.getText().toString();
-                    intent.putExtra("researcher", researcher);
-
-                    String date = patient_date.getText().toString();
-                    intent.putExtra("date", date);
-
-                    String hour = patient_hour.getText().toString();
-                    intent.putExtra("hour", hour);
-
-                    // starting another activity
                     startActivity(intent);
+
                 }else{
                     AlertDialog();
                 }
             }
         });
     }
+
+
+    // extra methods
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
@@ -134,6 +122,7 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
             patient_researcher.setText("");
     }
 
+    // check if sex is chosen
     private Boolean filledFields(){
         if(radioGroup.getCheckedRadioButtonId()<=0){
             return false;
@@ -141,6 +130,7 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
         return true;
     }
 
+    // if something not filled then an alert dialog
     private void AlertDialog(){
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(patient_data.this);
