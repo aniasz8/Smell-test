@@ -72,6 +72,8 @@ public class select_test extends AppCompatActivity {
                 }
             }
         });
+
+        //selection of tests
         select_test1.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +81,6 @@ public class select_test extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         select_test2.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,8 +88,6 @@ public class select_test extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
         select_test3.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,8 +96,8 @@ public class select_test extends AppCompatActivity {
             }
         });
 
-        //generating Pdf
 
+        //generating Pdf
         select_export.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,7 +144,7 @@ public class select_test extends AppCompatActivity {
 
             Log.d("Pdf Creator", "Pdf path: " + filePath);
 
-            File file = new File(dir, name + surname +date + ".pdf");
+            File file = new File(dir, name + surname + ".pdf");
             FileOutputStream fileOut = new FileOutputStream(file);
 
             PdfWriter.getInstance(current_document, fileOut);
@@ -178,7 +177,7 @@ public class select_test extends AppCompatActivity {
         Intent intent_doc = new Intent(Intent.ACTION_VIEW);
 
         String filePath_view = Environment.getExternalStorageDirectory().getAbsolutePath() + "/PDF Files";
-        File file_view = new File(filePath_view,name + surname +date + ".pdf");
+        File file_view = new File(filePath_view,name + surname  + ".pdf");
 
         intent_doc.setDataAndType(Uri.fromFile(file_view),"Pdf in application");
         startActivity(intent_doc);
