@@ -65,8 +65,10 @@ public class select_test extends AppCompatActivity {
                 if (b!=null){
                     testID_total = (String ) b.get("testID_total");
                     testTHR_total = (String) b.get("testTHR_score");
+                    birth = (String) b.get("birth");
+                    date = (String) b.get("date");
 
-                    Toast.makeText(getBaseContext(), "test THR: " + testTHR_total, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), birth + "" + date, Toast.LENGTH_SHORT).show();
                 }
             }
         });

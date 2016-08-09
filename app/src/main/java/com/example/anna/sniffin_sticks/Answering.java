@@ -95,7 +95,7 @@ public class Answering {
         this.change = change;
         this.level = level;
         this.index = index;
-}
+    }
 
     public int getLevel () {
         return level;}
