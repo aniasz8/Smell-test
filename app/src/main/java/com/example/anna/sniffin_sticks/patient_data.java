@@ -1,7 +1,9 @@
 package com.example.anna.sniffin_sticks;
 
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,6 +14,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -181,37 +184,39 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
             @Override
             public void onClick(View v) {
 
-                //passing values to next activity
-                Intent intent=new Intent(patient_data.this, select_test.class);
+                if (filledFields()) {
+                    //passing values to next activity
+                    Intent intent = new Intent(patient_data.this, select_test.class);
+                    // declaration of passed values (putExtra(name of value, passed value)
+                    String name=patient_name.getText().toString();
+                    intent.putExtra("name", name);
 
-                // declaration of passed values (putExtra(name of value, passed value)
-                String name=patient_name.getText().toString();
-                intent.putExtra("name", name);
+                    String surname=patient_surname.getText().toString();
+                    intent.putExtra("surname", surname);
 
-                String surname=patient_surname.getText().toString();
-                intent.putExtra("surname", surname);
+                    String birth = patient_birth.getText().toString();
+                    intent.putExtra("birth", birth);
 
-                String birth = patient_birth.getText().toString();
-                intent.putExtra("birth", birth);
+                    int radioButtonID = radioGroup.getCheckedRadioButtonId();
+                    radioButton = (RadioButton) findViewById(radioButtonID);
+                    patient_sex = radioButton.getText().toString();
 
-                int radioButtonID = radioGroup.getCheckedRadioButtonId();
-                radioButton = (RadioButton) findViewById(radioButtonID);
-                patient_sex = radioButton.getText().toString();
-               // !!!!!!!!!!!!!!!!!!!
-                // co jesli nie klikniete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                intent.putExtra("sex", patient_sex);
+                    intent.putExtra("sex", patient_sex);
 
-                String researcher = patient_researcher.getText().toString();
-                intent.putExtra("researcher", researcher);
+                    String researcher = patient_researcher.getText().toString();
+                    intent.putExtra("researcher", researcher);
 
-                String date = patient_date.getText().toString();
-                intent.putExtra("date", date);
+                    String date = patient_date.getText().toString();
+                    intent.putExtra("date", date);
 
-                String hour = patient_hour.getText().toString();
-                intent.putExtra("hour", hour);
+                    String hour = patient_hour.getText().toString();
+                    intent.putExtra("hour", hour);
 
-                // starting another activity
-                startActivity(intent);
+                    // starting another activity
+                    startActivity(intent);
+                }else{
+                    AlertDialog();
+                }
             }
         });
     }
@@ -227,4 +232,26 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
         if(v.equals(patient_researcher) && hasFocus)
             patient_researcher.setText("");
     }
+
+    private Boolean filledFields(){
+        if(radioGroup.getCheckedRadioButtonId()<=0){
+            return false;
+        }
+        return true;
+    }
+
+    private void AlertDialog(){
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(patient_data.this);
+        alertDialogBuilder.setMessage("Wahlen ein Geschlecht").setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener(){
+
+            public void onClick(DialogInterface dialog, int id){
+                dialog.cancel();
+            }
+        });
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+    }
 }
+

@@ -65,10 +65,7 @@ public class select_test extends AppCompatActivity {
                 if (b!=null){
                     testID_total = (String ) b.get("testID_total");
                     testTHR_total = (String) b.get("testTHR_score");
-                    int [] testID_points_strings = b.getIntArray("testID_points_string");
-                    int [] testID_points = b.getIntArray("testID_points");
-                    String [] testID_choices = b.getStringArray("testID_choices");
-                    // String [] testID_answers = b.getStringArray("testID_answers");
+
                     Toast.makeText(getBaseContext(), "test THR: " + testTHR_total, Toast.LENGTH_SHORT).show();
                 }
             }
