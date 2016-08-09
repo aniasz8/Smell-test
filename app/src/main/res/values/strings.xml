@@ -19,6 +19,7 @@
     <string name="select_button_test2"> 2. Diskriminierung </string>
     <string name="select_button_test3"> 3. Erkennung </string>
     <string name="select_button_export"> Export</string>
+    <string name="select_button_view">Ansicht </string>
     <string name="select_button_reset">Reset</string>
     <string name="select_button_score">Score</string>
 

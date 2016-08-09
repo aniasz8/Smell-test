@@ -6,22 +6,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
-import java.util.Date;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TimePicker;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class patient_data extends AppCompatActivity implements View.OnFocusChangeListener{
 
     private Button ok;
-    private String data_sex;
+    private String patient_sex;
     private EditText patient_name;
     private EditText patient_surname;
     private EditText patient_birth;
@@ -199,10 +196,10 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
 
                 int radioButtonID = radioGroup.getCheckedRadioButtonId();
                 radioButton = (RadioButton) findViewById(radioButtonID);
-                data_sex = radioButton.getText().toString();
+                patient_sex = radioButton.getText().toString();
                // !!!!!!!!!!!!!!!!!!!
                 // co jesli nie klikniete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                intent.putExtra("sex", data_sex);
+                intent.putExtra("sex", patient_sex);
 
                 String researcher = patient_researcher.getText().toString();
                 intent.putExtra("researcher", researcher);

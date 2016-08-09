@@ -1,35 +1,22 @@
 package com.example.anna.sniffin_sticks;
 
 import android.content.Intent;
-import android.graphics.pdf.PdfDocument;
-import android.os.Environment;
-import android.print.PrintAttributes;
-import android.print.pdf.PrintedPdfDocument;
-import android.provider.DocumentsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.itextpdf.text.Document;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.StreamCorruptedException;
 
 
 public class select_test extends AppCompatActivity {
 
-    private Button test1;
-    private Button test2;
-    private Button test3;
-    private Button score;
-    private Button export;
-    private int number;
+    private Button select_test1;
+    private Button select_test2;
+    private Button select_test3;
+    private Button select_button_score;
+    private Button selecet_view;
+    private Button select_export;
+    //private int number;
    // private TextView view_name;
 
     @Override
@@ -37,15 +24,16 @@ public class select_test extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_test);
 
-        test1 = (Button) findViewById(R.id.select_button_test1);
-        test2 = (Button) findViewById(R.id.select_button_test2);
-        test3 = (Button) findViewById(R.id.select_button_test3);
-        score =(Button) findViewById(R.id.select_button_score);
-        export = (Button) findViewById(R.id.select_button_export);
+        select_test1 = (Button) findViewById(R.id.select_button_test1);
+        select_test2 = (Button) findViewById(R.id.select_button_test2);
+        select_test3 = (Button) findViewById(R.id.select_button_test3);
+        select_button_score =(Button) findViewById(R.id.select_button_score);
+        select_export = (Button) findViewById(R.id.select_button_export);
+        selecet_view = (Button) findViewById(R.id.select_button_view);
 
         // presssing score causes getting values from other activities
 
-        score.setOnClickListener(new Button.OnClickListener() {
+        select_button_score.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -69,15 +57,7 @@ public class select_test extends AppCompatActivity {
                 }
             }
         });
-
-        export.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Document doc = new Document();
-            }
-        });
-
-        test1.setOnClickListener(new Button.OnClickListener() {
+        select_test1.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), test_threshold.class);
@@ -85,7 +65,7 @@ public class select_test extends AppCompatActivity {
             }
         });
 
-        test2.setOnClickListener(new Button.OnClickListener() {
+        select_test2.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), test_discrimination.class);
@@ -94,13 +74,30 @@ public class select_test extends AppCompatActivity {
         });
 
 
-        test3.setOnClickListener(new Button.OnClickListener() {
+        select_test3.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), test_identification.class);
                 startActivity(intent);
             }
         });
+
+        //generating Pdf
+
+        select_export.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        selecet_view.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
     }
 
 }
