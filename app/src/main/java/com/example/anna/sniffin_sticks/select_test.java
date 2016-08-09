@@ -39,6 +39,7 @@ public class select_test extends AppCompatActivity {
     private String hour;
     private String testID_total;
     private String testTHR_total;
+    private String testDIS_total;
     //private int number;
    // private TextView view_name;
 
@@ -65,10 +66,9 @@ public class select_test extends AppCompatActivity {
                 if (b!=null){
                     testID_total = (String ) b.get("testID_total");
                     testTHR_total = (String) b.get("testTHR_score");
-                    birth = (String) b.get("birth");
-                    date = (String) b.get("date");
+                    testDIS_total = (String) b.get("testDIS_total");
 
-                    Toast.makeText(getBaseContext(), birth + "" + date, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), testDIS_total, Toast.LENGTH_SHORT).show();
                 }
             }
         });
