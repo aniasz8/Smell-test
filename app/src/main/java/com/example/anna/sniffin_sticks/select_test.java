@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.itextpdf.text.Document;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -71,6 +73,7 @@ public class select_test extends AppCompatActivity {
         export.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Document doc = new Document();
             }
         });
 
