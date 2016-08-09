@@ -13,6 +13,9 @@ public class test_discrimination extends AppCompatActivity {
     private RadioGroup radioGroup;
     private RadioButton radioButton;
     private Button testDIS_ok;
+    private int counter = 0;
+    private String patient_choice;
+    private int testDIS_total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
