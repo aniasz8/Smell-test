@@ -5,6 +5,7 @@ import android.graphics.pdf.PdfDocument;
 import android.os.Environment;
 import android.print.PrintAttributes;
 import android.print.pdf.PrintedPdfDocument;
+import android.provider.DocumentsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -70,54 +71,6 @@ public class select_test extends AppCompatActivity {
         export.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                File FolderName = new File(Environment.getExternalStorageDirectory(),"NewFolder");
-                File FileMade = new File(FolderName, "File_test" + number +".pdf");
-                if (!FolderName.exists()) {
-                    FolderName.mkdirs();
-                }
-
-                try {
-                    FileMade.createNewFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-               PrintAttributes printAttributes = new PrintAttributes.Builder().setColorMode(PrintAttributes.COLOR_MODE_MONOCHROME)
-                       .setMediaSize(PrintAttributes.MediaSize.ISO_A4)
-                       .setMinMargins(new PrintAttributes.Margins(15,15,15,15)).build();
-
-                PrintedPdfDocument Doc= new PrintedPdfDocument(getApplicationContext(), printAttributes);
-
-                int docX,docY;
-                int viewX, viewY;
-                float scaleX, scaleY;
-
-                docY = Doc.getPageHeight();
-                docX = Doc.getPageWidth();
-
-                View our_view = findViewById(R.id.pdf_layout);
-                viewX = our_view.getWidth();
-                viewY = our_view.getHeight();
-
-                scaleX = (float) docX/viewX;
-                scaleY = (float) docY/viewY;
-
-                PdfDocument.Page our_page = Doc.startPage(0);
-
-                Doc.finishPage(our_page);
-
-                try {
-                    Doc.writeTo(new FileOutputStream("File_test"));
-                } catch (FileNotFoundException e){
-                    e.printStackTrace();
-                } catch (IOException e){
-                    e.printStackTrace();
-                }
-
-                Doc.close();
-
-                number++;
             }
         });
 
@@ -145,7 +98,6 @@ public class select_test extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
+
 }
