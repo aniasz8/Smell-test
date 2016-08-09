@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.itextpdf.text.Document;
+
 
 public class select_test extends AppCompatActivity {
 
@@ -87,16 +89,24 @@ public class select_test extends AppCompatActivity {
         select_export.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                createPdf();
             }
         });
 
         selecet_view.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                viewPdf();
             }
         });
+
+    }
+    public void createPdf (){
+        Document current_document = new Document();
+
+    }
+
+    public void viewPdf(){
 
     }
 
