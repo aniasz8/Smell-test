@@ -63,13 +63,6 @@ public class select_test extends AppCompatActivity {
                 Intent intent = getIntent();
                 Bundle b = intent.getExtras();
                 if (b!=null){
-                    name = (String) b.get("name");
-                    surname = (String) b.get("surname");
-                    birth = (String) b.get("birth");
-                    sex = (String) b.get("sex");
-                    researcher = (String) b.get("researcher");
-                    date = (String) b.get("date");
-                    hour = (String) b.get("hour");
                     testID_total = (String ) b.get("testID_total");
                     testTHR_total = (String) b.get("testTHR_score");
                     int [] testID_points_strings = b.getIntArray("testID_points_string");
@@ -110,6 +103,23 @@ public class select_test extends AppCompatActivity {
         select_export.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = getIntent();
+                Bundle b = intent.getExtras();
+                if (b!=null){
+                    name = (String) b.get("name");
+                    surname = (String) b.get("surname");
+                    birth = (String) b.get("birth");
+                    sex = (String) b.get("sex");
+                    researcher = (String) b.get("researcher");
+                    date = (String) b.get("date");
+                    hour = (String) b.get("hour");
+                    testID_total = (String ) b.get("testID_total");
+                    testTHR_total = (String) b.get("testTHR_score");
+                    int [] testID_points_strings = b.getIntArray("testID_points_string");
+                    int [] testID_points = b.getIntArray("testID_points");
+                    String [] testID_choices = b.getStringArray("testID_choices");
+                    // String [] testID_answers = b.getStringArray("testID_answers");
+                }
                 createPdf();
             }
         });
@@ -167,8 +177,10 @@ public class select_test extends AppCompatActivity {
 
     public void viewPdf(){
         Intent intent_doc = new Intent(Intent.ACTION_VIEW);
+
         String filePath_view = Environment.getExternalStorageDirectory().getAbsolutePath() + "/PDF Files";
         File file_view = new File(filePath_view,name + surname +date + ".pdf");
+
         intent_doc.setDataAndType(Uri.fromFile(file_view),"Pdf in application");
         startActivity(intent_doc);
     }
