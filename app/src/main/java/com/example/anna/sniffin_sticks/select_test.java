@@ -1,13 +1,24 @@
 package com.example.anna.sniffin_sticks;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 
 public class select_test extends AppCompatActivity {
@@ -18,6 +29,16 @@ public class select_test extends AppCompatActivity {
     private Button select_button_score;
     private Button selecet_view;
     private Button select_export;
+
+    private String name;
+    private String surname;
+    private String birth;
+    private String sex;
+    private String researcher;
+    private String date;
+    private String hour;
+    private String testID_total;
+    private String testTHR_total;
     //private int number;
    // private TextView view_name;
 
@@ -42,15 +63,15 @@ public class select_test extends AppCompatActivity {
                 Intent intent = getIntent();
                 Bundle b = intent.getExtras();
                 if (b!=null){
-                    String name = (String) b.get("name");
-                    String surname = (String) b.get("surname");
-                    String birth = (String) b.get("birth");
-                    String sex = (String) b.get("sex");
-                    String researcher = (String) b.get("researcher");
-                    String date = (String) b.get("date");
-                    String hour = (String) b.get("hour");
-                    String testID_total = (String ) b.get("testID_total");
-                    String testTHR_total = (String) b.get("testTHR_score");
+                    name = (String) b.get("name");
+                    surname = (String) b.get("surname");
+                    birth = (String) b.get("birth");
+                    sex = (String) b.get("sex");
+                    researcher = (String) b.get("researcher");
+                    date = (String) b.get("date");
+                    hour = (String) b.get("hour");
+                    testID_total = (String ) b.get("testID_total");
+                    testTHR_total = (String) b.get("testTHR_score");
                     int [] testID_points_strings = b.getIntArray("testID_points_string");
                     int [] testID_points = b.getIntArray("testID_points");
                     String [] testID_choices = b.getStringArray("testID_choices");
@@ -99,15 +120,57 @@ public class select_test extends AppCompatActivity {
                 viewPdf();
             }
         });
-
     }
+
+
+    // method to create a Pdf
+
     public void createPdf (){
         Document current_document = new Document();
 
+        try {
+            String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/PDF Files";
+            File dir = new File(filePath);
+            if (!dir.exists())
+                dir.mkdirs();
+
+            Log.d("Pdf Creator", "Pdf path: " + filePath);
+
+            File file = new File(dir, name + surname +date + ".pdf");
+            FileOutputStream fileOut = new FileOutputStream(file);
+
+            PdfWriter.getInstance(current_document, fileOut);
+
+            current_document.open();
+
+            // creating content
+            Paragraph paragraph1 = new Paragraph("It's a test of" + name + surname);
+            Font paragraph1_font = new Font();
+            paragraph1_font.setSize(16);
+            paragraph1_font.setStyle(Font.BOLD);
+
+            paragraph1.setAlignment(Paragraph.ALIGN_CENTER);
+            paragraph1.setFont(paragraph1_font);
+
+            current_document.add(paragraph1);
+
+            Toast.makeText(getApplicationContext(), "Pdf created", Toast.LENGTH_SHORT).show();
+
+        } catch (DocumentException de) {
+            Log.e("Pdf Creator", "Pdf path: " + de);
+        }catch (IOException e){
+            Log.e("Pdf Creator", "Pdf path: " + e);
+        }finally {
+            current_document.close();
+        }
     }
 
     public void viewPdf(){
-
+        Intent intent_doc = new Intent(Intent.ACTION_VIEW);
+        String filePath_view = Environment.getExternalStorageDirectory().getAbsolutePath() + "/PDF Files";
+        File file_view = new File(filePath_view,name + surname +date + ".pdf");
+        intent_doc.setDataAndType(Uri.fromFile(file_view),"Pdf in application");
+        startActivity(intent_doc);
     }
 
 }
