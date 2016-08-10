@@ -21,6 +21,8 @@ public class test_identification extends AppCompatActivity {
     private String patient_choice;
     private int testID_total;
 
+    private String name;
+
     // tables
 
 
@@ -83,6 +85,13 @@ public class test_identification extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Intent intent = getIntent();
+                Bundle b = intent.getExtras();
+                if (b != null) {
+                     name = (String) b.get("name");
+                }
+                Toast.makeText(test_identification.this, name, Toast.LENGTH_SHORT).show();
+
                 //getting text from selected radio button
 
                 int radioButtonID = radioGroup.getCheckedRadioButtonId();
@@ -104,12 +113,12 @@ public class test_identification extends AppCompatActivity {
                     for (int i : tab_points)
                         testID_total += i;
 
-                    Intent intent = new Intent(test_identification.this, select_test.class);
-                    intent.putExtra("testID_total", Integer.toString(testID_total));
-                    intent.putExtra("testID_points", tab_points_string);
-                    intent.putExtra("testID_choices", tab_testID_choices);
-                    intent.putExtra("testID_answers", tab_answers);
-                    startActivity(intent);
+//                    Intent intent = new Intent(test_identification.this, select_test.class);
+//                    intent.putExtra("testID_total", Integer.toString(testID_total));
+//                    intent.putExtra("testID_points", tab_points_string);
+//                    intent.putExtra("testID_choices", tab_testID_choices);
+//                    intent.putExtra("testID_answers", tab_answers);
+//                    startActivity(intent);
 
                 } else {
                     counter++;

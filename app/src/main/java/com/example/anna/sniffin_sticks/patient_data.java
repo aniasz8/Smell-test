@@ -85,7 +85,7 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
 
                 if (filledFields()) {
 
-                    Intent intent = new Intent(patient_data.this, select_test.class);
+                    Intent intent = new Intent(patient_data.this, test_identification.class);
 
                     intent.putExtra("name", patient_name.getText().toString());
                     intent.putExtra("surname", patient_surname.getText().toString());
@@ -98,7 +98,8 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
                     radioButton = (RadioButton) findViewById(radioButtonID);
                     intent.putExtra("sex", radioButton.getText().toString());
 
-                    startActivity(intent);
+                    Intent integerGo = new Intent(patient_data.this, select_test.class);
+                    startActivity(integerGo);
 
                 }else{
                     AlertDialog();
