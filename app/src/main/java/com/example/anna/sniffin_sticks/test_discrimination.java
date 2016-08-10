@@ -10,6 +10,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Arrays;
+
 public class test_discrimination extends AppCompatActivity {
 
     private RadioGroup radioGroup;
@@ -57,6 +59,9 @@ public class test_discrimination extends AppCompatActivity {
                 if (counter == 15) {
                     for (int i : tab_DISpoints)
                         testDIS_total += i;
+
+                    Toast.makeText(getApplicationContext(), Arrays.toString(convert1.getArrayOfString()) + "", Toast.LENGTH_SHORT).show();
+
 
                     Intent intent = new Intent(test_discrimination.this, select_test.class);
                     intent.putExtra("testDIS_total", Integer.toString(testDIS_total));

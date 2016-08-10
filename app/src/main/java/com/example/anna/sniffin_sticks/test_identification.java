@@ -104,7 +104,7 @@ public class test_identification extends AppCompatActivity {
                     for (int i : tab_points)
                         testID_total += i;
 
-                   //Toast.makeText(getApplicationContext(), Arrays.toString(tab_points_string) + "", Toast.LENGTH_SHORT).show();
+                   Toast.makeText(getApplicationContext(), Arrays.toString(convert1.getArrayOfString()) + "", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(test_identification.this, select_test.class);
                     intent.putExtra("testID_total", Integer.toString(testID_total));
