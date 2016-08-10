@@ -55,8 +55,6 @@ public class test_discrimination extends AppCompatActivity {
                     for (int i : tab_DISpoints)
                         testDIS_total += i;
 
-                    Toast.makeText(getApplicationContext(), Integer.toString(testDIS_total), Toast.LENGTH_SHORT).show();
-
                     Intent intent = new Intent(test_discrimination.this, select_test.class);
                     intent.putExtra("testDIS_total", Integer.toString(testDIS_total));
                     intent.putExtra("testDIS_points", tab_DISpoints);

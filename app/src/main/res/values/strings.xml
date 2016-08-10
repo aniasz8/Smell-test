@@ -21,7 +21,7 @@
     <string name="select_button_export"> Export</string>
     <string name="select_button_view">Ansicht </string>
     <string name="select_button_reset">Reset</string>
-    <string name="select_button_score">Score</string>
+    <string name="select_button_score">Ergebnis</string>
 
     <string name="testID_counter"> Counter </string>
     <string name="testID_choice1"> Choice 1 </string>

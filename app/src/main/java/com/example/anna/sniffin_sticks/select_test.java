@@ -41,8 +41,6 @@ public class select_test extends AppCompatActivity {
     private String testID_total;
     private String testTHR_total;
     private String testDIS_total;
-    //private int number;
-   // private TextView view_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
