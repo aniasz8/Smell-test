@@ -120,6 +120,7 @@ public class select_test extends AppCompatActivity {
                 Intent intent = getIntent();
                 Bundle b = intent.getExtras();
                 if (b != null) {
+
                     name = (String) b.get("name");
                     surname = (String) b.get("surname");
                     birth = (String) b.get("birth");
@@ -130,15 +131,17 @@ public class select_test extends AppCompatActivity {
                     testID_total = (String) b.get("testID_total");
                     testDIS_total = (String) b.get("testDIS_total");
                     testTHR_total = (String) b.get("testTHR_score");
-                    int[] testID_points_strings = b.getIntArray("testID_points_string");
+
                     int[] testID_points = b.getIntArray("testID_points");
                     String[] testID_choices = b.getStringArray("testID_choices");
-                    // String [] testID_answers = b.getStringArray("testID_answers");
+                    String [] testID_answers = b.getStringArray("testID_answers");
+
+
                 }
-                CreationOfPdf pdf = new CreationOfPdf(name, surname,birth,sex, researcher, date, hour,
-                        testTHR_total,testDIS_total,testID_total);
-                pdf.createPdf();
-                Toast.makeText(getApplicationContext(), "Pdf created", Toast.LENGTH_SHORT).show();
+//                CreationOfPdf pdf = new CreationOfPdf(name, surname,birth,sex, researcher, date, hour,
+//                        testTHR_total,testDIS_total,testID_total);
+//                pdf.createPdf();
+//                Toast.makeText(getApplicationContext(), "Pdf created", Toast.LENGTH_SHORT).show();
             }
         });
 

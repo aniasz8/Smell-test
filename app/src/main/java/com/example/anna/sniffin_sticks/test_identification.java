@@ -100,13 +100,11 @@ public class test_identification extends AppCompatActivity {
                     for (int i : tab_points)
                         testID_total += i;
 
-                    //Toast.makeText(getApplicationContext(), Integer.toString(testID_total), Toast.LENGTH_SHORT).show();
-
                     Intent intent = new Intent(test_identification.this, select_test.class);
                     intent.putExtra("testID_total", Integer.toString(testID_total));
                     intent.putExtra("testID_points", tab_points);
                     intent.putExtra("testID_choices", tab_testID_choices);
-                    //intent.putExtra("testID_answers", tab_answers);
+                    intent.putExtra("testID_answers", tab_answers);
                     startActivity(intent);
 
                 } else {

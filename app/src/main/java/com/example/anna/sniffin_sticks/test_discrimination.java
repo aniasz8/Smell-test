@@ -59,7 +59,6 @@ public class test_discrimination extends AppCompatActivity {
                     intent.putExtra("testDIS_total", Integer.toString(testDIS_total));
                     intent.putExtra("testDIS_points", tab_DISpoints);
                     intent.putExtra("testDIS_choices", tab_testDIS_choices);
-                    //intent.putExtra("testID_answers", tab_answers);
                     startActivity(intent);
 
                 } else {
