@@ -138,7 +138,8 @@ public class select_test extends AppCompatActivity {
                     String [] testID_choices = b.getStringArray("testID_choices");
                     String [] testID_answers = b.getStringArray("testID_answers");
 
-
+                    String [] testDIS_points = b.getStringArray("testDIS_points");
+                    String [] testDIS_choices = b.getStringArray("testDIS_choices");
                 }
 //                CreationOfPdf pdf = new CreationOfPdf(name, surname,birth,sex, researcher, date, hour,
 //                        testTHR_total,testDIS_total,testID_total);

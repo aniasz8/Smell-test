@@ -95,8 +95,7 @@ public class test_identification extends AppCompatActivity {
                 Question result = new Question(patient_choice, tab_good[counter]);
                 int point = result.result();
                 tab_points[counter]=point;
-                String point_string = Integer.toString(point);
-                tab_points_string[counter]=point_string;
+                tab_points_string[counter]=Integer.toString(point);
                 tab_testID_choices[counter]=patient_choice;
 
 
@@ -106,7 +105,7 @@ public class test_identification extends AppCompatActivity {
                     for (int i : tab_points)
                         testID_total += i;
 
-                   // Toast.makeText(getApplicationContext(), Arrays.toString(tab_points_string) + "", Toast.LENGTH_SHORT).show();
+                   //Toast.makeText(getApplicationContext(), Arrays.toString(tab_points_string) + "", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(test_identification.this, select_test.class);
                     intent.putExtra("testID_total", Integer.toString(testID_total));
