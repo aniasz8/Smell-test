@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Arrays;
 
 public class test_identification extends AppCompatActivity {
 
@@ -44,6 +47,7 @@ public class test_identification extends AppCompatActivity {
             "Knoblauch","Kaffee","Apfel","Gewürznelke","Ananas","Rose","Anis","Fisch",""};
 
     int tab_points [] = new int [16];
+    String tab_points_string [] = new String [16];
     String tab_testID_choices []= new String [16];
 
 
@@ -91,6 +95,8 @@ public class test_identification extends AppCompatActivity {
                 Question result = new Question(patient_choice, tab_good[counter]);
                 int point = result.result();
                 tab_points[counter]=point;
+                String point_string = Integer.toString(point);
+                tab_points_string[counter]=point_string;
                 tab_testID_choices[counter]=patient_choice;
 
 
@@ -100,9 +106,11 @@ public class test_identification extends AppCompatActivity {
                     for (int i : tab_points)
                         testID_total += i;
 
+                   // Toast.makeText(getApplicationContext(), Arrays.toString(tab_points_string) + "", Toast.LENGTH_SHORT).show();
+
                     Intent intent = new Intent(test_identification.this, select_test.class);
                     intent.putExtra("testID_total", Integer.toString(testID_total));
-                    intent.putExtra("testID_points", tab_points);
+                    intent.putExtra("testID_points", tab_points_string);
                     intent.putExtra("testID_choices", tab_testID_choices);
                     intent.putExtra("testID_answers", tab_answers);
                     startActivity(intent);

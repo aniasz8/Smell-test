@@ -20,6 +20,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
 
 public class select_test extends AppCompatActivity {
@@ -67,6 +68,7 @@ public class select_test extends AppCompatActivity {
                     testID_total = (String) b.get("testID_total");
                     testTHR_total = (String) b.get("testTHR_score");
                     testDIS_total = (String) b.get("testDIS_total");
+                    String [] testID_points = b.getStringArray("testID_points");
 
                     TotalScore total_score = new TotalScore(testTHR_total, testDIS_total, testID_total);
                     int score = total_score.totalResult();
@@ -132,8 +134,8 @@ public class select_test extends AppCompatActivity {
                     testDIS_total = (String) b.get("testDIS_total");
                     testTHR_total = (String) b.get("testTHR_score");
 
-                    int[] testID_points = b.getIntArray("testID_points");
-                    String[] testID_choices = b.getStringArray("testID_choices");
+                    String [] testID_points = b.getStringArray("testID_points");
+                    String [] testID_choices = b.getStringArray("testID_choices");
                     String [] testID_answers = b.getStringArray("testID_answers");
 
 
