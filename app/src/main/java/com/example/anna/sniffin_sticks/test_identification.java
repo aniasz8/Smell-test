@@ -85,10 +85,6 @@ public class test_identification extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                SharedPreferences get = getSharedPreferences("my_prefs",0);
-                String name = get.getString("name","");
-                Toast.makeText(test_identification.this, name, Toast.LENGTH_SHORT).show();
-
                 //getting text from selected radio button
 
                 int radioButtonID = radioGroup.getCheckedRadioButtonId();

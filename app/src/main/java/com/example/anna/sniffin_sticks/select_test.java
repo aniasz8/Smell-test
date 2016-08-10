@@ -1,6 +1,7 @@
 package com.example.anna.sniffin_sticks;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -127,31 +128,13 @@ public class select_test extends AppCompatActivity {
         select_export.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = getIntent();
-                Bundle b = intent.getExtras();
-                if (b != null) {
 
-                    name = (String) b.get("name");
-                    surname = (String) b.get("surname");
-                    birth = (String) b.get("birth");
-                    sex = (String) b.get("sex");
-                    researcher = (String) b.get("researcher");
-                    date = (String) b.get("date");
-                    hour = (String) b.get("hour");
-                    testID_total = (String) b.get("testID_total");
-                    testDIS_total = (String) b.get("testDIS_total");
-                    testTHR_total = (String) b.get("testTHR_score");
+                SharedPreferences get = getSharedPreferences("my_prefs",0);
+                name = get.getString("name","");
+                surname = get.getString("surname","");
 
-                    testID_points = b.getStringArray("testID_points");
-                    testID_choices = b.getStringArray("testID_choices");
-                    testID_answers = b.getStringArray("testID_answers");
 
-                    testDIS_points = b.getStringArray("testDIS_points");
-                    testDIS_choices = b.getStringArray("testDIS_choices");
-
-                    testTHR_turningLevels = b.getStringArray("testTHR_turningLevels");
-                }
-                Toast.makeText(getApplicationContext(), name + testID_total + testDIS_total + "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), name+ surname, Toast.LENGTH_SHORT).show();
 //                CreationOfPdf pdf = new CreationOfPdf(name, surname,birth,sex, researcher, date, hour,
 //                        testTHR_total,testDIS_total,testID_total);
 //                pdf.createPdf();

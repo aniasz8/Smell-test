@@ -86,23 +86,20 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
 
                 if (filledFields()) {
 
+                    int radioButtonID = radioGroup.getCheckedRadioButtonId();
+                    radioButton = (RadioButton) findViewById(radioButtonID);
+
                     SharedPreferences my_prefs = getSharedPreferences("my_prefs",MODE_PRIVATE);
                     SharedPreferences.Editor edit = my_prefs.edit();
                     edit.putString("name", patient_name.getText().toString());
+                    edit.putString("surname", patient_surname.getText().toString());
+                    edit.putString("birth", patient_birth.getText().toString());
+                    edit.putString("researcher", patient_researcher.getText().toString());
+                    edit.putString("date", patient_date.getText().toString());
+                    edit.putString("hour", patient_hour.getText().toString());
+                    edit.putString("sex", radioButton.getText().toString());
                     edit.commit();
 
-
-
-//                    intent.putExtra("name", patient_name.getText().toString());
-//                    intent.putExtra("surname", patient_surname.getText().toString());
-//                    intent.putExtra("birth", patient_birth.getText().toString());
-//                    intent.putExtra("researcher", patient_researcher.getText().toString());
-//                    intent.putExtra("date", patient_date.getText().toString());
-//                    intent.putExtra("hour", patient_hour.getText().toString());
-
-                    int radioButtonID = radioGroup.getCheckedRadioButtonId();
-                    radioButton = (RadioButton) findViewById(radioButtonID);
-//                    intent.putExtra("sex", radioButton.getText().toString());
                     Intent intent = new Intent(patient_data.this, select_test.class);
                     startActivity(intent);
 
