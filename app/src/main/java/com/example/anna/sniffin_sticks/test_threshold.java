@@ -8,8 +8,10 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class test_threshold extends AppCompatActivity {
 
@@ -56,16 +58,23 @@ public class test_threshold extends AppCompatActivity {
                 // 1) we always answered wrongly  2) change ==7, then we calculate the final score
                 if (level < 1) {
                     int testTHR_score = 1;
+
                     Intent intent = new Intent(test_threshold.this, select_test.class);
                     intent.putExtra("testTHR_score",Integer.toString(testTHR_score));
+
                     startActivity(intent);
                 }
                 if (change==7) {
                     TestTHR_score testTHR_score_string = new TestTHR_score(listTHR_turningLevels);
                     testTHR_finalResult = testTHR_score_string.testTHR_StringResult();
 
+                    ConvertArrayIntToString convert1 = new ConvertArrayIntToString(listTHR_turningLevels);
+
+                    //Toast.makeText(getApplicationContext(), Arrays.toString(convert1.getArrayOfString()) + "", Toast.LENGTH_SHORT).show();
+
                     Intent intent = new Intent(test_threshold.this, select_test.class);
                     intent.putExtra("testTHR_score",testTHR_finalResult);
+                    intent.putExtra("testTHR_turningLevels", convert1.getArrayOfString());
                     startActivity(intent);
                 }
 

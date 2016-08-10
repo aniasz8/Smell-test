@@ -44,6 +44,15 @@ public class select_test extends AppCompatActivity {
     private String testTHR_total;
     private String testDIS_total;
 
+    String [] testID_points;
+    String [] testID_choices;
+    String [] testID_answers;
+
+    String [] testDIS_points;
+    String [] testDIS_choices;
+
+    String [] testTHR_turningLevels;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +77,6 @@ public class select_test extends AppCompatActivity {
                     testID_total = (String) b.get("testID_total");
                     testTHR_total = (String) b.get("testTHR_score");
                     testDIS_total = (String) b.get("testDIS_total");
-                    String [] testID_points = b.getStringArray("testID_points");
 
                     TotalScore total_score = new TotalScore(testTHR_total, testDIS_total, testID_total);
                     int score = total_score.totalResult();
@@ -134,13 +142,16 @@ public class select_test extends AppCompatActivity {
                     testDIS_total = (String) b.get("testDIS_total");
                     testTHR_total = (String) b.get("testTHR_score");
 
-                    String [] testID_points = b.getStringArray("testID_points");
-                    String [] testID_choices = b.getStringArray("testID_choices");
-                    String [] testID_answers = b.getStringArray("testID_answers");
+                    testID_points = b.getStringArray("testID_points");
+                    testID_choices = b.getStringArray("testID_choices");
+                    testID_answers = b.getStringArray("testID_answers");
 
-                    String [] testDIS_points = b.getStringArray("testDIS_points");
-                    String [] testDIS_choices = b.getStringArray("testDIS_choices");
+                    testDIS_points = b.getStringArray("testDIS_points");
+                    testDIS_choices = b.getStringArray("testDIS_choices");
+
+                    testTHR_turningLevels = b.getStringArray("testTHR_turningLevels");
                 }
+                Toast.makeText(getApplicationContext(), Arrays.toString(testTHR_turningLevels)+ "", Toast.LENGTH_SHORT).show();
 //                CreationOfPdf pdf = new CreationOfPdf(name, surname,birth,sex, researcher, date, hour,
 //                        testTHR_total,testDIS_total,testID_total);
 //                pdf.createPdf();
