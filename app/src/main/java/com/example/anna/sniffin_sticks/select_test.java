@@ -6,6 +6,7 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -90,6 +91,7 @@ public class select_test extends AppCompatActivity {
         select_test1.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(getApplicationContext(), test_threshold.class);
                 startActivity(intent);
             }
@@ -101,6 +103,7 @@ public class select_test extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         select_test3.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
