@@ -151,7 +151,7 @@ public class select_test extends AppCompatActivity {
 
                     testTHR_turningLevels = b.getStringArray("testTHR_turningLevels");
                 }
-                Toast.makeText(getApplicationContext(), Arrays.toString(testTHR_turningLevels)+ "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), name + testID_total + testDIS_total + "", Toast.LENGTH_SHORT).show();
 //                CreationOfPdf pdf = new CreationOfPdf(name, surname,birth,sex, researcher, date, hour,
 //                        testTHR_total,testDIS_total,testID_total);
 //                pdf.createPdf();

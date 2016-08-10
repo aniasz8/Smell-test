@@ -23,6 +23,7 @@ public class test_discrimination extends AppCompatActivity {
 
     int tab_DISpoints [] = new int [16];
     String tab_testDIS_choices []= new String [16];
+    String tabDIS_points_string [] = new String[16];
 
 
     @Override
@@ -53,19 +54,15 @@ public class test_discrimination extends AppCompatActivity {
                 int point = result.result();
                 tab_DISpoints[counter]=point;
                 tab_testDIS_choices[counter]=patient_choice;
-
-                ConvertArrayIntToString convert1 = new ConvertArrayIntToString(tab_DISpoints);
+                tabDIS_points_string [counter]=Integer.toString(point);
 
                 if (counter == 15) {
                     for (int i : tab_DISpoints)
                         testDIS_total += i;
 
-                    Toast.makeText(getApplicationContext(), Arrays.toString(convert1.getArrayOfString()) + "", Toast.LENGTH_SHORT).show();
-
-
                     Intent intent = new Intent(test_discrimination.this, select_test.class);
                     intent.putExtra("testDIS_total", Integer.toString(testDIS_total));
-                    intent.putExtra("testDIS_points", convert1.getArrayOfString());
+                    intent.putExtra("testDIS_points", tabDIS_points_string);
                     intent.putExtra("testDIS_choices", tab_testDIS_choices);
                     startActivity(intent);
 

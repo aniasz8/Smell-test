@@ -48,6 +48,7 @@ public class test_identification extends AppCompatActivity {
 
     int tab_points [] = new int [16];
     String tab_testID_choices []= new String [16];
+    String tab_points_string [] = new String[16];
 
 
     @Override
@@ -94,9 +95,8 @@ public class test_identification extends AppCompatActivity {
                 Question result = new Question(patient_choice, tab_good[counter]);
                 int point = result.result();
                 tab_points[counter]=point;
+                tab_points_string [counter]=Integer.toString(point);
                 tab_testID_choices[counter]=patient_choice;
-
-                ConvertArrayIntToString convert1 = new ConvertArrayIntToString(tab_points);
 
                 // changing the value of counter = consequences
 
@@ -104,11 +104,9 @@ public class test_identification extends AppCompatActivity {
                     for (int i : tab_points)
                         testID_total += i;
 
-                   Toast.makeText(getApplicationContext(), Arrays.toString(convert1.getArrayOfString()) + "", Toast.LENGTH_SHORT).show();
-
                     Intent intent = new Intent(test_identification.this, select_test.class);
                     intent.putExtra("testID_total", Integer.toString(testID_total));
-                    intent.putExtra("testID_points", convert1.getArrayOfString());
+                    intent.putExtra("testID_points", tab_points_string);
                     intent.putExtra("testID_choices", tab_testID_choices);
                     intent.putExtra("testID_answers", tab_answers);
                     startActivity(intent);
