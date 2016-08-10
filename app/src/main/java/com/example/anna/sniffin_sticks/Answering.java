@@ -98,7 +98,8 @@ public class Answering {
     }
 
     public int getLevel () {
-        return level;}
+        return level;
+    }
 
     public int getIndex() {
         return index;

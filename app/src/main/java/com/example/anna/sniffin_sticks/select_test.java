@@ -72,7 +72,9 @@ public class select_test extends AppCompatActivity {
                     TotalScore total_score = new TotalScore(testTHR_total,testDIS_total,testID_total);
                     int score = total_score.totalResult();
 
-                    Toast.makeText(getBaseContext(), "Ergebnis: " + Integer.toString(score), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "Schwelle: " + total_score.getTestTHR() + "\nDiskriminierung: "
+                            + total_score.getTestDIS() + "\nErkennung: " + total_score.getTestID()
+                            + "\nErgebnis: " + Integer.toString(score), Toast.LENGTH_LONG).show();
                 }
             }
         });
