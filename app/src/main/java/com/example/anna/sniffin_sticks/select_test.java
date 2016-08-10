@@ -51,7 +51,7 @@ public class select_test extends AppCompatActivity {
         select_test1 = (Button) findViewById(R.id.select_button_test1);
         select_test2 = (Button) findViewById(R.id.select_button_test2);
         select_test3 = (Button) findViewById(R.id.select_button_test3);
-        select_button_score =(Button) findViewById(R.id.select_button_score);
+        select_button_score = (Button) findViewById(R.id.select_button_score);
         select_export = (Button) findViewById(R.id.select_button_export);
         selecet_view = (Button) findViewById(R.id.select_button_view);
         select_reset = (Button) findViewById(R.id.select_button_reset);
@@ -63,12 +63,12 @@ public class select_test extends AppCompatActivity {
 
                 Intent intent = getIntent();
                 Bundle b = intent.getExtras();
-                if (b!=null){
-                    testID_total = (String ) b.get("testID_total");
+                if (b != null) {
+                    testID_total = (String) b.get("testID_total");
                     testTHR_total = (String) b.get("testTHR_score");
                     testDIS_total = (String) b.get("testDIS_total");
 
-                    TotalScore total_score = new TotalScore(testTHR_total,testDIS_total,testID_total);
+                    TotalScore total_score = new TotalScore(testTHR_total, testDIS_total, testID_total);
                     int score = total_score.totalResult();
 
                     Toast.makeText(getBaseContext(), "Schwelle: " + total_score.getTestTHR() + "\nDiskriminierung: "
@@ -119,7 +119,7 @@ public class select_test extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = getIntent();
                 Bundle b = intent.getExtras();
-                if (b!=null){
+                if (b != null) {
                     name = (String) b.get("name");
                     surname = (String) b.get("surname");
                     birth = (String) b.get("birth");
@@ -127,14 +127,16 @@ public class select_test extends AppCompatActivity {
                     researcher = (String) b.get("researcher");
                     date = (String) b.get("date");
                     hour = (String) b.get("hour");
-                    testID_total = (String ) b.get("testID_total");
+                    testID_total = (String) b.get("testID_total");
                     testTHR_total = (String) b.get("testTHR_score");
-                    int [] testID_points_strings = b.getIntArray("testID_points_string");
-                    int [] testID_points = b.getIntArray("testID_points");
-                    String [] testID_choices = b.getStringArray("testID_choices");
+                    int[] testID_points_strings = b.getIntArray("testID_points_string");
+                    int[] testID_points = b.getIntArray("testID_points");
+                    String[] testID_choices = b.getStringArray("testID_choices");
                     // String [] testID_answers = b.getStringArray("testID_answers");
                 }
-                createPdf();
+                CreationOfPdf pdf = new CreationOfPdf(name, surname);
+                pdf.createPdf();
+                Toast.makeText(getApplicationContext(), "Pdf created", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -146,49 +148,6 @@ public class select_test extends AppCompatActivity {
         });
     }
 
-
-    // method to create a Pdf
-
-    public void createPdf (){
-        Document current_document = new Document();
-
-        try {
-            String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/PDF Files";
-            File dir = new File(filePath);
-            if (!dir.exists())
-                dir.mkdirs();
-
-            Log.d("Pdf Creator", "Pdf path: " + filePath);
-
-            File file = new File(dir, name + surname + ".pdf");
-            FileOutputStream fileOut = new FileOutputStream(file);
-
-            PdfWriter.getInstance(current_document, fileOut);
-
-            current_document.open();
-
-            // creating content
-            Paragraph paragraph1 = new Paragraph("It's a test of" + name + surname);
-            Font paragraph1_font = new Font();
-            paragraph1_font.setSize(16);
-            paragraph1_font.setStyle(Font.BOLD);
-
-            paragraph1.setAlignment(Paragraph.ALIGN_CENTER);
-            paragraph1.setFont(paragraph1_font);
-
-            current_document.add(paragraph1);
-
-            Toast.makeText(getApplicationContext(), "Pdf created", Toast.LENGTH_SHORT).show();
-
-        } catch (DocumentException de) {
-            Log.e("Pdf Creator", "Pdf path: " + de);
-        }catch (IOException e){
-            Log.e("Pdf Creator", "Pdf path: " + e);
-        }finally {
-            current_document.close();
-        }
-    }
-
     public void viewPdf(){
         Intent intent_doc = new Intent(Intent.ACTION_VIEW);
 
@@ -198,5 +157,4 @@ public class select_test extends AppCompatActivity {
         intent_doc.setDataAndType(Uri.fromFile(file_view),"Pdf in application");
         startActivity(intent_doc);
     }
-
 }
