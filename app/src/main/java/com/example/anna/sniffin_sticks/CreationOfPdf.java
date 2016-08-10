@@ -1,10 +1,7 @@
 package com.example.anna.sniffin_sticks;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -28,21 +25,39 @@ public class CreationOfPdf {
     private String researcher;
     private String date;
     private String hour;
-    private String testID_total;
     private String testTHR_total;
     private String testDIS_total;
+    private String testID_total;
+
+    private String title = "RIECHTEST: Sniffin' sticks ";
+    private String title_patient = "Patient(in)";
+    private String title_result = "Ergebnis";
+    private String title_data = "Daten";
 
 
 
-    public CreationOfPdf (String name, String surname){
+    public CreationOfPdf (String name, String surname, String birth, String sex, String researcher,
+                          String date, String hour, String testTHR_total, String testDIS_total, String testID_total){
         this.name=name;
         this.surname=surname;
+        this.birth = birth;
+        this.sex = sex;
+        this.researcher=researcher;
+        this.date = date;
+        this.hour = hour;
+        this.testTHR_total = testTHR_total;
+        this.testDIS_total = testDIS_total;
+        this.testID_total = testID_total;
 
     }
     public void createPdf (){
         Document current_document = new Document();
 
         try {
+
+            //
+            // DIRECTORY and file name
+
             String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/PDF Files";
             File dir = new File(filePath);
             if (!dir.exists())
@@ -57,8 +72,10 @@ public class CreationOfPdf {
 
             current_document.open();
 
-            // creating content
-            Paragraph paragraph1 = new Paragraph("It's a test of" + name + surname);
+            //
+            // CONTENT
+
+            Paragraph paragraph1 = new Paragraph(title);
             Font paragraph1_font = new Font();
             paragraph1_font.setSize(16);
             paragraph1_font.setStyle(Font.BOLD);
