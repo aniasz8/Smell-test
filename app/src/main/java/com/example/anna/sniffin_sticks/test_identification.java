@@ -1,6 +1,7 @@
 package com.example.anna.sniffin_sticks;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,7 +25,6 @@ public class test_identification extends AppCompatActivity {
     private String name;
 
     // tables
-
 
     String tab_answers[][] = {
             {"Orange", "Brombeere", "Erdbeere", "Ananas"},
@@ -85,11 +85,8 @@ public class test_identification extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = getIntent();
-                Bundle b = intent.getExtras();
-                if (b != null) {
-                     name = (String) b.get("name");
-                }
+                SharedPreferences get = getSharedPreferences("my_prefs",0);
+                String name = get.getString("name","");
                 Toast.makeText(test_identification.this, name, Toast.LENGTH_SHORT).show();
 
                 //getting text from selected radio button
@@ -113,12 +110,15 @@ public class test_identification extends AppCompatActivity {
                     for (int i : tab_points)
                         testID_total += i;
 
-//                    Intent intent = new Intent(test_identification.this, select_test.class);
+
+                    Intent intent1 = new Intent(test_identification.this, select_test.class);
+                    startActivity(intent1);
+
 //                    intent.putExtra("testID_total", Integer.toString(testID_total));
 //                    intent.putExtra("testID_points", tab_points_string);
 //                    intent.putExtra("testID_choices", tab_testID_choices);
 //                    intent.putExtra("testID_answers", tab_answers);
-//                    startActivity(intent);
+
 
                 } else {
                     counter++;

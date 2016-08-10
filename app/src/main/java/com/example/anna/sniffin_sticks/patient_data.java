@@ -3,6 +3,7 @@ package com.example.anna.sniffin_sticks;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -85,7 +86,10 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
 
                 if (filledFields()) {
 
-
+                    SharedPreferences my_prefs = getSharedPreferences("my_prefs",MODE_PRIVATE);
+                    SharedPreferences.Editor edit = my_prefs.edit();
+                    edit.putString("name", patient_name.getText().toString());
+                    edit.commit();
 
 
 
