@@ -29,6 +29,7 @@ public class select_test extends AppCompatActivity {
     private Button select_button_score;
     private Button selecet_view;
     private Button select_export;
+    private Button select_reset;
 
     private String name;
     private String surname;
@@ -54,9 +55,9 @@ public class select_test extends AppCompatActivity {
         select_button_score =(Button) findViewById(R.id.select_button_score);
         select_export = (Button) findViewById(R.id.select_button_export);
         selecet_view = (Button) findViewById(R.id.select_button_view);
+        select_reset = (Button) findViewById(R.id.select_button_reset);
 
         // presssing score causes getting values from other activities
-
         select_button_score.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,8 +69,20 @@ public class select_test extends AppCompatActivity {
                     testTHR_total = (String) b.get("testTHR_score");
                     testDIS_total = (String) b.get("testDIS_total");
 
-                    Toast.makeText(getBaseContext(), testDIS_total, Toast.LENGTH_SHORT).show();
+                    TotalScore total_score = new TotalScore(testTHR_total,testDIS_total,testID_total);
+                    int score = total_score.totalResult();
+
+                    Toast.makeText(getBaseContext(), "Ergebnis: " + Integer.toString(score), Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        // pressing button reset erases data and go to the beginning
+        select_reset.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
 
