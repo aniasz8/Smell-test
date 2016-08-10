@@ -85,21 +85,22 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
 
                 if (filledFields()) {
 
-                    Intent intent = new Intent(patient_data.this, test_identification.class);
 
-                    intent.putExtra("name", patient_name.getText().toString());
-                    intent.putExtra("surname", patient_surname.getText().toString());
-                    intent.putExtra("birth", patient_birth.getText().toString());
-                    intent.putExtra("researcher", patient_researcher.getText().toString());
-                    intent.putExtra("date", patient_date.getText().toString());
-                    intent.putExtra("hour", patient_hour.getText().toString());
+
+
+
+//                    intent.putExtra("name", patient_name.getText().toString());
+//                    intent.putExtra("surname", patient_surname.getText().toString());
+//                    intent.putExtra("birth", patient_birth.getText().toString());
+//                    intent.putExtra("researcher", patient_researcher.getText().toString());
+//                    intent.putExtra("date", patient_date.getText().toString());
+//                    intent.putExtra("hour", patient_hour.getText().toString());
 
                     int radioButtonID = radioGroup.getCheckedRadioButtonId();
                     radioButton = (RadioButton) findViewById(radioButtonID);
-                    intent.putExtra("sex", radioButton.getText().toString());
-
-                    Intent integerGo = new Intent(patient_data.this, select_test.class);
-                    startActivity(integerGo);
+//                    intent.putExtra("sex", radioButton.getText().toString());
+                    Intent intent = new Intent(patient_data.this, select_test.class);
+                    startActivity(intent);
 
                 }else{
                     AlertDialog();
