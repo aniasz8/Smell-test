@@ -133,12 +133,12 @@ public class select_test extends AppCompatActivity {
                 name = get.getString("name","");
                 surname = get.getString("surname","");
 
-
                 Toast.makeText(getApplicationContext(), name+ surname, Toast.LENGTH_SHORT).show();
-//                CreationOfPdf pdf = new CreationOfPdf(name, surname,birth,sex, researcher, date, hour,
-//                        testTHR_total,testDIS_total,testID_total);
-//                pdf.createPdf();
-//                Toast.makeText(getApplicationContext(), "Pdf created", Toast.LENGTH_SHORT).show();
+
+                CreationOfPdf pdf = new CreationOfPdf(name, surname,birth,sex, researcher, date, hour,
+                        testTHR_total,testDIS_total,testID_total);
+                pdf.createPdf();
+                Toast.makeText(getApplicationContext(), "Pdf created", Toast.LENGTH_SHORT).show();
             }
         });
 
