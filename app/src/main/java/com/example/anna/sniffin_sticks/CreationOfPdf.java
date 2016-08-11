@@ -112,41 +112,34 @@ public class CreationOfPdf {
             //First part
             Paragraph par_data_title = new Paragraph(title_data,font_title);
             document.add(par_data_title);
+
             Paragraph par_data = new Paragraph("Datum: ", font_data);
             document.add(par_data);
+
             Paragraph par_patient_title = new Paragraph(title_patient, font_dataUnderline);
             document.add(par_patient_title);
 
+            Paragraph par_patient = new Paragraph("Vorname: " + "Name: ", font_data);
+            document.add(par_patient);
 
+            Paragraph par_result_title = new Paragraph(title_result, font_dataUnderline);
+            document.add(par_result_title);
 
-            //First part
-            Chapter chapter = new Chapter(new Paragraph(title_data, font_title), 1);
+            Paragraph par_results = new Paragraph("Schwelle: " + "Diskriminierung: " + "Ergebnis: ", font_data);
+            document.add(par_results);
 
-            Paragraph subData_patient = new Paragraph("Patient(in)", font_dataUnderline);
-            Section section = chapter.addSection(subData_patient);
-            section.add(new Paragraph("Name: " + name, font_data));
+            Paragraph par_total = new Paragraph("SDI Ergebnis: " + "rozpoznanie", font_data);
+            par_total.setAlignment(Paragraph.ALIGN_CENTER);
+            document.add(par_total);
 
-            subData_patient = new Paragraph("Ergebnis", font_dataUnderline);
-            section = chapter.addSection(subData_patient);
-            section.add(new Paragraph("Schwelle: ", font_data));
+            Paragraph test1 = new Paragraph("2. Schwelle",font_title);
+            document.add(test1);
 
-            document.add(chapter);
+            Paragraph test2 = new Paragraph("3. Diskriminierung",font_title);
+            document.add(test2);
 
-
-            // Test 1 part
-            chapter = new Chapter(new Paragraph("Schwelle", font_title), 2);
-
-            document.add(chapter);
-
-            //Test 2 Part
-            chapter = new Chapter(new Paragraph("Diskriminierung",font_title),3);
-
-            document.add(chapter);
-
-            //Test 3 part
-            chapter = new Chapter(new Paragraph("Erkennung",font_title), 4);
-
-            document.add(chapter);
+            Paragraph test3 = new Paragraph("4. Erkennung",font_title);
+            document.add(test3);
 
         } catch (DocumentException e) {
             e.printStackTrace();
