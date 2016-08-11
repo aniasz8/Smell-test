@@ -40,7 +40,7 @@ public class CreationOfPdf {
     private String title = "RIECHTEST: Sniffin' sticks ";
     private String title_patient = "Patient(in)";
     private String title_result = "Ergebnis";
-    private String title_data = "Daten";
+    private String title_data = "1. Daten";
 
 
 
@@ -92,15 +92,14 @@ public class CreationOfPdf {
 
     public void addTitle (Document document) {
         try {
-            Paragraph paragraph1 = new Paragraph(title);
+            Paragraph par_title = new Paragraph(title, font_title);
             Font paragraph1_font = new Font();
             paragraph1_font.setSize(20);
-            paragraph1_font.setStyle(Font.BOLD);
 
-            paragraph1.setAlignment(Paragraph.ALIGN_CENTER);
-            paragraph1.setFont(paragraph1_font);
+            par_title.setAlignment(Paragraph.ALIGN_CENTER);
+            par_title.setFont(paragraph1_font);
 
-            document.add(paragraph1);
+            document.add(par_title);
 
         }catch(DocumentException de){
             Log.e("Pdf Creator", "Pdf path: " + de);
@@ -110,6 +109,15 @@ public class CreationOfPdf {
     public void addData (Document document)  {
 
         try {
+            //First part
+            Paragraph par_data_title = new Paragraph(title_data,font_title);
+            document.add(par_data_title);
+            Paragraph par_data = new Paragraph("Datum: ", font_data);
+            document.add(par_data);
+            Paragraph par_patient_title = new Paragraph(title_patient, font_dataUnderline);
+            document.add(par_patient_title);
+
+
 
             //First part
             Chapter chapter = new Chapter(new Paragraph(title_data, font_title), 1);
