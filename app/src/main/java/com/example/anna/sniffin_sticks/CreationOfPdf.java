@@ -54,8 +54,6 @@ public class CreationOfPdf {
         Document current_document = new Document();
 
         try {
-
-            //
             // DIRECTORY and file name
 
             String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/PDF Files";
@@ -71,19 +69,7 @@ public class CreationOfPdf {
             PdfWriter.getInstance(current_document, fileOut);
 
             current_document.open();
-
-            //
-            // CONTENT
-
-            Paragraph paragraph1 = new Paragraph(title);
-            Font paragraph1_font = new Font();
-            paragraph1_font.setSize(16);
-            paragraph1_font.setStyle(Font.BOLD);
-
-            paragraph1.setAlignment(Paragraph.ALIGN_CENTER);
-            paragraph1.setFont(paragraph1_font);
-
-            current_document.add(paragraph1);
+            addTitle(current_document);
 
 
         } catch (DocumentException de) {
@@ -92,6 +78,23 @@ public class CreationOfPdf {
             Log.e("Pdf Creator", "Pdf path: " + e);
         }finally {
             current_document.close();
+        }
+    }
+
+    public void addTitle (Document document){
+        try {
+            Paragraph paragraph1 = new Paragraph(title);
+            Font paragraph1_font = new Font();
+            paragraph1_font.setSize(20);
+            paragraph1_font.setStyle(Font.BOLD);
+
+            paragraph1.setAlignment(Paragraph.ALIGN_CENTER);
+            paragraph1.setFont(paragraph1_font);
+
+            document.add(paragraph1);
+
+        }catch(DocumentException de){
+            Log.e("Pdf Creator", "Pdf path: " + de);
         }
     }
 }
