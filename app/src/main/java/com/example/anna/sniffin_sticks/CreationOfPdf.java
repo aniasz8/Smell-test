@@ -9,6 +9,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Section;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.File;
@@ -32,6 +33,7 @@ public class CreationOfPdf {
     private String testID_total;
 
     private Font font_title = new Font(Font.FontFamily.TIMES_ROMAN,20, Font.BOLD);
+    private Font font_dataUnderline = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.UNDERLINE);
     private Font font_data = new Font(Font.FontFamily.TIMES_ROMAN, 16);
 
 
@@ -107,12 +109,40 @@ public class CreationOfPdf {
 
     public void addData (Document document)  {
 
-        Anchor firstPart = new Anchor(title_data,font_title );
-        firstPart.setName(title_data);
+        try {
 
-        Chapter chapter1 = new Chapter(new Paragraph(firstPart), 1);
+            //First part
+            Chapter chapter = new Chapter(new Paragraph(title_data, font_title), 1);
+
+            Paragraph subData_patient = new Paragraph("Patient(in)", font_dataUnderline);
+            Section section = chapter.addSection(subData_patient);
+            section.add(new Paragraph("Name: " + name, font_data));
+
+            subData_patient = new Paragraph("Ergebnis", font_dataUnderline);
+            section = chapter.addSection(subData_patient);
+            section.add(new Paragraph("Schwelle: ", font_data));
+
+            document.add(chapter);
 
 
+            // Test 1 part
+            chapter = new Chapter(new Paragraph("Schwelle", font_title), 2);
+
+            document.add(chapter);
+
+            //Test 2 Part
+            chapter = new Chapter(new Paragraph("Diskriminierung",font_title),3);
+
+            document.add(chapter);
+
+            //Test 3 part
+            chapter = new Chapter(new Paragraph("Erkennung",font_title), 4);
+
+            document.add(chapter);
+
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
 
 
     }
