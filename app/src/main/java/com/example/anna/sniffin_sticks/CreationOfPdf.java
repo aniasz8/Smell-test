@@ -3,6 +3,8 @@ package com.example.anna.sniffin_sticks;
 import android.os.Environment;
 import android.util.Log;
 
+import com.itextpdf.text.Anchor;
+import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
@@ -28,6 +30,10 @@ public class CreationOfPdf {
     private String testTHR_total;
     private String testDIS_total;
     private String testID_total;
+
+    private Font font_title = new Font(Font.FontFamily.TIMES_ROMAN,20, Font.BOLD);
+    private Font font_data = new Font(Font.FontFamily.TIMES_ROMAN, 16);
+
 
     private String title = "RIECHTEST: Sniffin' sticks ";
     private String title_patient = "Patient(in)";
@@ -70,6 +76,7 @@ public class CreationOfPdf {
 
             current_document.open();
             addTitle(current_document);
+            addData(current_document);
 
 
         } catch (DocumentException de) {
@@ -81,7 +88,7 @@ public class CreationOfPdf {
         }
     }
 
-    public void addTitle (Document document){
+    public void addTitle (Document document) {
         try {
             Paragraph paragraph1 = new Paragraph(title);
             Font paragraph1_font = new Font();
@@ -96,5 +103,17 @@ public class CreationOfPdf {
         }catch(DocumentException de){
             Log.e("Pdf Creator", "Pdf path: " + de);
         }
+    }
+
+    public void addData (Document document)  {
+
+        Anchor firstPart = new Anchor(title_data,font_title );
+        firstPart.setName(title_data);
+
+        Chapter chapter1 = new Chapter(new Paragraph(firstPart), 1);
+
+
+
+
     }
 }
