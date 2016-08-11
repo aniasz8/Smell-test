@@ -20,7 +20,6 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 public class patient_data extends AppCompatActivity implements View.OnFocusChangeListener{
-
     private Button ok;
     private EditText patient_name;
     private EditText patient_surname;
@@ -89,16 +88,19 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
                     int radioButtonID = radioGroup.getCheckedRadioButtonId();
                     radioButton = (RadioButton) findViewById(radioButtonID);
 
-                    SharedPreferences my_prefs = getSharedPreferences("my_prefs",MODE_PRIVATE);
-                    SharedPreferences.Editor edit = my_prefs.edit();
-                    edit.putString("name", patient_name.getText().toString());
-                    edit.putString("surname", patient_surname.getText().toString());
-                    edit.putString("birth", patient_birth.getText().toString());
-                    edit.putString("researcher", patient_researcher.getText().toString());
-                    edit.putString("date", patient_date.getText().toString());
-                    edit.putString("hour", patient_hour.getText().toString());
-                    edit.putString("sex", radioButton.getText().toString());
-                    edit.commit();
+//                    SharedPreferences my_prefs = getSharedPreferences("my_prefs",MODE_PRIVATE);
+//                    SharedPreferences.Editor edit = my_prefs.edit();
+//                    edit.putString("name", patient_name.getText().toString());
+//                    edit.putString("surname", patient_surname.getText().toString());
+//                    edit.putString("birth", patient_birth.getText().toString());
+//                    edit.putString("researcher", patient_researcher.getText().toString());
+//                    edit.putString("date", patient_date.getText().toString());
+//                    edit.putString("hour", patient_hour.getText().toString());
+//                    edit.putString("sex", radioButton.getText().toString());
+//                    edit.commit();
+
+                    // other way
+                    MainActivity.DATA = new DataStorage(patient_name.getText().toString(), patient_surname.getText().toString());
 
                     Intent intent = new Intent(patient_data.this, select_test.class);
                     startActivity(intent);

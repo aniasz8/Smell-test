@@ -72,6 +72,9 @@ public class CreationOfPdf {
 
             Log.d("Pdf Creator", "Pdf path: " + filePath);
 
+            String name = MainActivity.DATA.getName();
+            String surname = MainActivity.DATA.getSurname();
+
             File file = new File(dir, name + surname + ".pdf");
             FileOutputStream fileOut = new FileOutputStream(file);
 

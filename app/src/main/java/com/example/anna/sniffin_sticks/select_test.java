@@ -73,19 +73,20 @@ public class select_test extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = getIntent();
-                Bundle b = intent.getExtras();
-                if (b != null) {
-                    testID_total = (String) b.get("testID_total");
-                    testTHR_total = (String) b.get("testTHR_score");
-                    testDIS_total = (String) b.get("testDIS_total");
 
-                    TotalScore total_score = new TotalScore(testTHR_total, testDIS_total, testID_total);
-                    int score = total_score.totalResult();
+//                    testID_total = (String) b.get("testID_total");
+//                    testTHR_total = (String) b.get("testTHR_score");
+//                    testDIS_total = (String) b.get("testDIS_total");
 
-                    Toast.makeText(getBaseContext(), "Schwelle: " + total_score.getTestTHR() + "\nDiskriminierung: "
+                String testID_total = MainActivity.DATA.getTestID_total();
+
+                TotalScore total_score = new TotalScore(testTHR_total, testDIS_total, testID_total);
+                int score = total_score.totalResult();
+
+                Toast.makeText(getBaseContext(), "Schwelle: " + total_score.getTestTHR() + "\nDiskriminierung: "
                             + total_score.getTestDIS() + "\nErkennung: " + total_score.getTestID()
                             + "\nErgebnis: " + Integer.toString(score), Toast.LENGTH_LONG).show();
-                }
+
             }
         });
 
@@ -129,9 +130,14 @@ public class select_test extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                SharedPreferences get = getSharedPreferences("my_prefs",0);
-                name = get.getString("name","");
-                surname = get.getString("surname","");
+//                SharedPreferences get = getSharedPreferences("my_prefs",0);
+//                name = get.getString("name","");
+//                surname = get.getString("surname","");
+
+                //other way
+                String name = MainActivity.DATA.getName();
+                String surname = MainActivity.DATA.getSurname();
+
 
                 Toast.makeText(getApplicationContext(), name+ surname, Toast.LENGTH_SHORT).show();
 

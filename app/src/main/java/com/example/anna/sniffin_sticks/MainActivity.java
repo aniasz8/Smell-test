@@ -9,6 +9,27 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static DataStorage DATA;
+
+    public static final String tab_answers[][] = {
+            {"Orange", "Brombeere", "Erdbeere", "Ananas"},
+            {"Rauch", "Schuhleder", "Klebstoff", "Gras"},
+            {"Honig", "Vanille", "Zimt", "Schokolade"},
+            {"Schnittlauch", "Zwiebel", "Fichte", "Pfefferminz"},
+            {"Kokos", "Kirsche", "Walnuss", "Banane",},
+            {"Pfirsich", "Apfel", "Zitrone", "Grapefruit"},
+            {"Gummibär", "Lakritz", "Kaugummi", "Kekse"},
+            {"Terpentin", "Gummi", "Menthol", "Senf"},
+            {"Knoblauch", "Zwiebel", "Sauerkraut", "Möhren"},
+            {"Zigarette", "Kaffee", "Wein", "Kerzenrauch"},
+            {"Melone", "Pfirsich", "Apfel", "Orange"},
+            {"Senf", "Pfeffer", "Zimt", "Gewürznelke"},
+            {"Birne", "Pflaume", "Pfirsich", "Ananas"},
+            {"Kamille", "Himbeere", "Rose", "Kirsche"},
+            {"Rum", "Anis", "Honig", "Fichte"},
+            {"Fisch", "Brot", "Käse", "Schinken"},
+            {"", "", "", ""}
+    };
 
     private Button new_patient;
 

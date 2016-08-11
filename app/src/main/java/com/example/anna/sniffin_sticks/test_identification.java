@@ -21,31 +21,13 @@ public class test_identification extends AppCompatActivity {
     private RadioButton radioButton;
     private String patient_choice;
     private int testID_total;
+    private String [][] tab_answers;
 
     private String name;
 
     // tables
 
-    String tab_answers[][] = {
-            {"Orange", "Brombeere", "Erdbeere", "Ananas"},
-            {"Rauch", "Schuhleder", "Klebstoff", "Gras"},
-            {"Honig", "Vanille", "Zimt", "Schokolade"},
-            {"Schnittlauch", "Zwiebel", "Fichte", "Pfefferminz"},
-            {"Kokos", "Kirsche", "Walnuss", "Banane",},
-            {"Pfirsich", "Apfel", "Zitrone", "Grapefruit"},
-            {"Gummibär", "Lakritz", "Kaugummi", "Kekse"},
-            {"Terpentin", "Gummi", "Menthol", "Senf"},
-            {"Knoblauch", "Zwiebel", "Sauerkraut", "Möhren"},
-            {"Zigarette", "Kaffee", "Wein", "Kerzenrauch"},
-            {"Melone", "Pfirsich", "Apfel", "Orange"},
-            {"Senf", "Pfeffer", "Zimt", "Gewürznelke"},
-            {"Birne", "Pflaume", "Pfirsich", "Ananas"},
-            {"Kamille", "Himbeere", "Rose", "Kirsche"},
-            {"Rum", "Anis", "Honig", "Fichte"},
-            {"Fisch", "Brot", "Käse", "Schinken"},
-            {"", "", "", ""}
-    };
-    String tab_good [] = {"Orange","Schuhleder","Zimt","Pfefferminz","Banane","Zitrone","Lakritz","Terpentin",
+    final String tab_good [] = {"Orange","Schuhleder","Zimt","Pfefferminz","Banane","Zitrone","Lakritz","Terpentin",
             "Knoblauch","Kaffee","Apfel","Gewürznelke","Ananas","Rose","Anis","Fisch",""};
 
     int tab_points [] = new int [16];
@@ -61,14 +43,16 @@ public class test_identification extends AppCompatActivity {
         testID_ok = (Button) findViewById(R.id.testID_ok);
         radioGroup =(RadioGroup) findViewById(R.id.testID_radiogroup);
 
+        tab_answers= MainActivity.tab_answers;
+
         //setting initial values
 
         ((TextView) findViewById(R.id.testID_counter)).setText(String.valueOf(counter+1));
 
-        if (((Button) findViewById(R.id.testID_choice1)) != null) {
+        if (( findViewById(R.id.testID_choice1)) != null) {
             ((Button) findViewById(R.id.testID_choice1)).setText(tab_answers[counter][0]);
         }
-        if (((Button) findViewById(R.id.testID_choice2)) != null) {
+        if (( findViewById(R.id.testID_choice2)) != null) {
             ((Button) findViewById(R.id.testID_choice2)).setText(tab_answers[counter][1]);
         }
         if (((Button) findViewById(R.id.testID_choice3)) != null) {
@@ -107,13 +91,17 @@ public class test_identification extends AppCompatActivity {
                         testID_total += i;
 
 
+                    MainActivity.DATA.setTestID_choices(tab_testID_choices);
+                    MainActivity.DATA.setTestID_points(tab_points_string);
+                    MainActivity.DATA.setTestID_total(Integer.toString(testID_total));
+
                     Intent intent1 = new Intent(test_identification.this, select_test.class);
                     startActivity(intent1);
 
 //                    intent.putExtra("testID_total", Integer.toString(testID_total));
 //                    intent.putExtra("testID_points", tab_points_string);
 //                    intent.putExtra("testID_choices", tab_testID_choices);
-//                    intent.putExtra("testID_answers", tab_answers);
+
 
 
                 } else {
