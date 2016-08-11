@@ -10,6 +10,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Section;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.File;
@@ -113,13 +114,13 @@ public class CreationOfPdf {
             Paragraph par_data_title = new Paragraph(title_data,font_title);
             document.add(par_data_title);
 
-            Paragraph par_data = new Paragraph("Datum: ", font_data);
+            Paragraph par_data = new Paragraph("Datum: " + "Uhrzeit: " + "Untersucher: ", font_data);
             document.add(par_data);
 
             Paragraph par_patient_title = new Paragraph(title_patient, font_dataUnderline);
             document.add(par_patient_title);
 
-            Paragraph par_patient = new Paragraph("Vorname: " + "Name: ", font_data);
+            Paragraph par_patient = new Paragraph("Vorname: " + "Name: " + "Geschlecht: ", font_data);
             document.add(par_patient);
 
             Paragraph par_result_title = new Paragraph(title_result, font_dataUnderline);
@@ -129,22 +130,57 @@ public class CreationOfPdf {
             document.add(par_results);
 
             Paragraph par_total = new Paragraph("SDI Ergebnis: " + "rozpoznanie", font_data);
-            par_total.setAlignment(Paragraph.ALIGN_CENTER);
             document.add(par_total);
 
+
+            // part 2 - threshold
             Paragraph test1 = new Paragraph("2. Schwelle",font_title);
             document.add(test1);
 
+            // part 3 - discrimination
             Paragraph test2 = new Paragraph("3. Diskriminierung",font_title);
             document.add(test2);
 
+            // part 4 - identification
             Paragraph test3 = new Paragraph("4. Erkennung",font_title);
             document.add(test3);
+            Paragraph tableID = new Paragraph();
+            createTableID(tableID);
+            document.add(tableID);
+
 
         } catch (DocumentException e) {
             e.printStackTrace();
         }
+    }
 
+    public void createTableID (Paragraph paragraph){
 
+        PdfPTable table = new PdfPTable(5);
+
+        String tab_answers[][] = {
+                {"Orange", "Brombeere", "Erdbeere", "Ananas"},
+                {"Rauch", "Schuhleder", "Klebstoff", "Gras"},
+                {"Honig", "Vanille", "Zimt", "Schokolade"},
+                {"Schnittlauch", "Zwiebel", "Fichte", "Pfefferminz"},
+                {"Kokos", "Kirsche", "Walnuss", "Banane",},
+                {"Pfirsich", "Apfel", "Zitrone", "Grapefruit"},
+                {"Gummibär", "Lakritz", "Kaugummi", "Kekse"},
+                {"Terpentin", "Gummi", "Menthol", "Senf"},
+                {"Knoblauch", "Zwiebel", "Sauerkraut", "Möhren"},
+                {"Zigarette", "Kaffee", "Wein", "Kerzenrauch"},
+                {"Melone", "Pfirsich", "Apfel", "Orange"},
+                {"Senf", "Pfeffer", "Zimt", "Gewürznelke"},
+                {"Birne", "Pflaume", "Pfirsich", "Ananas"},
+                {"Kamille", "Himbeere", "Rose", "Kirsche"},
+                {"Rum", "Anis", "Honig", "Fichte"},
+                {"Fisch", "Brot", "Käse", "Schinken"},
+                {"", "", "", ""}
+        };
+
+        for (int i=0; i<4; i++)
+            table.addCell(String.valueOf(tab_answers[i]));
+
+        paragraph.add(table);
     }
 }
