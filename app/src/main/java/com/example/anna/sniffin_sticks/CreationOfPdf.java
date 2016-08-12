@@ -22,21 +22,9 @@ import java.io.IOException;
  */
 public class CreationOfPdf {
 
-    private String name;
-    private String surname;
-    private String birth;
-    private String sex;
-    private String researcher;
-    private String date;
-    private String hour;
-    private String testTHR_total;
-    private String testDIS_total;
-    private String testID_total;
-
     private Font font_title = new Font(Font.FontFamily.TIMES_ROMAN,20, Font.BOLD);
     private Font font_dataUnderline = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.UNDERLINE);
     private Font font_data = new Font(Font.FontFamily.TIMES_ROMAN, 16);
-
 
     private String title = "RIECHTEST: Sniffin' sticks ";
     private String title_patient = "Patient(in)";
@@ -44,21 +32,9 @@ public class CreationOfPdf {
     private String title_data = "1. Daten";
 
 
-
-    public CreationOfPdf (String name, String surname, String birth, String sex, String researcher,
-                          String date, String hour, String testTHR_total, String testDIS_total, String testID_total){
-        this.name=name;
-        this.surname=surname;
-        this.birth = birth;
-        this.sex = sex;
-        this.researcher=researcher;
-        this.date = date;
-        this.hour = hour;
-        this.testTHR_total = testTHR_total;
-        this.testDIS_total = testDIS_total;
-        this.testID_total = testID_total;
-
+    public CreationOfPdf (){
     }
+
     public void createPdf (){
         Document current_document = new Document();
 
@@ -113,26 +89,50 @@ public class CreationOfPdf {
     public void addData (Document document)  {
 
         try {
+            String name = MainActivity.DATA.getName();
+            String surname = MainActivity.DATA.getSurname();
+            String birth = MainActivity.DATA.getBirth();
+            String sex = MainActivity.DATA.getSex();
+            String researcher = MainActivity.DATA.getResearcher();
+            String date = MainActivity.DATA.getDate();
+            String hour = MainActivity.DATA.getHour();
+
+            String testTHR_total = MainActivity.DATA.getTestTHR_total();
+            String testTHR_levels[];
+            String testTHR_turningLevels [];
+            String testTHR_answers [];
+
+            String testDIS_total = MainActivity.DATA.getTestDIS_total();
+            String testDIS_points [] = MainActivity.DATA.getTestDIS_points();
+            String testDIS_choices [] = MainActivity.DATA.getTestDIS_choices();
+
+            String testID_total = MainActivity.DATA.getTestID_total();
+            String testID_points [] = MainActivity.DATA.getTestID_points();
+            String testID_choices [] = MainActivity.DATA.getTestDIS_choices();
+
+            String score = MainActivity.DATA.getScore();
+
             //First part
             Paragraph par_data_title = new Paragraph(title_data,font_title);
             document.add(par_data_title);
 
-            Paragraph par_data = new Paragraph("Datum: " + "Uhrzeit: " + "Untersucher: ", font_data);
+            Paragraph par_data = new Paragraph("Datum: " + date + "Uhrzeit: " + hour +"Untersucher: " + researcher, font_data);
             document.add(par_data);
 
             Paragraph par_patient_title = new Paragraph(title_patient, font_dataUnderline);
             document.add(par_patient_title);
 
-            Paragraph par_patient = new Paragraph("Vorname: " + "Name: " + "Geschlecht: ", font_data);
+            Paragraph par_patient = new Paragraph("Vorname: " + name + "Name: " +surname+ "Geschlecht: "+sex, font_data);
             document.add(par_patient);
 
             Paragraph par_result_title = new Paragraph(title_result, font_dataUnderline);
             document.add(par_result_title);
 
-            Paragraph par_results = new Paragraph("Schwelle: " + "Diskriminierung: " + "Ergebnis: ", font_data);
+            Paragraph par_results = new Paragraph("Schwelle: " + testTHR_total+ "Diskriminierung: "+ testDIS_total
+                    + "Erkennung: " + testID_total, font_data);
             document.add(par_results);
 
-            Paragraph par_total = new Paragraph("SDI Ergebnis: " + "rozpoznanie", font_data);
+            Paragraph par_total = new Paragraph("SDI Ergebnis: "+ score + "rozpoznanie", font_data);
             document.add(par_total);
 
 

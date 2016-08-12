@@ -26,6 +26,7 @@ public class DataStorage {
     private static String [] testID_points;
     private static String [] testID_choices;
 
+    private static String score;
 
 
     public DataStorage (String name, String surname, String birth, String sex, String researcher, String date, String hour){
@@ -130,5 +131,13 @@ public class DataStorage {
     }
     public static void setTestID_choices(String[] testID_choices) {
         DataStorage.testID_choices = testID_choices;
+    }
+
+
+    public static String getScore() {
+        return score;
+    }
+    public static void setScore(String score) {
+        DataStorage.score = score;
     }
 }

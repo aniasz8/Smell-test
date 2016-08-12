@@ -78,6 +78,7 @@ public class select_test extends AppCompatActivity {
 
                 TotalScore total_score = new TotalScore(testTHR_total, testDIS_total, testID_total);
                 String score = total_score.totalResult();
+                MainActivity.DATA.setScore(score);
 
                 Toast.makeText(getBaseContext(), "Schwelle: " + total_score.getTestTHR() + "\nDiskriminierung: "
                         + total_score.getTestDIS() + "\nErkennung: " + total_score.getTestID()
@@ -129,30 +130,11 @@ public class select_test extends AppCompatActivity {
                 //other way
                 String name = MainActivity.DATA.getName();
                 String surname = MainActivity.DATA.getSurname();
-                String birth = MainActivity.DATA.getBirth();
-                String sex = MainActivity.DATA.getSex();
-                String researcher = MainActivity.DATA.getResearcher();
-                String date = MainActivity.DATA.getDate();
-                String hour = MainActivity.DATA.getHour();
-
-                String testTHR_total = MainActivity.DATA.getTestTHR_total();
-                String testTHR_levels[];
-                String testTHR_turningLevels [];
-                String testTHR_answers [];
-
-                String testDIS_total = MainActivity.DATA.getTestDIS_total();
-                String testDIS_points [] = MainActivity.DATA.getTestDIS_points();
-                String testDIS_choices [] = MainActivity.DATA.getTestDIS_choices();
-
-                String testID_total = MainActivity.DATA.getTestID_total();
-                String testID_points [] = MainActivity.DATA.getTestID_points();
-                String testID_choices [] = MainActivity.DATA.getTestDIS_choices();
 
 
                 Toast.makeText(getApplicationContext(), name + surname, Toast.LENGTH_SHORT).show();
 
-                CreationOfPdf pdf = new CreationOfPdf(name, surname, birth, sex, researcher, date, hour,
-                        testTHR_total, testDIS_total, testID_total);
+                CreationOfPdf pdf = new CreationOfPdf();
                 pdf.createPdf();
                 Toast.makeText(getApplicationContext(), "Pdf created", Toast.LENGTH_SHORT).show();
             }
