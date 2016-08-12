@@ -7,9 +7,14 @@ public class DataStorage {
 
     private static String name;
     private static String surname;
+
     private static String testID_total;
     private static String [] testID_points;
     private static String [] testID_choices;
+
+    private static String testDIS_total;
+
+    private static String testTHR_total;
 
     public DataStorage (String name, String surname){
         this.name = name;
@@ -54,5 +59,21 @@ public class DataStorage {
 
     public static void setTestID_choices(String[] testID_choices) {
         DataStorage.testID_choices = testID_choices;
+    }
+
+    public static String getTestDIS_total() {
+        return testDIS_total;
+    }
+
+    public static void setTestDIS_total(String testDIS_total) {
+        DataStorage.testDIS_total = testDIS_total;
+    }
+
+    public static String getTestTHR_total() {
+        return testTHR_total;
+    }
+
+    public static void setTestTHR_total(String testTHR_total) {
+        DataStorage.testTHR_total = testTHR_total;
     }
 }

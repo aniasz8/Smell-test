@@ -72,20 +72,16 @@ public class select_test extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = getIntent();
-
-//                    testID_total = (String) b.get("testID_total");
-//                    testTHR_total = (String) b.get("testTHR_score");
-//                    testDIS_total = (String) b.get("testDIS_total");
-
                 String testID_total = MainActivity.DATA.getTestID_total();
+                String testDIS_total = MainActivity.DATA.getTestDIS_total();
+                String testTHR_total = MainActivity.DATA.getTestTHR_total();
 
                 TotalScore total_score = new TotalScore(testTHR_total, testDIS_total, testID_total);
-                int score = total_score.totalResult();
+                String score = total_score.totalResult();
 
                 Toast.makeText(getBaseContext(), "Schwelle: " + total_score.getTestTHR() + "\nDiskriminierung: "
                             + total_score.getTestDIS() + "\nErkennung: " + total_score.getTestID()
-                            + "\nErgebnis: " + Integer.toString(score), Toast.LENGTH_LONG).show();
+                            + "\nErgebnis: " + score, Toast.LENGTH_LONG).show();
 
             }
         });
@@ -103,11 +99,11 @@ public class select_test extends AppCompatActivity {
         select_test1.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(getApplicationContext(), test_threshold.class);
                 startActivity(intent);
             }
         });
+
         select_test2.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,10 +125,6 @@ public class select_test extends AppCompatActivity {
         select_export.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//                SharedPreferences get = getSharedPreferences("my_prefs",0);
-//                name = get.getString("name","");
-//                surname = get.getString("surname","");
 
                 //other way
                 String name = MainActivity.DATA.getName();

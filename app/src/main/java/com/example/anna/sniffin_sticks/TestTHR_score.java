@@ -24,7 +24,7 @@ public class TestTHR_score {
         NumberFormat nf = NumberFormat.getInstance();
         nf.setMaximumFractionDigits(2);
         nf.setMinimumFractionDigits(2);
-        String ania ="ania";
+
         testTHR_result_string = nf.format(testTHR_result);
         return testTHR_result_string;
     }
