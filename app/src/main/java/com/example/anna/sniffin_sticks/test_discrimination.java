@@ -60,8 +60,9 @@ public class test_discrimination extends AppCompatActivity {
                     for (int i : tab_DISpoints)
                         testDIS_total += i;
 
-
                     MainActivity.DATA.setTestDIS_total(Integer.toString(testDIS_total));
+                    MainActivity.DATA.setTestDIS_points(tabDIS_points_string);
+                    MainActivity.DATA.setTestDIS_choices(tab_testDIS_choices);
                     Intent intent = new Intent(test_discrimination.this, select_test.class);
                     startActivity(intent);
 

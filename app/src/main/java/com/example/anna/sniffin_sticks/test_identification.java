@@ -90,18 +90,12 @@ public class test_identification extends AppCompatActivity {
                     for (int i : tab_points)
                         testID_total += i;
 
-
                     MainActivity.DATA.setTestID_choices(tab_testID_choices);
                     MainActivity.DATA.setTestID_points(tab_points_string);
                     MainActivity.DATA.setTestID_total(Integer.toString(testID_total));
 
-                    Intent intent1 = new Intent(test_identification.this, select_test.class);
-                    startActivity(intent1);
-
-//                    intent.putExtra("testID_total", Integer.toString(testID_total));
-//                    intent.putExtra("testID_points", tab_points_string);
-//                    intent.putExtra("testID_choices", tab_testID_choices);
-
+                    Intent intent = new Intent(test_identification.this, select_test.class);
+                    startActivity(intent);
 
 
                 } else {

@@ -136,8 +136,17 @@ public class select_test extends AppCompatActivity {
                 String hour = MainActivity.DATA.getHour();
 
                 String testTHR_total = MainActivity.DATA.getTestTHR_total();
+                String testTHR_levels[];
+                String testTHR_turningLevels [];
+                String testTHR_answers [];
+
                 String testDIS_total = MainActivity.DATA.getTestDIS_total();
+                String testDIS_points [] = MainActivity.DATA.getTestDIS_points();
+                String testDIS_choices [] = MainActivity.DATA.getTestDIS_choices();
+
                 String testID_total = MainActivity.DATA.getTestID_total();
+                String testID_points [] = MainActivity.DATA.getTestID_points();
+                String testID_choices [] = MainActivity.DATA.getTestDIS_choices();
 
 
                 Toast.makeText(getApplicationContext(), name + surname, Toast.LENGTH_SHORT).show();
