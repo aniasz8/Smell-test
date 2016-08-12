@@ -45,14 +45,14 @@ public class select_test extends AppCompatActivity {
     private String testTHR_total;
     private String testDIS_total;
 
-    String [] testID_points;
-    String [] testID_choices;
-    String [] testID_answers;
+    String[] testID_points;
+    String[] testID_choices;
+    String[] testID_answers;
 
-    String [] testDIS_points;
-    String [] testDIS_choices;
+    String[] testDIS_points;
+    String[] testDIS_choices;
 
-    String [] testTHR_turningLevels;
+    String[] testTHR_turningLevels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +80,8 @@ public class select_test extends AppCompatActivity {
                 String score = total_score.totalResult();
 
                 Toast.makeText(getBaseContext(), "Schwelle: " + total_score.getTestTHR() + "\nDiskriminierung: "
-                            + total_score.getTestDIS() + "\nErkennung: " + total_score.getTestID()
-                            + "\nErgebnis: " + score, Toast.LENGTH_LONG).show();
+                        + total_score.getTestDIS() + "\nErkennung: " + total_score.getTestID()
+                        + "\nErgebnis: " + score, Toast.LENGTH_LONG).show();
 
             }
         });
@@ -129,32 +129,42 @@ public class select_test extends AppCompatActivity {
                 //other way
                 String name = MainActivity.DATA.getName();
                 String surname = MainActivity.DATA.getSurname();
+                String birth = MainActivity.DATA.getBirth();
+                String sex = MainActivity.DATA.getSex();
+                String researcher = MainActivity.DATA.getResearcher();
+                String date = MainActivity.DATA.getDate();
+                String hour = MainActivity.DATA.getHour();
+
+                String testTHR_total = MainActivity.DATA.getTestTHR_total();
+                String testDIS_total = MainActivity.DATA.getTestDIS_total();
+                String testID_total = MainActivity.DATA.getTestID_total();
 
 
-                Toast.makeText(getApplicationContext(), name+ surname, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), name + surname, Toast.LENGTH_SHORT).show();
 
-                CreationOfPdf pdf = new CreationOfPdf(name, surname,birth,sex, researcher, date, hour,
-                        testTHR_total,testDIS_total,testID_total);
+                CreationOfPdf pdf = new CreationOfPdf(name, surname, birth, sex, researcher, date, hour,
+                        testTHR_total, testDIS_total, testID_total);
                 pdf.createPdf();
                 Toast.makeText(getApplicationContext(), "Pdf created", Toast.LENGTH_SHORT).show();
             }
         });
 
-        selecet_view.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewPdf();
-            }
-        });
-    }
 
-    public void viewPdf(){
-        Intent intent_doc = new Intent(Intent.ACTION_VIEW);
-
-        String filePath_view = Environment.getExternalStorageDirectory().getAbsolutePath() + "/PDF Files";
-        File file_view = new File(filePath_view,name + surname  + ".pdf");
-
-        intent_doc.setDataAndType(Uri.fromFile(file_view),"Pdf in application");
-        startActivity(intent_doc);
+//        selecet_view.setOnClickListener(new Button.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                viewPdf();
+//            }
+//        });
+//    }
+//    public void viewPdf(){
+//        Intent intent_doc = new Intent(Intent.ACTION_VIEW);
+//
+//        String filePath_view = Environment.getExternalStorageDirectory().getAbsolutePath() + "/PDF Files";
+//        File file_view = new File(filePath_view,name + surname  + ".pdf");
+//
+//        intent_doc.setDataAndType(Uri.fromFile(file_view),"Pdf in application");
+//        startActivity(intent_doc);
+//    }
     }
 }

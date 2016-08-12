@@ -41,6 +41,7 @@ public class TotalScore {
             testDIS_d =  Double.parseDouble(testDIS);
             testID_d = Double.parseDouble(testID);
 
+            // problem ze juz liczby po przecinku????????????????????
             total_score=testTHR_d+testDIS_d+testID_d;
 
             NumberFormat nf = NumberFormat.getInstance();
