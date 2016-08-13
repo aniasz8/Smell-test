@@ -26,14 +26,11 @@ public class CreationOfPdf {
     private Font font_dataUnderline = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.UNDERLINE);
     private Font font_data = new Font(Font.FontFamily.TIMES_ROMAN, 16);
 
-    private String title = "RIECHTEST: Sniffin' sticks ";
-    private String title_patient = "Patient(in)";
-    private String title_result = "Ergebnis";
-    private String title_data = "1. Daten";
+    final private String title = "RIECHTEST: Sniffin' sticks ";
+    final private String title_patient = "Patient(in)";
+    final private String title_result = "Ergebnis";
+    final private String title_data = "1. Daten";
 
-
-    public CreationOfPdf (){
-    }
 
     public void createPdf (){
         Document current_document = new Document();

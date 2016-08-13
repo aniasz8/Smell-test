@@ -1,26 +1,31 @@
 package com.example.anna.sniffin_sticks;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Anna on 2016-08-10.
  */
 public class ConvertArrayIntToString {
 
-    int [] arrayOfInt;
-    String [] arrayOfString;
 
-    ConvertArrayIntToString (int [] arrayOfInt){
+    public static String [] convertArray(int [] array) {
+        String [] converted = new String[array.length];
 
-        Arrays.sort(arrayOfInt);
-        String a=Arrays.toString(arrayOfInt);
-        String arrayOfString[]=a.substring(1,a.length()-1).split(", ");
+        for(int i = 0; i < array.length; i++){
+            converted[i] = String.valueOf(array[i]);
+        }
 
-        this.arrayOfInt=arrayOfInt;
-        this.arrayOfString=arrayOfString;
+        return converted;
     }
 
-    public String [] getArrayOfString() {
-        return arrayOfString;
+    public static String[] convertList(List<Integer> list){
+        String [] converted = new String[list.size()];
+
+        for(int i=0; i < list.size(); i++){
+            converted[i] = String.valueOf(list.get(i));
+        }
+
+        return converted;
     }
 }

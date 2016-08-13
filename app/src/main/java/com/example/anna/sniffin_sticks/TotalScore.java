@@ -3,6 +3,7 @@ package com.example.anna.sniffin_sticks;
 import android.provider.Settings;
 import android.widget.Toast;
 
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 
 /**
@@ -38,6 +39,7 @@ public class TotalScore {
     String totalResult() {
         try {
             testTHR_d = Double.parseDouble(testTHR);
+
             testDIS_d =  Double.parseDouble(testDIS);
             testID_d = Double.parseDouble(testID);
 
@@ -47,6 +49,8 @@ public class TotalScore {
             NumberFormat nf = NumberFormat.getInstance();
             nf.setMaximumFractionDigits(2);
             nf.setMinimumFractionDigits(2);
+
+            DecimalFormatSymbols diffrentSymbol = new DecimalFormatSymbols();
 
             total_score_string=nf.format(total_score);
 

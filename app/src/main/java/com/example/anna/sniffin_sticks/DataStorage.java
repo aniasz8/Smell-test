@@ -95,7 +95,6 @@ public class DataStorage {
     public static String getTestDIS_total() {
         return testDIS_total;
     }
-
     public static void setTestDIS_total(String testDIS_total) {
         DataStorage.testDIS_total = testDIS_total;
     }
