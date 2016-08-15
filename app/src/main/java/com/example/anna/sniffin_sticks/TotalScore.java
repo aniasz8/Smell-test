@@ -3,8 +3,10 @@ package com.example.anna.sniffin_sticks;
 import android.provider.Settings;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
+import java.util.Locale;
 
 /**
  * Created by Anna on 2016-08-10.
@@ -38,19 +40,19 @@ public class TotalScore {
 
     String totalResult() {
         try {
+
             testTHR_d = Double.parseDouble(testTHR);
+            //DecimalFormat df = new DecimalFormat("#.#", new DecimalFormatSymbols(Locale.US));
+            //testTHR_d = df.format(testTHR_d);
 
             testDIS_d =  Double.parseDouble(testDIS);
             testID_d = Double.parseDouble(testID);
 
-            // problem ze juz liczby po przecinku????????????????????
             total_score=testTHR_d+testDIS_d+testID_d;
 
             NumberFormat nf = NumberFormat.getInstance();
             nf.setMaximumFractionDigits(2);
             nf.setMinimumFractionDigits(2);
-
-            DecimalFormatSymbols diffrentSymbol = new DecimalFormatSymbols();
 
             total_score_string=nf.format(total_score);
 
