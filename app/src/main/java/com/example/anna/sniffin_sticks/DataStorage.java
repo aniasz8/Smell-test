@@ -14,10 +14,6 @@ public class DataStorage {
     private static String hour;
     private static int age;
 
-    private static int birth_year;
-    private static int birth_month;
-    private static int birth_day;
-
     private static String testTHR_total;
     private static String [] testTHR_turningLevels;
     private static String [] testTHR_answers;
@@ -149,22 +145,4 @@ public class DataStorage {
         DataStorage.score = score;
     }
 
-    public static int getBirth_day() {
-        return birth_day;
-    }
-    public static void setBirth_day(int birth_day) {
-        DataStorage.birth_day = birth_day;
-    }
-    public static int getBirth_month() {
-        return birth_month;
-    }
-    public static void setBirth_month(int birth_month) {
-        DataStorage.birth_month = birth_month;
-    }
-    public static int getBirth_year() {
-        return birth_year;
-    }
-    public static void setBirth_year(int birth_year) {
-        DataStorage.birth_year = birth_year;
-    }
 }

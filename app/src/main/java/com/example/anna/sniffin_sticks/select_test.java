@@ -65,13 +65,17 @@ public class select_test extends AppCompatActivity {
                 String score = total_score.totalResult();
                 MainActivity.DATA.setScore(score);
 
+                int birth [] = DateParser.parseDate(MainActivity.DATA.getBirth());
                 CountAge patientAge = new CountAge();
-                //Diagnosis patientDiagnose = new Diagnosis(patientAge.patientAge(), total_score.resultDouble());
-                //patientDiagnose.diagnose();
+                int age = patientAge.patientAge(birth[0], birth[1], birth[2]);
+                MainActivity.DATA.setAge(age);
+
+                Diagnosis patientDiagnose = new Diagnosis(age, total_score.resultDouble());
+                patientDiagnose.diagnose();
 
                 Toast.makeText(getBaseContext(), "Schwelle: " + total_score.getTestTHR() + "\nDiskriminierung: "
                         + total_score.getTestDIS() + "\nErkennung: " + total_score.getTestID()
-                        + "\nErgebnis: " + score +"\n"+ Integer.toString(MainActivity.DATA.getBirth_year()), Toast.LENGTH_LONG).show();
+                        + "\nErgebnis: " + score +"\n" + Integer.toString(age), Toast.LENGTH_LONG).show();
             }
         });
 

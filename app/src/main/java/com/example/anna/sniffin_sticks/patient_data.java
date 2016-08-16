@@ -122,7 +122,9 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
     }
 
 
+    //
     // extra methods
+    //
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {

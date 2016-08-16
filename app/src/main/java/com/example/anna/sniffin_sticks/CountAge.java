@@ -14,11 +14,7 @@ public class CountAge {
     private int age;
 
 
-    public int patientAge (){
-
-        birthYear = MainActivity.DATA.getBirth_year();
-        birthMonth = MainActivity.DATA.getBirth_month();
-        birthDay = MainActivity.DATA.getBirth_day();
+    public int patientAge (int birthDay, int birthMonth, int birthYear){
 
         GregorianCalendar cal = new GregorianCalendar();
         int y, m, d;
@@ -36,7 +32,6 @@ public class CountAge {
         if(age < 0)
             throw new IllegalArgumentException("Age < 0");
 
-        MainActivity.DATA.setAge(age);
        return age;
     }
 }
