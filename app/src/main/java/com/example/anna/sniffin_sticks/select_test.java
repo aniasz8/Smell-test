@@ -71,11 +71,12 @@ public class select_test extends AppCompatActivity {
                 MainActivity.DATA.setAge(age);
 
                 Diagnosis patientDiagnose = new Diagnosis(age, total_score.resultDouble());
-                patientDiagnose.diagnose();
+                String diagnose = patientDiagnose.diagnose();
+                MainActivity.DATA.setDiagnosis(diagnose);
 
                 Toast.makeText(getBaseContext(), "Schwelle: " + total_score.getTestTHR() + "\nDiskriminierung: "
                         + total_score.getTestDIS() + "\nErkennung: " + total_score.getTestID()
-                        + "\nErgebnis: " + score +"\n" + Integer.toString(age), Toast.LENGTH_LONG).show();
+                        + "\nSDI-Wert: " + score +"\n" + MainActivity.DATA.getDiagnosis(), Toast.LENGTH_LONG).show();
             }
         });
 
