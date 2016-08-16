@@ -83,7 +83,6 @@ public class select_test extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), "Schwelle: " + total_score.getTestTHR() + "\nDiskriminierung: "
                         + total_score.getTestDIS() + "\nErkennung: " + total_score.getTestID()
                         + "\nErgebnis: " + score, Toast.LENGTH_LONG).show();
-
             }
         });
 

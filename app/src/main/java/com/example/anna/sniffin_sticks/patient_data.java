@@ -1,5 +1,6 @@
 package com.example.anna.sniffin_sticks;
 
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,13 +12,16 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class patient_data extends AppCompatActivity implements View.OnFocusChangeListener{
     private Button ok;
@@ -29,6 +33,8 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
     private EditText patient_hour;
     private RadioGroup radioGroup;
     private RadioButton radioButton;
+
+    final Calendar myCalendar = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +70,9 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
                 mTimePicker = new TimePickerDialog(patient_data.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        patient_hour.setText( selectedHour + ":" + selectedMinute);
+                        String selHour = String.format("%02d",selectedHour);
+                        String selMin = String.format("%02d",selectedMinute);
+                        patient_hour.setText(selHour + ":" + selMin);
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");

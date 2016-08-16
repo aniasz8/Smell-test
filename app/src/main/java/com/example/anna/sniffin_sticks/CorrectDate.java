@@ -66,6 +66,9 @@ public class CorrectDate {
             }
             @Override
             public void afterTextChanged(Editable s) {
+                MainActivity.DATA.setBirth_year(cal.get(Calendar.YEAR));
+                MainActivity.DATA.setBirth_month(cal.get(Calendar.MONTH));
+                MainActivity.DATA.setBirth_day(cal.get(Calendar.DAY_OF_MONTH));
             }
         };
 
