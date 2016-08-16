@@ -34,6 +34,7 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
     private EditText patient_hour;
     private RadioGroup radioGroup;
     private RadioButton radioButton;
+    private String message = "Ergänzen Sie alle Felde";
 
     private int year;
     private int mon;
@@ -60,40 +61,15 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
         radioGroup =(RadioGroup) findViewById(R.id.data_RadioGroup);
 
         // correct date of birth
-        patient_birth = correctDate(patient_birth); // 29/06/1995
-//        MainActivity.DATA.setBirth_year();
-//        MainActivity.DATA.setBirth_month();
-//        MainActivity.DATA.setBirth_day();
+        patient_birth = correctDate(patient_birth);
 
-        // correct date
-        patient_date = correctDate(patient_date);
-
-        //correct hour
-        patient_hour.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Calendar mcurrentTime = Calendar.getInstance();
-                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-                int minute = mcurrentTime.get(Calendar.MINUTE);
-                TimePickerDialog mTimePicker;
-                mTimePicker = new TimePickerDialog(patient_data.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        String selHour = String.format("%02d",selectedHour);
-                        String selMin = String.format("%02d",selectedMinute);
-                        patient_hour.setText(selHour + ":" + selMin);
-                    }
-                }, hour, minute, true);//Yes 24 hour time
-                mTimePicker.setTitle("Select Time");
-                mTimePicker.show();
-            }
-        });
 
         // clear EditText (name, surname,  researcher) when clicked
         patient_name.setOnFocusChangeListener(this);
         patient_surname.setOnFocusChangeListener(this);
         patient_researcher.setOnFocusChangeListener(this);
+        patient_date.setOnFocusChangeListener(this);
+        patient_hour.setOnFocusChangeListener(this);
 
 
         // after clicking a ok button
@@ -136,13 +112,53 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
 
         if(v.equals(patient_researcher) && hasFocus)
             patient_researcher.setText("");
+
+        if(v.equals(patient_date) && hasFocus) {
+            Calendar c = Calendar.getInstance();
+            System.out.println("Current time => " + c.getTime());
+            SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+            patient_date.setText(df.format(c.getTime()));
+        }
+
+        if(v.equals(patient_hour) && hasFocus){
+            Calendar mcurrentTime = Calendar.getInstance();
+            int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+            int minute = mcurrentTime.get(Calendar.MINUTE);
+            TimePickerDialog mTimePicker;
+            mTimePicker = new TimePickerDialog(patient_data.this, new TimePickerDialog.OnTimeSetListener() {
+                @Override
+                public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                    String selHour = String.format("%02d",selectedHour);
+                    String selMin = String.format("%02d",selectedMinute);
+                    patient_hour.setText(selHour + ":" + selMin);
+                }
+            }, hour, minute, true);//Yes 24 hour time
+            mTimePicker.setTitle("Select Time");
+            mTimePicker.show();
+        }
     }
 
     // check if sex is chosen
     private Boolean filledFields(){
-        if(radioGroup.getCheckedRadioButtonId()<=0){
+
+        if(radioGroup.getCheckedRadioButtonId()<=0 )
             return false;
-        }
+        if (patient_birth.getText().toString().equalsIgnoreCase("Geburtsdatum"))
+            return false;
+//        if (patient_date.getText().toString().equalsIgnoreCase("Datum"))
+//            return false;
+//        if (patient_name.getText().toString().equalsIgnoreCase("Vorname") ||
+//                patient_name.getText().toString().equalsIgnoreCase("") )
+//            return false;
+//        if (patient_surname.getText().toString().equalsIgnoreCase("Name")||
+//                patient_surname.getText().toString().equalsIgnoreCase(""))
+//            return false;
+//        if (patient_hour.getText().toString().equalsIgnoreCase("Uhrzeit"))
+//            return false;
+//        if (patient_researcher.getText().toString().equalsIgnoreCase("Untersucher")||
+//                patient_researcher.getText().toString().equalsIgnoreCase(""))
+//            return false;
+
         return true;
     }
 
@@ -150,7 +166,7 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
     private void AlertDialog(){
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(patient_data.this);
-        alertDialogBuilder.setMessage("Wahlen ein Geschlecht").setCancelable(false)
+        alertDialogBuilder.setMessage(message).setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener(){
 
             public void onClick(DialogInterface dialog, int id){
