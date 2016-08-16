@@ -53,6 +53,9 @@ public class TotalScore {
         }
         return total_score_string;
     }
+    double resultInt (){
+        return total_score;
+    }
 
     public String getTestTHR (){
         return testTHR;

@@ -12,6 +12,7 @@ public class DataStorage {
     private static String researcher;
     private static String date;
     private static String hour;
+    private static int age;
 
     private static String testTHR_total;
     private static String [] testTHR_turningLevels;
@@ -65,7 +66,12 @@ public class DataStorage {
     public static String getHour() {
         return hour;
     }
-
+    public static int getAge() {
+        return age;
+    }
+    public static void setAge(int age) {
+        DataStorage.age = age;
+    }
 
     //THR
     public static String getTestTHR_total() {

@@ -94,6 +94,7 @@ public class CreationOfPdf {
             String date = MainActivity.DATA.getDate();
             String hour = MainActivity.DATA.getHour();
 
+
             String testTHR_total = MainActivity.DATA.getTestTHR_total();
             String testTHR_levels[];
             String testTHR_turningLevels [];

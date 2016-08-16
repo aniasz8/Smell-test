@@ -44,6 +44,7 @@ public class select_test extends AppCompatActivity {
     private String testID_total;
     private String testTHR_total;
     private String testDIS_total;
+    private int age;
 
     String[] testID_points;
     String[] testID_choices;
@@ -79,6 +80,12 @@ public class select_test extends AppCompatActivity {
                 TotalScore total_score = new TotalScore(testTHR_total, testDIS_total, testID_total);
                 String score = total_score.totalResult();
                 MainActivity.DATA.setScore(score);
+
+                CountAge patientAge = new CountAge();
+                age = patientAge.patientAge();
+
+
+
 
                 Toast.makeText(getBaseContext(), "Schwelle: " + total_score.getTestTHR() + "\nDiskriminierung: "
                         + total_score.getTestDIS() + "\nErkennung: " + total_score.getTestID()
