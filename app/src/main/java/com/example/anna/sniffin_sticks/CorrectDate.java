@@ -12,6 +12,9 @@ import java.util.Calendar;
 public class CorrectDate {
 
     private EditText some_date;
+    private int year;
+    private int mon;
+    private int day;
 
     public CorrectDate(final EditText some_date){
 
@@ -35,9 +38,9 @@ public class CorrectDate {
                     if (clean.length() < 8) {
                         clean = clean + ddmmyyyy.substring(clean.length());
                     } else {
-                        int day = Integer.parseInt(clean.substring(0, 2));
-                        int mon = Integer.parseInt(clean.substring(2, 4));
-                        int year = Integer.parseInt(clean.substring(4, 8));
+                         day = Integer.parseInt(clean.substring(0, 2));
+                         mon = Integer.parseInt(clean.substring(2, 4));
+                         year = Integer.parseInt(clean.substring(4, 8));
 
                         if (mon > 12) mon = 12;
                         cal.set(Calendar.MONTH, mon - 1);
@@ -65,6 +68,7 @@ public class CorrectDate {
             public void afterTextChanged(Editable s) {
             }
         };
+
         some_date.addTextChangedListener(tw);
         this.some_date=some_date;
     }
@@ -72,4 +76,5 @@ public class CorrectDate {
     public EditText getSome_date(){
         return some_date;
     }
+
 }
