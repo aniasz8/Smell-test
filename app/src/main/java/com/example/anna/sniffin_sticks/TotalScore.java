@@ -42,19 +42,11 @@ public class TotalScore {
         try {
 
             testTHR_d = Double.parseDouble(testTHR);
-            //DecimalFormat df = new DecimalFormat("#.#", new DecimalFormatSymbols(Locale.US));
-            //testTHR_d = df.format(testTHR_d);
-
             testDIS_d =  Double.parseDouble(testDIS);
             testID_d = Double.parseDouble(testID);
 
             total_score=testTHR_d+testDIS_d+testID_d;
-
-            NumberFormat nf = NumberFormat.getInstance();
-            nf.setMaximumFractionDigits(2);
-            nf.setMinimumFractionDigits(2);
-
-            total_score_string=nf.format(total_score);
+            total_score_string=String.format(Locale.US,"%.2f",total_score);
 
         } catch (NumberFormatException nfe) {
             System.out.println("Nicht " + nfe);

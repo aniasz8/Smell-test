@@ -1,6 +1,7 @@
 package com.example.anna.sniffin_sticks;
 
 import java.text.NumberFormat;
+import java.util.Locale;
 
 /**
  * Created by Anna on 2016-08-08.
@@ -20,12 +21,8 @@ public class TestTHR_score {
             testTHR_result = testTHR_result + ((double)listTHR_turningLevels[i]);
         }
         testTHR_result =  testTHR_result/4;
+        testTHR_result_string = String.format(Locale.US,"%.2f",testTHR_result);
 
-        NumberFormat nf = NumberFormat.getInstance();
-        nf.setMaximumFractionDigits(2);
-        nf.setMinimumFractionDigits(2);
-
-        testTHR_result_string = nf.format(testTHR_result);
         return testTHR_result_string;
     }
 
