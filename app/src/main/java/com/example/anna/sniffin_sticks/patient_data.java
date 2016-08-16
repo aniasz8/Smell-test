@@ -53,6 +53,7 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
         // correct date of birth
         CorrectDate dateBirth = new CorrectDate(patient_birth);
         patient_birth = dateBirth.getSome_date();
+        Toast.makeText(patient_data.this, Integer.toString(patient_birth.getYear), Toast.LENGTH_SHORT).show();
         MainActivity.DATA.setBirth_year(dateBirth.getYear());
         MainActivity.DATA.setBirth_month(dateBirth.getMon());
         MainActivity.DATA.setBirth_day(dateBirth.getDay());

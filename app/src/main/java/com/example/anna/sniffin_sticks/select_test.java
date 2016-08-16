@@ -1,27 +1,11 @@
 package com.example.anna.sniffin_sticks;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Arrays;
 
 
 public class select_test extends AppCompatActivity {
@@ -82,14 +66,13 @@ public class select_test extends AppCompatActivity {
                 MainActivity.DATA.setScore(score);
 
                 CountAge patientAge = new CountAge();
-                age = patientAge.patientAge();
-
-
+                //Diagnosis patientDiagnose = new Diagnosis(patientAge.patientAge(), total_score.resultDouble());
+                //patientDiagnose.diagnose();
 
 
                 Toast.makeText(getBaseContext(), "Schwelle: " + total_score.getTestTHR() + "\nDiskriminierung: "
                         + total_score.getTestDIS() + "\nErkennung: " + total_score.getTestID()
-                        + "\nErgebnis: " + score, Toast.LENGTH_LONG).show();
+                        + "\nErgebnis: " + score +"\n"+ Integer.toString(MainActivity.DATA.getBirth_year()), Toast.LENGTH_LONG).show();
             }
         });
 

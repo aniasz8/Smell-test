@@ -53,7 +53,7 @@ public class TotalScore {
         }
         return total_score_string;
     }
-    double resultInt (){
+    double resultDouble(){
         return total_score;
     }
 

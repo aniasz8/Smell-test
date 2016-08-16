@@ -60,23 +60,20 @@ public class CorrectDate {
                     some_date.setText(current);
                     some_date.setSelection(sel < current.length() ? sel : current.length());
                 }
+//                year= cal.get(Calendar.YEAR);
+//                mon = cal.get(Calendar.MONTH);
+//                day = cal.get(Calendar.DAY_OF_MONTH);
             }
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                year= cal.get(Calendar.YEAR);
-                mon = cal.get(Calendar.MONTH);
-                day = cal.get(Calendar.DAY_OF_MONTH);
             }
         };
 
         some_date.addTextChangedListener(tw);
         this.some_date=some_date;
-//        this.year = year;
-//        this.mon = mon;
-//        this.day = day;
     }
 
     public EditText getSome_date(){
