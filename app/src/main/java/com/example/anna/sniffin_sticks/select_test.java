@@ -69,7 +69,6 @@ public class select_test extends AppCompatActivity {
                 //Diagnosis patientDiagnose = new Diagnosis(patientAge.patientAge(), total_score.resultDouble());
                 //patientDiagnose.diagnose();
 
-
                 Toast.makeText(getBaseContext(), "Schwelle: " + total_score.getTestTHR() + "\nDiskriminierung: "
                         + total_score.getTestDIS() + "\nErkennung: " + total_score.getTestID()
                         + "\nErgebnis: " + score +"\n"+ Integer.toString(MainActivity.DATA.getBirth_year()), Toast.LENGTH_LONG).show();
@@ -119,12 +118,13 @@ public class select_test extends AppCompatActivity {
                 //other way
                 String name = MainActivity.DATA.getName();
                 String surname = MainActivity.DATA.getSurname();
+                String birth = MainActivity.DATA.getBirth();
 
 
-                Toast.makeText(getApplicationContext(), name + surname, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), name + surname +birth, Toast.LENGTH_SHORT).show();
 
-                CreationOfPdf pdf = new CreationOfPdf();
-                pdf.createPdf();
+                //CreationOfPdf pdf = new CreationOfPdf();
+                //pdf.createPdf();
                 Toast.makeText(getApplicationContext(), "Pdf created", Toast.LENGTH_SHORT).show();
             }
         });

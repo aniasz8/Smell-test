@@ -24,6 +24,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class patient_data extends AppCompatActivity implements View.OnFocusChangeListener{
+
     private Button ok;
     private EditText patient_name;
     private EditText patient_surname;
@@ -34,7 +35,15 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
     private RadioGroup radioGroup;
     private RadioButton radioButton;
 
-    final Calendar myCalendar = Calendar.getInstance();
+    private int year;
+    private int mon;
+    private int day;
+
+    private String current = "";
+    private String ddmmyyyy = "DDMMYYYY";
+    private Calendar cal = Calendar.getInstance();
+
+    //final Calendar myCalendar = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,17 +60,13 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
         radioGroup =(RadioGroup) findViewById(R.id.data_RadioGroup);
 
         // correct date of birth
-        CorrectDate dateBirth = new CorrectDate(patient_birth);
-        patient_birth = dateBirth.getSome_date();
-        Toast.makeText(patient_data.this, Integer.toString(patient_birth.getYear), Toast.LENGTH_SHORT).show();
-        MainActivity.DATA.setBirth_year(dateBirth.getYear());
-        MainActivity.DATA.setBirth_month(dateBirth.getMon());
-        MainActivity.DATA.setBirth_day(dateBirth.getDay());
-
+        patient_birth = correctDate(patient_birth); // 29/06/1995
+//        MainActivity.DATA.setBirth_year();
+//        MainActivity.DATA.setBirth_month();
+//        MainActivity.DATA.setBirth_day();
 
         // correct date
-        CorrectDate date = new CorrectDate(patient_date);
-        patient_date = date.getSome_date();
+        patient_date = correctDate(patient_date);
 
         //correct hour
         patient_hour.setOnClickListener(new View.OnClickListener() {
@@ -152,6 +157,64 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
         });
         AlertDialog alert = alertDialogBuilder.create();
         alert.show();
+    }
+
+    public EditText correctDate (final EditText some_date) {
+
+        TextWatcher tw = new TextWatcher() {
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().equals(current)) {
+                    String clean = s.toString().replaceAll("[^\\d.]", "");
+                    String cleanC = current.replaceAll("[^\\d.]", "");
+
+
+                    int cl = clean.length();
+                    int sel = cl;
+                    for (int i = 2; i <= cl && i < 6; i += 2) {
+                        sel++;
+                    }
+                    if (clean.equals(cleanC)) sel--;
+
+                    if (clean.length() < 8) {
+                        clean = clean + ddmmyyyy.substring(clean.length());
+                    } else {
+                        day = Integer.parseInt(clean.substring(0, 2));
+                        mon = Integer.parseInt(clean.substring(2, 4));
+                        year = Integer.parseInt(clean.substring(4, 8));
+
+                        if (mon > 12) mon = 12;
+                        cal.set(Calendar.MONTH, mon - 1);
+                        year = (year < 1900) ? 1900 : (year > 2100) ? 2100 : year;
+                        cal.set(Calendar.YEAR, year);
+
+                        day = (day > cal.getActualMaximum(Calendar.DATE)) ? cal.getActualMaximum(Calendar.DATE) : day;
+                        clean = String.format("%02d%02d%02d", day, mon, year);
+                    }
+
+                    clean = String.format("%s/%s/%s", clean.substring(0, 2),
+                            clean.substring(2, 4),
+                            clean.substring(4, 8));
+
+                    sel = sel < 0 ? 0 : sel;
+                    current = clean;
+                    some_date.setText(current);
+                    some_date.setSelection(sel < current.length() ? sel : current.length());
+                }
+                year= cal.get(Calendar.YEAR);
+                mon = cal.get(Calendar.MONTH);
+                day = cal.get(Calendar.DAY_OF_MONTH);
+            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        };
+        some_date.addTextChangedListener(tw);
+
+        return some_date;
     }
 }
 

@@ -14,6 +14,10 @@ public class DataStorage {
     private static String hour;
     private static int age;
 
+    private static int birth_year;
+    private static int birth_month;
+    private static int birth_day;
+
     private static String testTHR_total;
     private static String [] testTHR_turningLevels;
     private static String [] testTHR_answers;
@@ -28,11 +32,6 @@ public class DataStorage {
     private static String [] testID_choices;
 
     private static String score;
-
-    private static int birth_year;
-    private static int birth_month;
-    private static int birth_day;
-
 
     public DataStorage (String name, String surname, String birth, String sex, String researcher, String date, String hour){
         this.name = name;
