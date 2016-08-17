@@ -5,8 +5,10 @@ import android.util.Log;
 
 import com.itextpdf.text.Anchor;
 import com.itextpdf.text.Chapter;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Section;
@@ -26,7 +28,7 @@ public class CreationOfPdf {
     private Font font_dataUnderline = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.UNDERLINE);
     private Font font_data = new Font(Font.FontFamily.TIMES_ROMAN, 16);
 
-    final private String title = "RIECHTEST: Sniffin' sticks ";
+    final private String title = "RIECHTEST: Sniffin' Sticks ";
     final private String title_patient = "Patient(in)";
     final private String title_result = "Ergebnis";
     final private String title_data = "1. Daten";
@@ -88,17 +90,17 @@ public class CreationOfPdf {
         try {
             String name = MainActivity.DATA.getName();
             String surname = MainActivity.DATA.getSurname();
-            String birth = MainActivity.DATA.getBirth();
             String sex = MainActivity.DATA.getSex();
             String researcher = MainActivity.DATA.getResearcher();
             String date = MainActivity.DATA.getDate();
             String hour = MainActivity.DATA.getHour();
+            String age = Integer.toString(MainActivity.DATA.getAge());
 
 
             String testTHR_total = MainActivity.DATA.getTestTHR_total();
-            String testTHR_levels[];
-            String testTHR_turningLevels [];
-            String testTHR_answers [];
+            String testTHR_levels[] = MainActivity.DATA.getTestTHR_levels();
+            String testTHR_turningLevels[] =MainActivity.DATA.getTestTHR_turningLevels();
+            String testTHR_answers [] = MainActivity.DATA.getTestTHR_answers();
 
             String testDIS_total = MainActivity.DATA.getTestDIS_total();
             String testDIS_points [] = MainActivity.DATA.getTestDIS_points();
@@ -109,28 +111,36 @@ public class CreationOfPdf {
             String testID_choices [] = MainActivity.DATA.getTestDIS_choices();
 
             String score = MainActivity.DATA.getScore();
+            Chunk diagnosis = new Chunk (MainActivity.DATA.getDiagnosis(),font_dataUnderline);
 
             //First part
             Paragraph par_data_title = new Paragraph(title_data,font_title);
             document.add(par_data_title);
 
-            Paragraph par_data = new Paragraph("Datum: " + date + "Uhrzeit: " + hour +"Untersucher: " + researcher, font_data);
+            Paragraph par_data = new Paragraph("Datum: " + date + "     Uhrzeit: "
+                    + hour +"     Untersucher: " + researcher, font_data);
+            par_data.setAlignment(Element.ALIGN_CENTER);
             document.add(par_data);
 
             Paragraph par_patient_title = new Paragraph(title_patient, font_dataUnderline);
             document.add(par_patient_title);
 
-            Paragraph par_patient = new Paragraph("Vorname: " + name + "Name: " +surname+ "Geschlecht: "+sex, font_data);
+            Paragraph par_patient = new Paragraph("Vorname: " + name + "     Name: " +surname+
+                    "     Geschlecht: " +sex + "      Alter: " + age, font_data);
+            par_patient.setAlignment(Element.ALIGN_CENTER);
             document.add(par_patient);
 
             Paragraph par_result_title = new Paragraph(title_result, font_dataUnderline);
             document.add(par_result_title);
 
-            Paragraph par_results = new Paragraph("Schwelle: " + testTHR_total+ "Diskriminierung: "+ testDIS_total
-                    + "Erkennung: " + testID_total, font_data);
+            Paragraph par_results = new Paragraph("Schwelle: " + testTHR_total+ "     Diskriminierung: "+ testDIS_total
+                    + "     Erkennung: " + testID_total, font_data);
+            par_results.setAlignment(Element.ALIGN_CENTER);
             document.add(par_results);
 
-            Paragraph par_total = new Paragraph("SDI Ergebnis: "+ score + "rozpoznanie", font_data);
+            Paragraph par_total = new Paragraph("SDI-Wert: "+ score + "   ", font_data);
+            par_total.add(diagnosis);
+            par_total.setAlignment(Element.ALIGN_CENTER);
             document.add(par_total);
 
 

@@ -70,15 +70,12 @@ public class test_threshold extends AppCompatActivity {
                     testTHR_finalResult = testTHR_score_string.testTHR_StringResult();
 
 
-                    //ConvertArrayIntToString convert1 = new ConvertArrayIntToString(listTHR_turningLevels);
-                    //Arrays.stream(listTHR_turningLevels).map((int x)->{return String.valueOf(x);}).collect(Collectors.toList());
-                    //Toast.makeText(getApplicationContext(), Arrays.toString(convert1.getArrayOfString()) + "", Toast.LENGTH_SHORT).show();
-
                     Intent intent = new Intent(test_threshold.this, select_test.class);
                     MainActivity.DATA.setTestTHR_answers(ConvertArrayIntToString.convertList(listTHR_answers));
                     MainActivity.DATA.setTestTHR_levels(ConvertArrayIntToString.convertList(listTHR_levels));
                     MainActivity.DATA.setTestTHR_turningLevels( ConvertArrayIntToString.convertArray(listTHR_turningLevels));
                     MainActivity.DATA.setTestTHR_total(testTHR_finalResult);
+
                     startActivity(intent);
                 }
 

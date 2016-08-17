@@ -120,17 +120,9 @@ public class select_test extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //other way
-                String name = MainActivity.DATA.getName();
-                String surname = MainActivity.DATA.getSurname();
-                String birth = MainActivity.DATA.getBirth();
-
-
-                Toast.makeText(getApplicationContext(), name + surname +birth, Toast.LENGTH_SHORT).show();
-
-                //CreationOfPdf pdf = new CreationOfPdf();
-                //pdf.createPdf();
-                Toast.makeText(getApplicationContext(), "Pdf created", Toast.LENGTH_SHORT).show();
+                CreationOfPdf pdf = new CreationOfPdf();
+                pdf.createPdf();
+                Toast.makeText(getApplicationContext(), "Pdf ist gemacht.", Toast.LENGTH_SHORT).show();
             }
         });
 

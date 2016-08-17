@@ -73,7 +73,6 @@ public class DataStorage {
     public static String getTestTHR_total() {
         return testTHR_total;
     }
-
     public static void setTestTHR_total(String testTHR_total) {
         DataStorage.testTHR_total = testTHR_total;
     }
