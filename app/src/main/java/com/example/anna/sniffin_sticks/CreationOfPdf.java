@@ -94,7 +94,11 @@ public class CreationOfPdf {
             String researcher = MainActivity.DATA.getResearcher();
             String date = MainActivity.DATA.getDate();
             String hour = MainActivity.DATA.getHour();
-            String age = Integer.toString(MainActivity.DATA.getAge());
+
+            int birth [] = DateParser.parseDate(MainActivity.DATA.getBirth());
+            CountAge patientAge = new CountAge();
+            int ageInt = patientAge.patientAge(birth[0], birth[1], birth[2]);
+            String age = Integer.toString(ageInt);
 
 
             String testTHR_total = MainActivity.DATA.getTestTHR_total();
@@ -107,8 +111,7 @@ public class CreationOfPdf {
             String testDIS_choices [] = MainActivity.DATA.getTestDIS_choices();
 
             String testID_total = MainActivity.DATA.getTestID_total();
-            String testID_points [] = MainActivity.DATA.getTestID_points();
-            String testID_choices [] = MainActivity.DATA.getTestDIS_choices();
+
 
             String score = MainActivity.DATA.getScore();
             Chunk diagnosis = new Chunk (MainActivity.DATA.getDiagnosis(),font_dataUnderline);
@@ -156,7 +159,7 @@ public class CreationOfPdf {
             Paragraph test3 = new Paragraph("4. Erkennung",font_title);
             document.add(test3);
             Paragraph tableID = new Paragraph();
-            createTableID(tableID);
+            createtableID(tableID);
             document.add(tableID);
 
 
@@ -164,34 +167,39 @@ public class CreationOfPdf {
             e.printStackTrace();
         }
     }
+    public void createtableID (Paragraph paragraph) throws DocumentException {
 
-    public void createTableID (Paragraph paragraph){
+        String tab_answers[][]= MainActivity.tab_answers;
+        String testID_points [] = MainActivity.DATA.getTestID_points();
+        String testID_choices [] = MainActivity.DATA.getTestDIS_choices();
+
 
         PdfPTable table = new PdfPTable(5);
+        table.setWidthPercentage(62);
+        float [] columnWidth = {1f,4f,4f,4f,4f};
+        table.setWidths(columnWidth);
 
-        String tab_answers[][] = {
-                {"Orange", "Brombeere", "Erdbeere", "Ananas"},
-                {"Rauch", "Schuhleder", "Klebstoff", "Gras"},
-                {"Honig", "Vanille", "Zimt", "Schokolade"},
-                {"Schnittlauch", "Zwiebel", "Fichte", "Pfefferminz"},
-                {"Kokos", "Kirsche", "Walnuss", "Banane",},
-                {"Pfirsich", "Apfel", "Zitrone", "Grapefruit"},
-                {"Gummibär", "Lakritz", "Kaugummi", "Kekse"},
-                {"Terpentin", "Gummi", "Menthol", "Senf"},
-                {"Knoblauch", "Zwiebel", "Sauerkraut", "Möhren"},
-                {"Zigarette", "Kaffee", "Wein", "Kerzenrauch"},
-                {"Melone", "Pfirsich", "Apfel", "Orange"},
-                {"Senf", "Pfeffer", "Zimt", "Gewürznelke"},
-                {"Birne", "Pflaume", "Pfirsich", "Ananas"},
-                {"Kamille", "Himbeere", "Rose", "Kirsche"},
-                {"Rum", "Anis", "Honig", "Fichte"},
-                {"Fisch", "Brot", "Käse", "Schinken"},
-                {"", "", "", ""}
-        };
-
-        for (int i=0; i<4; i++)
-            table.addCell(String.valueOf(tab_answers[i]));
-
+        for (int i=0; i<16; i++) {
+            for (int j=0;j<5;j++) {
+                if (j == 0)
+                    table.addCell(Integer.toString(i));
+                else
+                    table.addCell(tab_answers[i][j-1]);
+            }
+        }
         paragraph.add(table);
+
+        PdfPTable tableScore = new PdfPTable(2);
+        tableScore.setWidthPercentage(20);
+
+        for (int i=0; i<16; i++) {
+            for (int j = 0; j < 2; j++) {
+                if (j==0)
+                    tableScore.addCell(testID_points[i]);
+                else
+                    tableScore.addCell(testID_choices[i]);
+            }
+        }
+        paragraph.add(tableScore);
     }
 }

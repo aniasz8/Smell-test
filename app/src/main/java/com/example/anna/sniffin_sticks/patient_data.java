@@ -116,7 +116,7 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
         if(v.equals(patient_date) && hasFocus) {
             Calendar c = Calendar.getInstance();
             System.out.println("Current time => " + c.getTime());
-            SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             patient_date.setText(df.format(c.getTime()));
         }
 
