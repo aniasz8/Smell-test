@@ -12,6 +12,7 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Section;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
@@ -171,35 +172,67 @@ public class CreationOfPdf {
 
         String tab_answers[][]= MainActivity.tab_answers;
         String testID_points [] = MainActivity.DATA.getTestID_points();
-        String testID_choices [] = MainActivity.DATA.getTestDIS_choices();
+        String testID_choices [] = MainActivity.DATA.getTestID_choices();
 
 
-        PdfPTable table = new PdfPTable(5);
-        table.setWidthPercentage(62);
+        PdfPTable maintable = new PdfPTable(2);
+        maintable.setWidthPercentage(100.0f);
+
+        // first table
+        PdfPCell firstTableCell = new PdfPCell();
+        firstTableCell.setBorder(PdfPCell.NO_BORDER);
+
+        PdfPTable tableAns = new PdfPTable(5);
+        tableAns.setWidthPercentage(50.0f);
         float [] columnWidth = {1f,4f,4f,4f,4f};
-        table.setWidths(columnWidth);
+        tableAns.setWidths(columnWidth);
 
         for (int i=0; i<16; i++) {
             for (int j=0;j<5;j++) {
                 if (j == 0)
-                    table.addCell(Integer.toString(i));
+                    tableAns.addCell(Integer.toString(i+1));
                 else
-                    table.addCell(tab_answers[i][j-1]);
+                    tableAns.addCell(tab_answers[i][j-1]);
             }
         }
-        paragraph.add(table);
+        firstTableCell.addElement(tableAns);
+        maintable.addCell(firstTableCell);
+
+        // second table
+
+        PdfPCell secTableCell = new PdfPCell();
+        secTableCell.setBorder(PdfPCell.NO_BORDER);
 
         PdfPTable tableScore = new PdfPTable(2);
-        tableScore.setWidthPercentage(20);
+        tableScore.setWidthPercentage(50.0f);
+        float [] columnWidth2 = {4f,1f};
+        tableAns.setWidths(columnWidth2);
 
         for (int i=0; i<16; i++) {
-            for (int j = 0; j < 2; j++) {
-                if (j==0)
-                    tableScore.addCell(testID_points[i]);
-                else
+            for (int j=0;j<2;j++) {
+                if (j == 0)
                     tableScore.addCell(testID_choices[i]);
+                else
+                    tableScore.addCell(testID_points[i]);
             }
         }
-        paragraph.add(tableScore);
+
+
+//        int p=0;
+//        int np = 0;
+//        for (int i=0; i<32; i++) {
+//            if (i % 2 == 0) {
+//                tableScore.addCell(testID_points[p]);
+//                p++;
+//            }
+//            if(i%2==1) {
+//                tableScore.addCell(testID_choices[np]);
+//                np++;
+//            }
+//        }
+        secTableCell.addElement(tableScore);
+        maintable.addCell(secTableCell);
+
+        paragraph.add(maintable);
     }
 }
