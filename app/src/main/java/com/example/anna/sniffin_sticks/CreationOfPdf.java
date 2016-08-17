@@ -212,22 +212,29 @@ public class CreationOfPdf {
                     tableAns.addCell(Integer.toString(i+1));
                 else {
                     // patient's choices are underlined
+                    // good answers are bold
+                    // good and patient's are both bold and underline
                     if (testID_choices[i].equals(tab_answers[i][j - 1])) {
                         if (tab_good[i].equals(tab_answers[i][j - 1])) {
                             PdfPCell pCell = new PdfPCell(new Phrase(tab_answers[i][j - 1], font_dataBoldUnder));
                             tableAns.addCell(pCell);
-                        }else {
+                        } else {
                             PdfPCell pCell = new PdfPCell(new Phrase(tab_answers[i][j - 1], font_dataUnderline));
                             tableAns.addCell(pCell);
                         }
-                    }// good answers are bold
-                    if (tab_good[i].equals(tab_answers[i][j - 1])) {
-                        PdfPCell pCell = new PdfPCell(new Phrase(tab_answers[i][j - 1], font_dataBold));
-                        tableAns.addCell(pCell);
-                    }
-                    else {
-                        PdfPCell pCell = new PdfPCell(new Phrase(tab_answers[i][j - 1], font_data));
-                        tableAns.addCell(pCell);
+                    } else {
+                        if (tab_good[i].equals(tab_answers[i][j - 1])) {
+                            if (testID_choices[i].equals(tab_answers[i][j - 1])) {
+                                PdfPCell pCell = new PdfPCell(new Phrase(tab_answers[i][j - 1], font_dataBoldUnder));
+                                tableAns.addCell(pCell);
+                            } else {
+                                PdfPCell pCell = new PdfPCell(new Phrase(tab_answers[i][j - 1], font_dataBold));
+                                tableAns.addCell(pCell);
+                            }
+                        } else {
+                            PdfPCell pCell = new PdfPCell(new Phrase(tab_answers[i][j - 1], font_data));
+                            tableAns.addCell(pCell);
+                        }
                     }
                 }
             }
