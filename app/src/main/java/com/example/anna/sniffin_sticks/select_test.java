@@ -1,6 +1,8 @@
 package com.example.anna.sniffin_sticks;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -38,6 +40,7 @@ public class select_test extends AppCompatActivity {
     String[] testDIS_choices;
 
     String[] testTHR_turningLevels;
+    private String message = "Nicht alle Teste sind gemacht";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +68,7 @@ public class select_test extends AppCompatActivity {
                 String score = total_score.totalResult();
                 MainActivity.DATA.setScore(score);
 
-                int birth [] = DateParser.parseDate(MainActivity.DATA.getBirth());
+                int birth[] = DateParser.parseDate(MainActivity.DATA.getBirth());
                 CountAge patientAge = new CountAge();
                 int age = patientAge.patientAge(birth[0], birth[1], birth[2]);
                 MainActivity.DATA.setAge(age);
@@ -76,7 +79,7 @@ public class select_test extends AppCompatActivity {
 
                 Toast.makeText(getBaseContext(), "Schwelle: " + total_score.getTestTHR() + "\nDiskriminierung: "
                         + total_score.getTestDIS() + "\nErkennung: " + total_score.getTestID()
-                        + "\nSDI-Wert: " + score +"\n" + MainActivity.DATA.getDiagnosis(), Toast.LENGTH_LONG).show();
+                        + "\nSDI-Wert: " + score + "\n" + MainActivity.DATA.getDiagnosis(), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -120,13 +123,30 @@ public class select_test extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                CreationOfPdf pdf = new CreationOfPdf();
-                pdf.createPdf();
-                Toast.makeText(getApplicationContext(), "Pdf ist gemacht.", Toast.LENGTH_SHORT).show();
+                if (MainActivity.DATA.getTestID_total() == null) {
+                    AlertDialog();
+                } else {
+                    CreationOfPdf pdf = new CreationOfPdf();
+                    pdf.createPdf();
+                    Toast.makeText(getApplicationContext(), "Pdf ist gemacht.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+    }
 
+    private void AlertDialog(){
 
+        android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(select_test.this);
+        alertDialogBuilder.setMessage(message).setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener(){
+
+                    public void onClick(DialogInterface dialog, int id){
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+    }
 //        selecet_view.setOnClickListener(new Button.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -143,5 +163,5 @@ public class select_test extends AppCompatActivity {
 //        intent_doc.setDataAndType(Uri.fromFile(file_view),"Pdf in application");
 //        startActivity(intent_doc);
 //    }
-    }
+
 }

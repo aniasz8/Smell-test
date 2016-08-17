@@ -162,6 +162,8 @@ public class CreationOfPdf {
             Paragraph tableID = new Paragraph();
             createtableID(tableID);
             document.add(tableID);
+            Paragraph IDscore = new Paragraph(MainActivity.DATA.getTestID_total());
+            document.add(IDscore);
 
 
         } catch (DocumentException e) {
@@ -176,14 +178,18 @@ public class CreationOfPdf {
 
 
         PdfPTable maintable = new PdfPTable(2);
-        maintable.setWidthPercentage(100.0f);
+        maintable.setWidthPercentage(80.0f);
+        maintable.setSpacingBefore(10f);
+        maintable.setSpacingAfter(10f);
+        float [] columnInvisible = {7f,2f};
+        maintable.setWidths(columnInvisible);
 
         // first table
-        PdfPCell firstTableCell = new PdfPCell();
-        firstTableCell.setBorder(PdfPCell.NO_BORDER);
+        PdfPCell cell1 = new PdfPCell();
+        //cell1.setBorder(PdfPCell.NO_BORDER);
 
         PdfPTable tableAns = new PdfPTable(5);
-        tableAns.setWidthPercentage(50.0f);
+        tableAns.setWidthPercentage(100.0f);
         float [] columnWidth = {1f,4f,4f,4f,4f};
         tableAns.setWidths(columnWidth);
 
@@ -195,18 +201,18 @@ public class CreationOfPdf {
                     tableAns.addCell(tab_answers[i][j-1]);
             }
         }
-        firstTableCell.addElement(tableAns);
-        maintable.addCell(firstTableCell);
+        cell1.addElement(tableAns);
+        maintable.addCell(cell1);
 
         // second table
 
-        PdfPCell secTableCell = new PdfPCell();
-        secTableCell.setBorder(PdfPCell.NO_BORDER);
+        PdfPCell cell2 = new PdfPCell();
+        //cell2.setBorder(PdfPCell.NO_BORDER);
 
         PdfPTable tableScore = new PdfPTable(2);
-        tableScore.setWidthPercentage(50.0f);
+        tableScore.setWidthPercentage(100.0f);
         float [] columnWidth2 = {4f,1f};
-        tableAns.setWidths(columnWidth2);
+        tableScore.setWidths(columnWidth2);
 
         for (int i=0; i<16; i++) {
             for (int j=0;j<2;j++) {
@@ -217,21 +223,8 @@ public class CreationOfPdf {
             }
         }
 
-
-//        int p=0;
-//        int np = 0;
-//        for (int i=0; i<32; i++) {
-//            if (i % 2 == 0) {
-//                tableScore.addCell(testID_points[p]);
-//                p++;
-//            }
-//            if(i%2==1) {
-//                tableScore.addCell(testID_choices[np]);
-//                np++;
-//            }
-//        }
-        secTableCell.addElement(tableScore);
-        maintable.addCell(secTableCell);
+        cell2.addElement(tableScore);
+        maintable.addCell(cell2);
 
         paragraph.add(maintable);
     }
