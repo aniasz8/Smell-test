@@ -22,13 +22,8 @@ public class test_identification extends AppCompatActivity {
     private String patient_choice;
     private int testID_total;
     private String [][] tab_answers;
+    private String [] tab_good;
 
-    private String name;
-
-    // tables
-
-    final String tab_good [] = {"Orange","Schuhleder","Zimt","Pfefferminz","Banane","Zitrone","Lakritz","Terpentin",
-            "Knoblauch","Kaffee","Apfel","Gewürznelke","Ananas","Rose","Anis","Fisch",""};
 
     int tab_points [] = new int [16];
     String tab_testID_choices []= new String [16];
@@ -44,6 +39,7 @@ public class test_identification extends AppCompatActivity {
         radioGroup =(RadioGroup) findViewById(R.id.testID_radiogroup);
 
         tab_answers= MainActivity.tab_answers;
+        tab_good = MainActivity.tab_good;
 
         //setting initial values
 

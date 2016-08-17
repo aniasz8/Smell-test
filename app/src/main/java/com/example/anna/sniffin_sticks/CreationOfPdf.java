@@ -1,9 +1,11 @@
 package com.example.anna.sniffin_sticks;
 
+import android.graphics.Color;
 import android.os.Environment;
 import android.util.Log;
 
 import com.itextpdf.text.Anchor;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -11,7 +13,9 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Section;
+import com.itextpdf.text.html.WebColors;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -20,19 +24,26 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import static android.graphics.Color.GRAY;
+import static android.graphics.Color.GREEN;
+
 /**
  * Created by Anna on 2016-08-10.
  */
 public class CreationOfPdf {
 
-    private Font font_title = new Font(Font.FontFamily.TIMES_ROMAN,20, Font.BOLD);
-    private Font font_dataUnderline = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.UNDERLINE);
-    private Font font_data = new Font(Font.FontFamily.TIMES_ROMAN, 16);
+    private Font font_title = new Font(Font.FontFamily.TIMES_ROMAN,16, Font.BOLD);
+    private Font font_dataUnderline = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.UNDERLINE);
+    private Font font_data = new Font(Font.FontFamily.TIMES_ROMAN, 12);
+    private Font font_dataBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
+    private Font font_dataBoldUnder = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD|Font.UNDERLINE);
 
     final private String title = "RIECHTEST: Sniffin' Sticks ";
     final private String title_patient = "Patient(in)";
     final private String title_result = "Ergebnis";
     final private String title_data = "1. Daten";
+
+    public static String mColor = "#e9e8e4";
 
 
     public void createPdf (){
@@ -173,6 +184,7 @@ public class CreationOfPdf {
     public void createtableID (Paragraph paragraph) throws DocumentException {
 
         String tab_answers[][]= MainActivity.tab_answers;
+        String tab_good [] = MainActivity.tab_good;
         String testID_points [] = MainActivity.DATA.getTestID_points();
         String testID_choices [] = MainActivity.DATA.getTestID_choices();
 
@@ -181,24 +193,43 @@ public class CreationOfPdf {
         maintable.setWidthPercentage(80.0f);
         maintable.setSpacingBefore(10f);
         maintable.setSpacingAfter(10f);
-        float [] columnInvisible = {7f,2f};
+        float [] columnInvisible = {10f,1f};
         maintable.setWidths(columnInvisible);
 
         // first table
         PdfPCell cell1 = new PdfPCell();
-        //cell1.setBorder(PdfPCell.NO_BORDER);
+        cell1.setBorder(PdfPCell.NO_BORDER);
 
         PdfPTable tableAns = new PdfPTable(5);
         tableAns.setWidthPercentage(100.0f);
         float [] columnWidth = {1f,4f,4f,4f,4f};
         tableAns.setWidths(columnWidth);
 
+        // grey color indicates patient's answer
         for (int i=0; i<16; i++) {
             for (int j=0;j<5;j++) {
                 if (j == 0)
                     tableAns.addCell(Integer.toString(i+1));
-                else
-                    tableAns.addCell(tab_answers[i][j-1]);
+                else {
+                    // patient's choices are underlined
+                    if (testID_choices[i].equals(tab_answers[i][j - 1])) {
+                        if (tab_good[i].equals(tab_answers[i][j - 1])) {
+                            PdfPCell pCell = new PdfPCell(new Phrase(tab_answers[i][j - 1], font_dataBoldUnder));
+                            tableAns.addCell(pCell);
+                        }else {
+                            PdfPCell pCell = new PdfPCell(new Phrase(tab_answers[i][j - 1], font_dataUnderline));
+                            tableAns.addCell(pCell);
+                        }
+                    }// good answers are bold
+                    if (tab_good[i].equals(tab_answers[i][j - 1])) {
+                        PdfPCell pCell = new PdfPCell(new Phrase(tab_answers[i][j - 1], font_dataBold));
+                        tableAns.addCell(pCell);
+                    }
+                    else {
+                        PdfPCell pCell = new PdfPCell(new Phrase(tab_answers[i][j - 1], font_data));
+                        tableAns.addCell(pCell);
+                    }
+                }
             }
         }
         cell1.addElement(tableAns);
@@ -207,25 +238,19 @@ public class CreationOfPdf {
         // second table
 
         PdfPCell cell2 = new PdfPCell();
-        //cell2.setBorder(PdfPCell.NO_BORDER);
+        cell2.setBorder(PdfPCell.NO_BORDER);
 
-        PdfPTable tableScore = new PdfPTable(2);
+        PdfPTable tableScore = new PdfPTable(1);
         tableScore.setWidthPercentage(100.0f);
-        float [] columnWidth2 = {4f,1f};
-        tableScore.setWidths(columnWidth2);
 
         for (int i=0; i<16; i++) {
-            for (int j=0;j<2;j++) {
-                if (j == 0)
-                    tableScore.addCell(testID_choices[i]);
-                else
-                    tableScore.addCell(testID_points[i]);
-            }
+            PdfPCell pCell = new PdfPCell(new Phrase(testID_points[i],font_data));
+            tableScore.addCell(pCell);
         }
 
         cell2.addElement(tableScore);
-        maintable.addCell(cell2);
 
+        maintable.addCell(cell2);
         paragraph.add(maintable);
     }
 }

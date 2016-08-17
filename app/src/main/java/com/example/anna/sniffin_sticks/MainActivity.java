@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
             {"", "", "", ""}
     };
 
+    public static final String tab_good [] = {"Orange","Schuhleder","Zimt","Pfefferminz","Banane","Zitrone","Lakritz",
+            "Terpentin", "Knoblauch","Kaffee","Apfel","Gewürznelke","Ananas","Rose","Anis","Fisch",""};
+
     private Button new_patient;
 
     @Override
