@@ -52,7 +52,6 @@ public class select_test extends AppCompatActivity {
         select_test3 = (Button) findViewById(R.id.select_button_test3);
         select_button_score = (Button) findViewById(R.id.select_button_score);
         select_export = (Button) findViewById(R.id.select_button_export);
-        selecet_view = (Button) findViewById(R.id.select_button_view);
         select_reset = (Button) findViewById(R.id.select_button_reset);
 
         // presssing score causes getting values from other activities
@@ -147,21 +146,4 @@ public class select_test extends AppCompatActivity {
         AlertDialog alert = alertDialogBuilder.create();
         alert.show();
     }
-//        selecet_view.setOnClickListener(new Button.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                viewPdf();
-//            }
-//        });
-//    }
-//    public void viewPdf(){
-//        Intent intent_doc = new Intent(Intent.ACTION_VIEW);
-//
-//        String filePath_view = Environment.getExternalStorageDirectory().getAbsolutePath() + "/PDF Files";
-//        File file_view = new File(filePath_view,name + surname  + ".pdf");
-//
-//        intent_doc.setDataAndType(Uri.fromFile(file_view),"Pdf in application");
-//        startActivity(intent_doc);
-//    }
-
 }
