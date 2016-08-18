@@ -12,6 +12,15 @@ public class TableTestTHR {
 
     TableTestTHR(String[] levels, String[] turningLevels, String[] points) {
 
+        this.turningLevels=turningLevels;
+        this.points=points;
+        this.levels=levels;
+    }
+
+    String [][] createScheme (){
+
+        // w reszcie pol bedzie null?????????????
+
         int levelsInd = 0;
 
         // our case depends on a number of a column
@@ -57,16 +66,18 @@ public class TableTestTHR {
                 case 1:
                 case 3:
                 case 5:
-                        for (int i = 0; i < scheme.length; i++) {
-                            if ((levels[levelsInd]).equals(i)) {
-                                scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = points[levelsInd];
-                                levelsInd++;
-                            }
+                    for (int i = 0; i < scheme.length; i++) {
+                        if ((levels[levelsInd]).equals(i)) {
+                            scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = points[levelsInd];
+                            levelsInd++;
                         }
+                    }
                     break;
             }
         }
 
+         return scheme;
     }
+
 }
 
