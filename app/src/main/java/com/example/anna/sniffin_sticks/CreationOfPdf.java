@@ -45,6 +45,10 @@ public class CreationOfPdf {
     final private String title_data = "1. Daten";
 
     public static String mColor = "#e9e8e4";
+    private int red = 217;
+    private int blue = 219;
+    private int green = 219;
+
 
 
     public void createPdf (){
@@ -216,36 +220,33 @@ public class CreationOfPdf {
                 }
 
                 if (j== 1) {
-                    if(testDIS_choices[i].equals("blue")){
-                        PdfPCell blueCH = new PdfPCell(new Phrase("blue",font_dataUnderline));
-                        blueCH.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                    if(testDIS_choices[i].equals("Blue")){
+                        PdfPCell blueCH = new PdfPCell(new Phrase("blue",font_data));
+                        blueCH.setBackgroundColor(new BaseColor(red,green,blue));
                         tableAnsDIS.addCell(blueCH);
                     }
                     else{
                         PdfPCell blue = new PdfPCell(new Phrase("blue",font_data));
-                        blue.setVerticalAlignment(Element.ALIGN_MIDDLE);
                         tableAnsDIS.addCell(blue);
                     }
 
                 }if (j== 2) {
-                    if(testDIS_choices[i].equals("green")){
-                        PdfPCell greenGood = new PdfPCell(new Phrase("green",font_dataBoldUnder));
-                        greenGood.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                    if(testDIS_choices[i].equals("Green")){
+                        PdfPCell greenGood = new PdfPCell(new Phrase("green",font_dataBold));
+                        greenGood.setBackgroundColor(new BaseColor(red,green,blue));
                         tableAnsDIS.addCell(greenGood);
                     }else{
                         PdfPCell green = new PdfPCell(new Phrase("green",font_dataBold));
-                        green.setVerticalAlignment(Element.ALIGN_MIDDLE);
                         tableAnsDIS.addCell(green);
                     }
                 }
                 if (j==3){
-                    if (testDIS_choices[i].equals("red")){
-                        PdfPCell redCH = new PdfPCell(new Phrase("red",font_dataUnderline));
-                        redCH.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                    if (testDIS_choices[i].equals("Red")){
+                        PdfPCell redCH = new PdfPCell(new Phrase("red",font_data));
+                        redCH.setBackgroundColor(new BaseColor(red,green,blue));
                         tableAnsDIS.addCell(redCH);
                     }else{
                         PdfPCell red = new PdfPCell(new Phrase("red",font_data));
-                        red.setVerticalAlignment(Element.ALIGN_MIDDLE);
                         tableAnsDIS.addCell(red);
                     }
                 }
@@ -278,6 +279,7 @@ public class CreationOfPdf {
 
     public void createtableID (Paragraph paragraph) throws DocumentException {
 
+
         String tab_answers[][]= MainActivity.tab_answers;
         String tab_good [] = MainActivity.tab_good;
         String testID_points [] = MainActivity.DATA.getTestID_points();
@@ -308,21 +310,24 @@ public class CreationOfPdf {
                     tableAns.addCell(num);
                 }
                 else {
-                    // patient's choices are underlined
+                    // patient's choices are grey
                     // good answers are bold
-                    // good and patient's are both bold and underline
+                    // good and patient's are both bold and grey
                     if (testID_choices[i].equals(tab_answers[i][j - 1])) {
                         if (tab_good[i].equals(tab_answers[i][j - 1])) {
-                            PdfPCell pCell = new PdfPCell(new Phrase(tab_answers[i][j - 1], font_dataBoldUnder));
+                            PdfPCell pCell = new PdfPCell(new Phrase(tab_answers[i][j - 1], font_dataBold));
+                            pCell.setBackgroundColor(new BaseColor(red,green,blue));
                             tableAns.addCell(pCell);
                         } else {
-                            PdfPCell pCell = new PdfPCell(new Phrase(tab_answers[i][j - 1], font_dataUnderline));
+                            PdfPCell pCell = new PdfPCell(new Phrase(tab_answers[i][j - 1], font_data));
+                            pCell.setBackgroundColor(new BaseColor(red,green,blue));
                             tableAns.addCell(pCell);
                         }
                     } else {
                         if (tab_good[i].equals(tab_answers[i][j - 1])) {
                             if (testID_choices[i].equals(tab_answers[i][j - 1])) {
-                                PdfPCell pCell = new PdfPCell(new Phrase(tab_answers[i][j - 1], font_dataBoldUnder));
+                                PdfPCell pCell = new PdfPCell(new Phrase(tab_answers[i][j - 1], font_data));
+                                pCell.setBackgroundColor(new BaseColor(red,green,blue));
                                 tableAns.addCell(pCell);
                             } else {
                                 PdfPCell pCell = new PdfPCell(new Phrase(tab_answers[i][j - 1], font_dataBold));
