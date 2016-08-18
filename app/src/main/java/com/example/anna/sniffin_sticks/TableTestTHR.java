@@ -18,8 +18,11 @@ public class TableTestTHR {
         for (int j = 0; j < 8; j++) {
             switch (j) {
 
-                //for first column
+                //for even columns
                 case 0:
+                case 2:
+                case 4:
+                case 6:
                     for (int i = scheme.length; i >= 0; i--) {
 
                         if ((levels[levelsInd]).equals(i)) {
@@ -50,7 +53,7 @@ public class TableTestTHR {
                     }
                     break;
 
-                // for 2nd, 4th and 6th
+                // for odd columns
                 case 1:
                 case 3:
                 case 5:
@@ -60,13 +63,6 @@ public class TableTestTHR {
                                 levelsInd++;
                             }
                         }
-                    break;
-
-                // for 3rd, 5th, 7th column
-                case 2:
-                case 4:
-                case 6:
-
                     break;
             }
         }
