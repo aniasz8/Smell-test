@@ -1,6 +1,8 @@
 package com.example.anna.sniffin_sticks;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -41,36 +43,61 @@ public class test_discrimination extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //getting text from selected radio button
+                if (filledFields()) {
 
-                int radioButtonID = radioGroup.getCheckedRadioButtonId();
-                radioButton = (RadioButton) findViewById(radioButtonID);
-                patient_choice = radioButton.getText().toString();
+                    //getting text from selected radio button
+
+                    int radioButtonID = radioGroup.getCheckedRadioButtonId();
+                    radioButton = (RadioButton) findViewById(radioButtonID);
+                    patient_choice = radioButton.getText().toString();
 
 
-                // using Question () to evaluate the result and put it to the tables (of int and strings)
+                    // using Question () to evaluate the result and put it to the tables (of int and strings)
 
-                Question result = new Question(patient_choice, "Green");
-                int point = result.result();
-                tab_DISpoints[counter]=point;
-                tab_testDIS_choices[counter]=patient_choice;
-                tabDIS_points_string [counter]=Integer.toString(point);
+                    Question result = new Question(patient_choice, "Green");
+                    int point = result.result();
+                    tab_DISpoints[counter] = point;
+                    tab_testDIS_choices[counter] = patient_choice;
+                    tabDIS_points_string[counter] = Integer.toString(point);
 
-                if (counter == 15) {
-                    for (int i : tab_DISpoints)
-                        testDIS_total += i;
+                    if (counter == 15) {
+                        for (int i : tab_DISpoints)
+                            testDIS_total += i;
 
-                    MainActivity.DATA.setTestDIS_total(Integer.toString(testDIS_total));
-                    MainActivity.DATA.setTestDIS_points(tabDIS_points_string);
-                    MainActivity.DATA.setTestDIS_choices(tab_testDIS_choices);
-                    Intent intent = new Intent(test_discrimination.this, select_test.class);
-                    startActivity(intent);
+                        MainActivity.DATA.setTestDIS_total(Integer.toString(testDIS_total));
+                        MainActivity.DATA.setTestDIS_points(tabDIS_points_string);
+                        MainActivity.DATA.setTestDIS_choices(tab_testDIS_choices);
+                        Intent intent = new Intent(test_discrimination.this, select_test.class);
+                        startActivity(intent);
 
-                } else {
-                    counter++;
-                    ((TextView) findViewById(R.id.testDIS_counter)).setText(String.valueOf(counter+1));
-                }
+                    } else {
+                        counter++;
+                        ((TextView) findViewById(R.id.testDIS_counter)).setText(String.valueOf(counter + 1));
+                    }
+                }else
+                    AlertDialog();
             }
         });
+    }
+
+    private Boolean filledFields(){
+
+        if(radioGroup.getCheckedRadioButtonId()<=0 )
+            return false;
+        return true;
+    }
+
+    private void AlertDialog(){
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(test_discrimination.this);
+        alertDialogBuilder.setMessage("Wählen Sie ein Antwort.").setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener(){
+
+                    public void onClick(DialogInterface dialog, int id){
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
     }
 }

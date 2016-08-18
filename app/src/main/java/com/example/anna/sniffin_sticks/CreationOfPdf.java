@@ -1,6 +1,7 @@
 package com.example.anna.sniffin_sticks;
 
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Environment;
 import android.util.Log;
 
@@ -32,11 +33,11 @@ import static android.graphics.Color.GREEN;
  */
 public class CreationOfPdf {
 
-    private Font font_title = new Font(Font.FontFamily.TIMES_ROMAN,16, Font.BOLD);
-    private Font font_dataUnderline = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.UNDERLINE);
-    private Font font_data = new Font(Font.FontFamily.TIMES_ROMAN, 12);
-    private Font font_dataBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
-    private Font font_dataBoldUnder = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD|Font.UNDERLINE);
+    private Font font_title = new Font(Font.FontFamily.TIMES_ROMAN,14, Font.BOLD);
+    private Font font_dataUnderline = new Font(Font.FontFamily.TIMES_ROMAN, 11, Font.UNDERLINE);
+    private Font font_data = new Font(Font.FontFamily.TIMES_ROMAN, 11);
+    private Font font_dataBold = new Font(Font.FontFamily.TIMES_ROMAN, 11, Font.BOLD);
+    private Font font_dataBoldUnder = new Font(Font.FontFamily.TIMES_ROMAN, 11, Font.BOLD|Font.UNDERLINE);
 
     final private String title = "RIECHTEST: Sniffin' Sticks ";
     final private String title_patient = "Patient(in)";
@@ -81,6 +82,7 @@ public class CreationOfPdf {
         }
     }
 
+    // title
     public void addTitle (Document document) {
         try {
             Paragraph par_title = new Paragraph(title, font_title);
@@ -97,6 +99,7 @@ public class CreationOfPdf {
         }
     }
 
+    //content
     public void addData (Document document)  {
 
         try {
@@ -119,8 +122,6 @@ public class CreationOfPdf {
             String testTHR_answers [] = MainActivity.DATA.getTestTHR_answers();
 
             String testDIS_total = MainActivity.DATA.getTestDIS_total();
-            String testDIS_points [] = MainActivity.DATA.getTestDIS_points();
-            String testDIS_choices [] = MainActivity.DATA.getTestDIS_choices();
 
             String testID_total = MainActivity.DATA.getTestID_total();
 
@@ -166,6 +167,9 @@ public class CreationOfPdf {
             // part 3 - discrimination
             Paragraph test2 = new Paragraph("3. Diskriminierung",font_title);
             document.add(test2);
+            Paragraph tableDIS = new Paragraph();
+            createtableDIS(tableDIS);
+            document.add(tableDIS);
 
             // part 4 - identification
             Paragraph test3 = new Paragraph("4. Erkennung",font_title);
@@ -173,14 +177,104 @@ public class CreationOfPdf {
             Paragraph tableID = new Paragraph();
             createtableID(tableID);
             document.add(tableID);
-            Paragraph IDscore = new Paragraph(MainActivity.DATA.getTestID_total());
-            document.add(IDscore);
+//            Paragraph IDscore = new Paragraph(MainActivity.DATA.getTestID_total());
+//            document.add(IDscore);
 
 
         } catch (DocumentException e) {
             e.printStackTrace();
         }
     }
+
+    public void createtableDIS (Paragraph paragraph) throws DocumentException {
+
+        String testDIS_points [] = MainActivity.DATA.getTestDIS_points();
+        String testDIS_choices [] = MainActivity.DATA.getTestDIS_choices();
+
+        PdfPTable mainDIS = new PdfPTable(2);
+        mainDIS.setWidthPercentage(55.0f);
+        mainDIS.setSpacingBefore(10f);
+        mainDIS.setSpacingAfter(10f);
+        float [] columnDIS = {10f,1f};
+        mainDIS.setWidths(columnDIS);
+
+        //first table
+        PdfPCell cell1 = new PdfPCell();
+        cell1.setBorder(PdfPCell.NO_BORDER);
+
+        PdfPTable tableAnsDIS = new PdfPTable(4);
+        tableAnsDIS.setWidthPercentage(100.0f);
+        float [] columnWidth = {1f,4f,4f,4f};
+        tableAnsDIS.setWidths(columnWidth);
+
+        for (int i=0; i<16; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (j == 0) {
+                    PdfPCell num = new PdfPCell(new Phrase(Integer.toString(i+1), font_data));
+                    num.setVerticalAlignment(Element.ALIGN_CENTER);
+                    tableAnsDIS.addCell(num);
+                }
+
+                if (j== 1) {
+                    if(testDIS_choices[i].equals("blue")){
+                        PdfPCell blueCH = new PdfPCell(new Phrase("blue",font_dataUnderline));
+                        blueCH.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                        tableAnsDIS.addCell(blueCH);
+                    }
+                    else{
+                        PdfPCell blue = new PdfPCell(new Phrase("blue",font_data));
+                        blue.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                        tableAnsDIS.addCell(blue);
+                    }
+
+                }if (j== 2) {
+                    if(testDIS_choices[i].equals("green")){
+                        PdfPCell greenGood = new PdfPCell(new Phrase("green",font_dataBoldUnder));
+                        greenGood.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                        tableAnsDIS.addCell(greenGood);
+                    }else{
+                        PdfPCell green = new PdfPCell(new Phrase("green",font_dataBold));
+                        green.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                        tableAnsDIS.addCell(green);
+                    }
+                }
+                if (j==3){
+                    if (testDIS_choices[i].equals("red")){
+                        PdfPCell redCH = new PdfPCell(new Phrase("red",font_dataUnderline));
+                        redCH.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                        tableAnsDIS.addCell(redCH);
+                    }else{
+                        PdfPCell red = new PdfPCell(new Phrase("red",font_data));
+                        red.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                        tableAnsDIS.addCell(red);
+                    }
+                }
+            }
+        }
+
+        cell1.addElement(tableAnsDIS);
+        mainDIS.addCell(cell1);
+
+        // second table
+
+        PdfPCell cell2 = new PdfPCell();
+        cell2.setBorder(PdfPCell.NO_BORDER);
+
+        PdfPTable tableScoreDIS = new PdfPTable(1);
+        tableScoreDIS.setWidthPercentage(100.0f);
+
+        for (int i=0; i<16; i++) {
+            PdfPCell pCell = new PdfPCell(new Phrase(testDIS_points[i],font_data));
+            tableScoreDIS.addCell(pCell);
+        }
+
+        cell2.addElement(tableScoreDIS);
+
+        mainDIS.addCell(cell2);
+        paragraph.add(mainDIS);
+    }
+
+
     public void createtableID (Paragraph paragraph) throws DocumentException {
 
         String tab_answers[][]= MainActivity.tab_answers;
@@ -208,8 +302,10 @@ public class CreationOfPdf {
         // grey color indicates patient's answer
         for (int i=0; i<16; i++) {
             for (int j=0;j<5;j++) {
-                if (j == 0)
-                    tableAns.addCell(Integer.toString(i+1));
+                if (j == 0){
+                    PdfPCell num = new PdfPCell(new Phrase(Integer.toString(i+1), font_data));
+                    tableAns.addCell(num);
+                }
                 else {
                     // patient's choices are underlined
                     // good answers are bold
