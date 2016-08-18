@@ -36,7 +36,7 @@
     <string name="testDIS_red">Red</string>
 
     <string name="testTHR_title"> Level 15 </string>
-    <string name="testTHR_button_yes"> YES </string>
-    <string name="testTHR_button_no"> NO </string>
+    <string name="testTHR_button_yes"> Ja </string>
+    <string name="testTHR_button_no"> Nein </string>
     <string name="testTHR_button_ok"> OK </string>
 </resources>
