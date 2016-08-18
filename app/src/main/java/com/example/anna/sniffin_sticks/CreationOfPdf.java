@@ -265,6 +265,7 @@ public class CreationOfPdf {
 
         for (int i=0; i<16; i++) {
             PdfPCell pCell = new PdfPCell(new Phrase(testDIS_points[i],font_data));
+            pCell.setBorder(PdfPCell.NO_BORDER);
             tableScoreDIS.addCell(pCell);
         }
 
@@ -348,6 +349,7 @@ public class CreationOfPdf {
 
         for (int i=0; i<16; i++) {
             PdfPCell pCell = new PdfPCell(new Phrase(testID_points[i],font_data));
+            pCell.setBorder(PdfPCell.NO_BORDER);
             tableScore.addCell(pCell);
         }
 
