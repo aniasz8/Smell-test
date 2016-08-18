@@ -189,11 +189,21 @@ public class CreationOfPdf {
         String testTHR_turningLevels [] = MainActivity.DATA.getTestTHR_turningLevels();
         String testTHR_levels [] = MainActivity.DATA.getTestTHR_levels();
         String testTHR_points [] = MainActivity.DATA.getTestTHR_answers();
+        String yes = "1";
+        String no = "0";
 
-        PdfPTable mainTHR = new PdfPTable(8);
-        mainTHR.setWidthPercentage(40.0f);
-        mainTHR.setSpacingBefore(10f);
-        mainTHR.setSpacingAfter(10f);
+        PdfPTable tableTHR = new PdfPTable(8);
+        tableTHR.setWidthPercentage(40.0f);
+        tableTHR.setSpacingBefore(10f);
+        tableTHR.setSpacingAfter(10f);
+
+        for (int i=0; i<18; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (j==0){
+
+                }
+            }
+        }
 
     }
 
@@ -216,6 +226,7 @@ public class CreationOfPdf {
                 if (i == 0) {
                     PdfPCell num = new PdfPCell(new Phrase(Integer.toString(j + 1), font_data));
                     num.setVerticalAlignment(Element.ALIGN_CENTER);
+                    num.setHorizontalAlignment(Element.ALIGN_MIDDLE);
                     tableAnsDIS.addCell(num);
                 }
                 if (i == 1) {
