@@ -44,9 +44,18 @@ public class select_test extends AppCompatActivity {
                 TotalScore total_score = new TotalScore(testTHR_total, testDIS_total, testID_total);
                 String score = total_score.totalResult();
                 MainActivity.DATA.setScore(score);
-
-
                 Diagnosis patientDiagnose = new Diagnosis(total_score.resultDouble());
+
+                if(testTHR_total=="0"){
+                    if (testDIS_total=="0"){
+
+                    }
+                    else {
+
+                    }
+                }
+
+
 
                 String diagnose = patientDiagnose.diagnoseAll();
                 MainActivity.DATA.setDiagnosis(diagnose);
