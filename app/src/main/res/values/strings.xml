@@ -31,9 +31,9 @@
 
     <string name="testDIS_counter">Counter</string>
     <string name="testDIS_ok">OK</string>
-    <string name="testDIS_blue">Blue</string>
-    <string name="testDIS_green">Green</string>
-    <string name="testDIS_red">Red</string>
+    <string name="testDIS_blue">Blau</string>
+    <string name="testDIS_green">Grün</string>
+    <string name="testDIS_red">Rot</string>
 
     <string name="testTHR_title"> Level 15 </string>
     <string name="testTHR_button_yes"> Ja </string>

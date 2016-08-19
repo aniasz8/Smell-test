@@ -54,7 +54,7 @@ public class test_discrimination extends AppCompatActivity {
 
                     // using Question () to evaluate the result and put it to the tables (of int and strings)
 
-                    Question result = new Question(patient_choice, "Green");
+                    Question result = new Question(patient_choice, "Grün");
                     int point = result.result();
                     tab_DISpoints[counter] = point;
                     tab_testDIS_choices[counter] = patient_choice;
