@@ -38,7 +38,7 @@ public class TableTestTHR {
                             //if good we have to chech whether the previous point was also good
                             if (points[levelsInd].equals("1")) {
                                 if (points[levelsInd-1].equals("1")) {
-                                    scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = "11";
+                                    scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = "11x";
                                     levelsInd++;
 
                                     // TURNING POINT
@@ -85,7 +85,7 @@ public class TableTestTHR {
                             }
 
                             else{
-                                scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = "0";
+                                scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = "0x";
                                 levelsInd++;
 
                                 // TURNING POINT

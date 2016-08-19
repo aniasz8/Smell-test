@@ -184,28 +184,91 @@ public class CreationOfPdf {
         }
     }
 
-    public void createtableTHR (Paragraph paragraph){
+    public void createtableTHR (Paragraph paragraph) throws DocumentException {
 
         String testTHR_turningLevels [] = MainActivity.DATA.getTestTHR_turningLevels();
         String testTHR_levels [] = MainActivity.DATA.getTestTHR_levels();
         String testTHR_points [] = MainActivity.DATA.getTestTHR_answers();
-        String yes = "1";
-        String no = "0";
+        String[][] schemeTab = new String[16][7];
+
+        PdfPTable mainTHR = new PdfPTable(2);
+        mainTHR.setWidthPercentage(80.0f);
+        mainTHR.setSpacingBefore(10f);
+        mainTHR.setSpacingAfter(10f);
+        float [] columns = {1f,8f};
+        mainTHR.setWidths(columns);
+
+        // first table
+        PdfPCell cell1 = new PdfPCell();
+        cell1.setBorder(PdfPCell.NO_BORDER);
+
+        PdfPTable tabNum = new PdfPTable(1);
+        tabNum.setWidthPercentage(100.0f);
+
+        for (int i=0; i<16; i++) {
+            PdfPCell pCell = new PdfPCell(new Phrase(Integer.toString(i+1),font_data));
+            pCell.setBorder(PdfPCell.NO_BORDER);
+            tabNum.addCell(pCell);
+        }
+
+        cell1.addElement(tabNum);
+        mainTHR.addCell(cell1);
+
+
+
+        //second table
+        PdfPCell cell2 = new PdfPCell();
+        cell2.setBorder(PdfPCell.NO_BORDER);
 
         PdfPTable tableTHR = new PdfPTable(8);
-        tableTHR.setWidthPercentage(40.0f);
+        tableTHR.setWidthPercentage(100.0f);
         tableTHR.setSpacingBefore(10f);
         tableTHR.setSpacingAfter(10f);
 
-        for (int i=0; i<18; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (j==0){
+        // scheme [16][7]
+        TableTestTHR scheme = new TableTestTHR(testTHR_levels,testTHR_turningLevels,testTHR_points);
+        schemeTab = scheme.createScheme();
 
+        for (int i=0; i<17; i++) {
+            for (int j = 0; j < 7; j++) {
+                if(i==16){
+                    if(j==0) {
+                        tableTHR.addCell("");
+                    }
+                    else {
+                        tableTHR.addCell(testTHR_turningLevels[j - 1]);
+                    }
+                }
+                else {
+                    if (schemeTab[i][j] == null) {
+                        tableTHR.addCell("");
+                    }
+                    if (schemeTab[i][j].equals("11")) {
+                        tableTHR.addCell("xx");
+                    }
+                    if (schemeTab[i][j].equals("0")) {
+                        tableTHR.addCell("o");
+                    }
+                    if (schemeTab[i][j].equals("11x")) {
+                        tableTHR.addCell("xx!");
+                    }
+                    if (schemeTab[i][j].equals("0x")) {
+                        tableTHR.addCell("o!");
+                    }
                 }
             }
         }
 
+        cell2.addElement(tableTHR);
+        mainTHR.addCell(cell2);
+
+        paragraph.add(mainTHR);
+
     }
+
+
+
+
 
     //test2
     public void createtableDIS (Paragraph paragraph) throws DocumentException {
