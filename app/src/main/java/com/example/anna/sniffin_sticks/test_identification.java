@@ -22,7 +22,7 @@ public class test_identification extends AppCompatActivity {
     private RadioGroup radioGroup;
     private RadioButton radioButton;
     private String patient_choice;
-    private int testID_total;
+    private int testID_total =0;
     private String [][] tab_answers;
     private String [] tab_good;
 
@@ -141,6 +141,7 @@ public class test_identification extends AppCompatActivity {
         AlertDialog alert = alertDialogBuilder.create();
         alert.show();
     }
+
 }
 
 

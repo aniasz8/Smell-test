@@ -16,30 +16,8 @@ public class select_test extends AppCompatActivity {
     private Button select_test2;
     private Button select_test3;
     private Button select_button_score;
-    private Button selecet_view;
     private Button select_export;
     private Button select_reset;
-
-    private String name;
-    private String surname;
-    private String birth;
-    private String sex;
-    private String researcher;
-    private String date;
-    private String hour;
-    private String testID_total;
-    private String testTHR_total;
-    private String testDIS_total;
-    private int age;
-
-    String[] testID_points;
-    String[] testID_choices;
-    String[] testID_answers;
-
-    String[] testDIS_points;
-    String[] testDIS_choices;
-
-    String[] testTHR_turningLevels;
     private String message = "Nicht alle Teste sind gemacht";
 
     @Override
@@ -67,13 +45,10 @@ public class select_test extends AppCompatActivity {
                 String score = total_score.totalResult();
                 MainActivity.DATA.setScore(score);
 
-                int birth[] = DateParser.parseDate(MainActivity.DATA.getBirth());
-                CountAge patientAge = new CountAge();
-                int age = patientAge.patientAge(birth[0], birth[1], birth[2]);
-                MainActivity.DATA.setAge(age);
 
-                Diagnosis patientDiagnose = new Diagnosis(age, total_score.resultDouble());
-                String diagnose = patientDiagnose.diagnose();
+                Diagnosis patientDiagnose = new Diagnosis(total_score.resultDouble());
+
+                String diagnose = patientDiagnose.diagnoseAll();
                 MainActivity.DATA.setDiagnosis(diagnose);
 
                 Toast.makeText(getBaseContext(), "Schwelle: " + total_score.getTestTHR() + "\nDiskriminierung: "

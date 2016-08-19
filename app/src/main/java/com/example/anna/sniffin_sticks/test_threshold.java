@@ -68,6 +68,7 @@ public class test_threshold extends AppCompatActivity {
                         MainActivity.DATA.setTestTHR_total(Integer.toString(testTHR_score));
 
                         startActivity(intent);
+                        finish();
                     }
                     if (change == 7) {
                         TestTHR_score testTHR_score_string = new TestTHR_score(listTHR_turningLevels);

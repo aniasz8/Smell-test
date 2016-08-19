@@ -5,57 +5,66 @@ package com.example.anna.sniffin_sticks;
  */
 public class Diagnosis {
 
-    private int age;
     private double score;
     private String diagnosis;
     private String N = "Normosmie";
     private String H = "Hyposmie";
     private String A = "Anosmie";
 
-    Diagnosis (int age, double score){
-        this.age = age;
+    Diagnosis (double score){
         this.score = score;
     }
 
-    public String diagnose (){
+    public String diagnoseAll (){
 
-        if (score==0)
-            diagnosis = "-";
-
-// tu musi byc po kolei bo zle bierze wartosci
-        if (age<16 ) {
-            if (score > 25)
-                diagnosis = N;
-            if (score < 16)
-                diagnosis = A;
+        if (score>30.5)
+            diagnosis=N;
+        if (score<=30.5){
+            if(score>=16.25)
+                diagnosis=H;
             else
-                diagnosis = H;
-        }
-        if (age>=16 && age<=35){
-            if (score>32)
-                diagnosis = N;
-            if (score<16)
-                diagnosis = A;
-            else
-                diagnosis = H;
-        }
-        if (age>=36 && age<=53) {
-            if (score > 29)
-                diagnosis = N;
-            if (score < 16)
-                diagnosis = A;
-            else
-                diagnosis = H;
-        }
-        else{
-            if (score > 28)
-                diagnosis = N;
-            if (score < 16)
-                diagnosis = A;
-            else
-                diagnosis = H;
+                diagnosis=A;
         }
 
+        return diagnosis;
+    }
+
+    public String diagnoseTHR (){
+
+        if (score>6.5)
+            diagnosis=N;
+        if(score<=6.5){
+            if (score==1)
+                diagnosis=A;
+            else
+                diagnosis=H;
+        }
+        return diagnosis;
+    }
+
+    public String diagnoseDIS (){
+
+        if (score>10)
+            diagnosis=N;
+        if(score<=10){
+            if (score>=9)
+                diagnosis=A;
+            else
+                diagnosis=H;
+        }
+        return diagnosis;
+    }
+
+    public String diagnoseID (){
+
+        if (score>11)
+            diagnosis=N;
+        if(score<=11){
+            if (score>=9)
+                diagnosis=A;
+            else
+                diagnosis=H;
+        }
         return diagnosis;
     }
 }

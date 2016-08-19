@@ -21,7 +21,7 @@ public class test_discrimination extends AppCompatActivity {
     private Button testDIS_ok;
     private int counter = 0;
     private String patient_choice;
-    private int testDIS_total;
+    private int testDIS_total = 0;
 
     int tab_DISpoints [] = new int [16];
     String tab_testDIS_choices []= new String [16];
