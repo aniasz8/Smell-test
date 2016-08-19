@@ -127,13 +127,13 @@ public class CreationOfPdf {
 
 
             //First part
-            Paragraph par_data_title = new Paragraph();
-            Chunk data_title = new Chunk(title_data,font_title);
-            Chunk par_data = new Chunk("        Datum: " + date + "     Uhrzeit: "
-                    + hour +"     Untersucher: " + researcher, font_data);
-            par_data_title.add(data_title);
-            par_data_title.add(par_data);
+
+            Paragraph par_data_title = new Paragraph(title_data,font_title);
             document.add(par_data_title);
+
+            Paragraph data = new Paragraph("Datum: " + date + "     Uhrzeit: "
+                    + hour +"     Untersucher: " + researcher, font_data);
+            document.add(data);
 
             Paragraph par_patient_title = new Paragraph();
             Chunk patientTitle = new Chunk(title_patient, font_dataUnderline);
@@ -211,13 +211,14 @@ public class CreationOfPdf {
 
         for (int i=0; i<17; i++) {
             if (i==16){
-                PdfPCell tp = new PdfPCell(new Phrase("",font_dataBold));
+                PdfPCell tp = new PdfPCell(new Phrase("TP",font_dataBold));
                 tp.setBorder(PdfPCell.NO_BORDER);
                 tabNum.addCell(tp);
             }
-
-            PdfPCell pCell = new PdfPCell(new Phrase(Integer.toString(i+1),font_data));
-            tabNum.addCell(pCell);
+            else {
+                PdfPCell pCell = new PdfPCell(new Phrase(Integer.toString(i + 1), font_data));
+                tabNum.addCell(pCell);
+            }
         }
 
         cell1.addElement(tabNum);

@@ -75,7 +75,7 @@
         android:background="#e6be39" />
 
     <Button
-        android:layout_width="140dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:text="@string/select_button_score"
         android:textSize="30dp"
