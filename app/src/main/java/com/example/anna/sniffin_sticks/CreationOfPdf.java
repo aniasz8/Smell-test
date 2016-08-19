@@ -161,6 +161,9 @@ public class CreationOfPdf {
             // part 2 - threshold
             Paragraph test1 = new Paragraph("2. Schwelle",font_title);
             document.add(test1);
+            Paragraph tableTHR = new Paragraph();
+            createtableTHR(tableTHR);
+            document.add(tableTHR);
 
             // part 3 - discrimination
             Paragraph test2 = new Paragraph("3. Diskriminierung",font_title);
@@ -189,10 +192,10 @@ public class CreationOfPdf {
         String testTHR_turningLevels [] = MainActivity.DATA.getTestTHR_turningLevels();
         String testTHR_levels [] = MainActivity.DATA.getTestTHR_levels();
         String testTHR_points [] = MainActivity.DATA.getTestTHR_answers();
-        String[][] schemeTab = new String[16][7];
+        String[][] schemeTab;
 
         PdfPTable mainTHR = new PdfPTable(2);
-        mainTHR.setWidthPercentage(80.0f);
+        mainTHR.setWidthPercentage(50.0f);
         mainTHR.setSpacingBefore(10f);
         mainTHR.setSpacingAfter(10f);
         float [] columns = {1f,8f};
@@ -200,7 +203,7 @@ public class CreationOfPdf {
 
         // first table
         PdfPCell cell1 = new PdfPCell();
-        cell1.setBorder(PdfPCell.NO_BORDER);
+        //cell1.setBorder(PdfPCell.NO_BORDER);
 
         PdfPTable tabNum = new PdfPTable(1);
         tabNum.setWidthPercentage(100.0f);
@@ -218,44 +221,48 @@ public class CreationOfPdf {
 
         //second table
         PdfPCell cell2 = new PdfPCell();
-        cell2.setBorder(PdfPCell.NO_BORDER);
+        //cell2.setBorder(PdfPCell.NO_BORDER);
 
-        PdfPTable tableTHR = new PdfPTable(8);
+        PdfPTable tableTHR = new PdfPTable(7);
         tableTHR.setWidthPercentage(100.0f);
         tableTHR.setSpacingBefore(10f);
         tableTHR.setSpacingAfter(10f);
 
-        // scheme [16][7]
+
         TableTestTHR scheme = new TableTestTHR(testTHR_levels,testTHR_turningLevels,testTHR_points);
         schemeTab = scheme.createScheme();
 
-        for (int i=0; i<17; i++) {
+        for (int i=0; i<16; i++) {
             for (int j = 0; j < 7; j++) {
-                if(i==16){
-                    if(j==0) {
-                        tableTHR.addCell("");
-                    }
-                    else {
-                        tableTHR.addCell(testTHR_turningLevels[j - 1]);
-                    }
-                }
-                else {
                     if (schemeTab[i][j] == null) {
-                        tableTHR.addCell("");
+                        PdfPCell nothing = new PdfPCell(new Phrase(""));
+                        nothing.setFixedHeight(13f);
+                        tableTHR.addCell(nothing);
                     }
-                    if (schemeTab[i][j].equals("11")) {
-                        tableTHR.addCell("xx");
+                    if (schemeTab[i][j]=="11") {
+                        PdfPCell x = new PdfPCell(new Phrase("xx", font_dataBold));
+                        x.setFixedHeight(13f);
+                        tableTHR.addCell(x);
                     }
-                    if (schemeTab[i][j].equals("0")) {
+                    if (schemeTab[i][j]=="0") {
                         tableTHR.addCell("o");
+                        PdfPCell zero = new PdfPCell(new Phrase("o", font_dataBold));
+                        zero.setFixedHeight(13f);
+                        tableTHR.addCell(zero);
                     }
-                    if (schemeTab[i][j].equals("11x")) {
-                        tableTHR.addCell("xx!");
+                    if (schemeTab[i][j]=="111") {
+                        PdfPCell oneTurn = new PdfPCell(new Phrase("xx!", font_dataBold));
+                        oneTurn.setBackgroundColor(new BaseColor(red, green, blue));
+                        oneTurn.setFixedHeight(13f);
+                        tableTHR.addCell(oneTurn);
                     }
-                    if (schemeTab[i][j].equals("0x")) {
-                        tableTHR.addCell("o!");
+                    if (schemeTab[i][j]=="00") {
+                        PdfPCell zeroTurn = new PdfPCell(new Phrase("o!", font_dataBold));
+                        zeroTurn.setBackgroundColor(new BaseColor(red, green, blue));
+                        zeroTurn.setFixedHeight(13f);
+                        tableTHR.addCell(zeroTurn);
                     }
-                }
+
             }
         }
 

@@ -8,7 +8,7 @@ public class TableTestTHR {
     String[] levels;
     String[] turningLevels;
     String[] points;
-    String[][] scheme = new String[16][turningLevels.length - 1];
+    String[][] scheme = new String[16][7];
 
     TableTestTHR(String[] levels, String[] turningLevels, String[] points) {
 
@@ -32,40 +32,40 @@ public class TableTestTHR {
                 case 6:
                     for (int i = scheme.length; i >= 0; i--) {
 
-                        if ((levels[levelsInd]).equals(i)) {
+                        if ((levels[levelsInd]).equals(i+"")) {
 
                             //check if there was a good or a wrong answer
-                            //if good we have to chech whether the previous point was also good
+                            //if good we have to chech whether the previous point was also good - pu 111
                             if (points[levelsInd].equals("1")) {
                                 if (points[levelsInd-1].equals("1")) {
-                                    scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = "11x";
+                                    scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = "111";
                                     levelsInd++;
 
                                     // TURNING POINT
                                     break;
+
                                 }
                                 else {
-                                    scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = points[levelsInd];
+                                    scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = "1";
                                     levelsInd++;
                                     i++;
                                 }
                             }
-
-                            // if wrong we search for good ones
+                            // if wrong we search for good ones - put in table 0
                             else {
-                                scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = points[levelsInd];
+                                scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = "0";
                                 levelsInd++;
+
                             }
                         }
                     }
                     break;
-
                 // for odd columns
                 case 1:
                 case 3:
                 case 5:
                     for (int i = 0; i <= scheme.length; i++) {
-                        if ((levels[levelsInd]).equals(i)) {
+                        if ((levels[levelsInd]).equals(i+"")) {
 
                             //check if there was a good or a wrong answer
                             //if good we have to chech whether the next point also good
@@ -78,14 +78,14 @@ public class TableTestTHR {
                                     levelsInd++;
                                 }
                                 else{
-                                    scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = points[levelsInd];
+                                    scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = "1";
                                     levelsInd++;
                                     i--;
                                 }
                             }
 
                             else{
-                                scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = "0x";
+                                scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = "00";
                                 levelsInd++;
 
                                 // TURNING POINT

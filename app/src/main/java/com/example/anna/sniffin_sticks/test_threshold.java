@@ -25,7 +25,7 @@ public class test_threshold extends AppCompatActivity {
     private RadioButton radioButton;
     private Button testTHR_ok;
     private String patient_answer;
-    private String yes = "YES";
+    private String yes = "Ja";
     private String testTHR_finalResult;
 
     ArrayList<Integer> listTHR_answers = new ArrayList<>();
