@@ -19,8 +19,6 @@ public class TableTestTHR {
 
     String [][] createScheme (){
 
-        // w reszcie pol bedzie null?????????????
-
         int levelsInd = 0;
 
         // our case depends on a number of a column
@@ -37,16 +35,16 @@ public class TableTestTHR {
                         if ((levels[levelsInd]).equals(i)) {
 
                             //check if there was a good or a wrong answer
-                            //if good we have to chech whether the next point also good
+                            //if good we have to chech whether the previous point was also good
                             if (points[levelsInd].equals("1")) {
-                                if (points[levelsInd-1].equals("1")){
-                                    scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = points[levelsInd];
+                                if (points[levelsInd-1].equals("1")) {
+                                    scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = "11";
                                     levelsInd++;
 
                                     // TURNING POINT
                                     break;
-
-                                }else {
+                                }
+                                else {
                                     scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = points[levelsInd];
                                     levelsInd++;
                                     i++;
@@ -66,10 +64,33 @@ public class TableTestTHR {
                 case 1:
                 case 3:
                 case 5:
-                    for (int i = 0; i < scheme.length; i++) {
+                    for (int i = 0; i <= scheme.length; i++) {
                         if ((levels[levelsInd]).equals(i)) {
-                            scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = points[levelsInd];
-                            levelsInd++;
+
+                            //check if there was a good or a wrong answer
+                            //if good we have to chech whether the next point also good
+                            if (points[levelsInd].equals("1")) {
+
+                                //check if previous level was the same
+                                if(levels[levelsInd]==levels[levelsInd-1]){
+
+                                    scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = "11";
+                                    levelsInd++;
+                                }
+                                else{
+                                    scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = points[levelsInd];
+                                    levelsInd++;
+                                    i--;
+                                }
+                            }
+
+                            else{
+                                scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = "0";
+                                levelsInd++;
+
+                                // TURNING POINT
+                                break;
+                            }
                         }
                     }
                     break;
