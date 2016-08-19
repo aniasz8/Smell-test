@@ -15,6 +15,7 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.Section;
 import com.itextpdf.text.html.WebColors;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -159,21 +160,21 @@ public class CreationOfPdf {
 
 
             // part 2 - threshold
-            Paragraph test1 = new Paragraph("2. Schwelle",font_title);
+            Paragraph test1 = new Paragraph("2. Schwelle (" + testTHR_total + ")",font_title);
             document.add(test1);
             Paragraph tableTHR = new Paragraph();
             createtableTHR(tableTHR);
             document.add(tableTHR);
 
             // part 3 - discrimination
-            Paragraph test2 = new Paragraph("3. Diskriminierung",font_title);
+            Paragraph test2 = new Paragraph("3. Diskriminierung (" + testDIS_total + ")" ,font_title);
             document.add(test2);
             Paragraph tableDIS = new Paragraph();
             createtableDIS(tableDIS);
             document.add(tableDIS);
 
             // part 4 - identification
-            Paragraph test3 = new Paragraph("4. Erkennung",font_title);
+            Paragraph test3 = new Paragraph("4. Erkennung (" + testID_total + ")",font_title);
             document.add(test3);
             Paragraph tableID = new Paragraph();
             createtableID(tableID);
@@ -203,12 +204,18 @@ public class CreationOfPdf {
 
         // first table
         PdfPCell cell1 = new PdfPCell();
-        //cell1.setBorder(PdfPCell.NO_BORDER);
+        cell1.setBorder(PdfPCell.NO_BORDER);
 
         PdfPTable tabNum = new PdfPTable(1);
         tabNum.setWidthPercentage(100.0f);
 
-        for (int i=0; i<16; i++) {
+        for (int i=0; i<17; i++) {
+            if (i==16){
+                PdfPCell tp = new PdfPCell(new Phrase("",font_dataBold));
+                tp.setBorder(PdfPCell.NO_BORDER);
+                tabNum.addCell(tp);
+            }
+
             PdfPCell pCell = new PdfPCell(new Phrase(Integer.toString(i+1),font_data));
             tabNum.addCell(pCell);
         }
@@ -220,7 +227,7 @@ public class CreationOfPdf {
 
         //second table
         PdfPCell cell2 = new PdfPCell();
-        //cell2.setBorder(PdfPCell.NO_BORDER);
+        cell2.setBorder(PdfPCell.NO_BORDER);
 
         PdfPTable tableTHR = new PdfPTable(7);
         tableTHR.setWidthPercentage(100.0f);
@@ -229,42 +236,44 @@ public class CreationOfPdf {
         TableTestTHR scheme = new TableTestTHR(testTHR_levels,testTHR_turningLevels,testTHR_points);
         schemeTab = scheme.createScheme();
 
-        for (int i=0; i<16; i++) {
+        for (int i=0; i<17; i++) {
             for (int j = 0; j < 7; j++) {
-                if (schemeTab[i][j] == null) {
-                    PdfPCell nothing = new PdfPCell(new Phrase(""));
-                    nothing.setFixedHeight(15f);
-                    tableTHR.addCell(nothing);
-                } else {
+                if (i==16){
+                    PdfPCell turnLeveles = new PdfPCell(new Phrase((testTHR_turningLevels[j]),font_dataBold));
+                    turnLeveles.setBorder(PdfPCell.NO_BORDER);
+                    tableTHR.addCell(turnLeveles);
+                }
+                else {
+
+                    if (schemeTab[i][j] == null) {
+                        PdfPCell nothing = new PdfPCell(new Phrase(""));
+                        nothing.setFixedHeight(14f);
+                        tableTHR.addCell(nothing);
+                    }
+
                     if (schemeTab[i][j] == "11") {
                         PdfPCell x = new PdfPCell(new Phrase("xx", font_data));
-                        x.setFixedHeight(15f);
                         tableTHR.addCell(x);
                     }
 
                     if (schemeTab[i][j] == "0") {
                         PdfPCell zero = new PdfPCell(new Phrase("o", font_data));
-                        zero.setFixedHeight(15f);
                         tableTHR.addCell(zero);
                     }
 
                     if (schemeTab[i][j] == "111") {
                         PdfPCell oneTurn = new PdfPCell(new Phrase("xx!", font_dataBold));
                         oneTurn.setBackgroundColor(new BaseColor(red, green, blue));
-                        oneTurn.setFixedHeight(15f);
                         tableTHR.addCell(oneTurn);
                     }
 
                     if (schemeTab[i][j] == "00") {
                         PdfPCell zeroTurn = new PdfPCell(new Phrase("o!", font_dataBold));
                         zeroTurn.setBackgroundColor(new BaseColor(red, green, blue));
-                        zeroTurn.setFixedHeight(15f);
                         tableTHR.addCell(zeroTurn);
                     }
                 }
             }
-
-
         }
 
 
@@ -302,7 +311,7 @@ public class CreationOfPdf {
                     tableAnsDIS.addCell(num);
                 }
                 if (i == 1) {
-                    if (testDIS_choices[j].equals("Blue")) {
+                    if (testDIS_choices[j].equals("Blau")) {
                         PdfPCell blueCH = new PdfPCell(new Phrase("Blau", font_data));
                         blueCH.setBackgroundColor(new BaseColor(red, green, blue));
                         tableAnsDIS.addCell(blueCH);
@@ -312,7 +321,7 @@ public class CreationOfPdf {
                     }
                 }
                 if (i == 2) {
-                    if (testDIS_choices[j].equals("Green")) {
+                    if (testDIS_choices[j].equals("Grün")) {
                         PdfPCell greenGood = new PdfPCell(new Phrase("Grün", font_dataBold));
                         greenGood.setBackgroundColor(new BaseColor(red, green, blue));
                         tableAnsDIS.addCell(greenGood);
@@ -322,7 +331,7 @@ public class CreationOfPdf {
                     }
                 }
                 if (i == 3) {
-                    if (testDIS_choices[j].equals("Red")) {
+                    if (testDIS_choices[j].equals("Rot")) {
                         PdfPCell redCH = new PdfPCell(new Phrase("Rot", font_data));
                         redCH.setBackgroundColor(new BaseColor(red, green, blue));
                         tableAnsDIS.addCell(redCH);
