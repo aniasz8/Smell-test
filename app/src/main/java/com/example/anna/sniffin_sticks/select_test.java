@@ -61,8 +61,7 @@ public class select_test extends AppCompatActivity {
         select_reset.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                AlertReset();
             }
         });
 
@@ -129,5 +128,53 @@ public class select_test extends AppCompatActivity {
                 });
         AlertDialog alert = alertDialogBuilder.create();
         alert.show();
+    }
+
+    private void AlertReset (){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(select_test.this);
+        builder1.setMessage("Möchten Sie alle datum löschen?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Ja",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        clear();
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                        dialog.cancel();
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "Nein",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    }
+    public void clear (){
+        MainActivity.DATA.setDiagnosis(null);
+        MainActivity.DATA.setScore(null);
+
+        MainActivity.DATA.setTestTHR_total(null);
+        MainActivity.DATA.setTestTHR_levels(null);
+        MainActivity.DATA.setTestTHR_turningLevels(null);
+        MainActivity.DATA.setTestTHR_answers(null);
+
+        MainActivity.DATA.setTestDIS_choices(null);
+        MainActivity.DATA.setTestDIS_points(null);
+        MainActivity.DATA.setTestDIS_points(null);
+
+        MainActivity.DATA.setTestID_total(null);
+        MainActivity.DATA.setTestID_choices(null);
+        MainActivity.DATA.setTestID_points(null);
+
+        MainActivity.DATA=null;
     }
 }

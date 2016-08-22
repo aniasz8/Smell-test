@@ -42,9 +42,9 @@ public class Diagnosis {
         }
 
         //THR==value, DIS== null, ID==null
-        if (testDIS==null){
-            if (testID==null){
-                if(testTHR!=null) {
+        if (testDIS==null || "-".equals(testDIS)){
+            if (testID==null || "-".equals(testID)){
+                if(testTHR!=null|| !"-".equals(testTHR)) {
                     diagnosis = diagnoseTHR();
                     testDIS="-";
                     testID="-";
@@ -53,9 +53,9 @@ public class Diagnosis {
         }
 
         //THR==null, DIS== value, ID==null
-        if (testID==null){
-            if (testTHR==null){
-                if (testDIS!=null){
+        if (testID==null || "-".equals(testID)){
+            if (testTHR==null || "-".equals(testTHR)){
+                if (testDIS!=null || !"-".equals(testDIS)){
                     diagnosis=diagnoseDIS();
                     testTHR="-";
                     testID="-";
@@ -66,9 +66,9 @@ public class Diagnosis {
 
         // double tests and all
         // THR= value, DIS= value, ID= null or all
-        if (testTHR!=null){
-            if (testDIS!=null){
-                if (testID!=null){
+        if (testTHR!=null || !"-".equals(testTHR)){
+            if (testDIS!=null || !"-".equals(testDIS)){
+                if (testID!=null || !"-".equals(testID)){
                     diagnosis=diagnoseAll();
                 }
                 else{
@@ -79,9 +79,9 @@ public class Diagnosis {
         }
 
         //THR= null, DIS=value, ID=value
-        if(testTHR==null){
-            if(testDIS!=null){
-                if(testID!=null){
+        if(testTHR==null || "-".equals(testTHR)){
+            if(testDIS!=null || !"-".equals(testDIS)){
+                if(testID!=null || !"-".equals(testID)){
                     diagnosis="-";
                     testTHR="-";
                 }
@@ -89,9 +89,9 @@ public class Diagnosis {
         }
 
         //THR= value, DIS= null, ID= value
-        if(testTHR!=null){
-            if(testDIS==null){
-                if(testID!=null){
+        if(testTHR!=null || !"-".equals(testTHR)){
+            if(testDIS==null || "-".equals(testDIS)){
+                if(testID!=null || !"-".equals(testID)){
                     diagnosis="-";
                     testDIS="-";
                 }
