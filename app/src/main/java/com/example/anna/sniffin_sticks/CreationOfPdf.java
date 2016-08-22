@@ -125,7 +125,8 @@ public class CreationOfPdf {
             if (testID_total==null)
                 testID_total="-";
 
-            if (testTHR_total=="-" && testDIS_total=="-" && testID_total=="-")
+            // if we have not made all tests we don't have SDI score
+            if (testTHR_total=="-" || testDIS_total=="-" || testID_total=="-")
                 score = "-";
 
 
@@ -241,12 +242,13 @@ public class CreationOfPdf {
         tableTHR.setWidthPercentage(100.0f);
 
 
-        // check if we have done the threshold, then fill the schemeTab with the answers
+        // check if we have done the threshold ( we have all the answers = arrays)
         if (testTHR_levels!=null && testTHR_points!=null && testTHR_turningLevels!=null) {
             TableTestTHR scheme = new TableTestTHR(testTHR_levels, testTHR_turningLevels, testTHR_points);
             schemeTab = scheme.createScheme();
         }
 
+        // fill the table with the answers in schemeTab
         for (int i=0; i<17; i++) {
             for (int j = 0; j < 7; j++) {
 
@@ -254,12 +256,10 @@ public class CreationOfPdf {
                 if (i==16){
 
                     // in case of not doing the THR test
-                    if (testTHR_turningLevels== null && testTHR_turningLevels==null && testTHR_points==null){
-                        PdfPCell nothing = new PdfPCell(new Phrase("-"));
+                    if (testTHR_turningLevels== null){
+                        PdfPCell nothing = new PdfPCell(new Phrase("-", font_data));
                         nothing.setBorder(PdfPCell.NO_BORDER);
-                        nothing.setFixedHeight(14f);
-                        for (int k=0; k<7; k++)
-                            tableTHR.addCell(nothing);
+                        tableTHR.addCell(nothing);
                     }else {
                         PdfPCell turnLeveles = new PdfPCell(new Phrase((testTHR_turningLevels[j]), font_dataBold));
                         turnLeveles.setBorder(PdfPCell.NO_BORDER);

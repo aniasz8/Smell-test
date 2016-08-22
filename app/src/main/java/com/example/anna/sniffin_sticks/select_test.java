@@ -56,7 +56,7 @@ public class select_test extends AppCompatActivity {
 
                 Toast.makeText(getBaseContext(), "Schwelle: " + patientDiagnose.getTestTHR() + "\nDiskriminierung: "
                         + patientDiagnose.getTestDIS() + "\nErkennung: " + patientDiagnose.getTestID()
-                        + "\nSDI-Wert: " + score + "\n" + diagnose, Toast.LENGTH_LONG).show();
+                        + "\nAktuell Wert: " + score + "\n" + diagnose, Toast.LENGTH_LONG).show();
             }
         });
 
