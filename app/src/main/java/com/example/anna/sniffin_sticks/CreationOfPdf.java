@@ -1,13 +1,9 @@
 package com.example.anna.sniffin_sticks;
 
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Environment;
 import android.util.Log;
 
-import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -15,9 +11,6 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
-import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.Section;
-import com.itextpdf.text.html.WebColors;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -26,8 +19,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import static android.graphics.Color.GRAY;
-import static android.graphics.Color.GREEN;
 
 /**
  * Created by Anna on 2016-08-10.
@@ -239,10 +230,21 @@ public class CreationOfPdf {
 
         for (int i=0; i<17; i++) {
             for (int j = 0; j < 7; j++) {
+
+                // row with the turning levels
                 if (i==16){
-                    PdfPCell turnLeveles = new PdfPCell(new Phrase((testTHR_turningLevels[j]),font_dataBold));
-                    turnLeveles.setBorder(PdfPCell.NO_BORDER);
-                    tableTHR.addCell(turnLeveles);
+
+                    // in case of not doing the THR test
+                    if (testTHR_turningLevels[j]==null){
+                        PdfPCell nothing = new PdfPCell(new Phrase("-"));
+                        nothing.setBorder(PdfPCell.NO_BORDER);
+                        nothing.setFixedHeight(14f);
+                        tableTHR.addCell(nothing);
+                    }else {
+                        PdfPCell turnLeveles = new PdfPCell(new Phrase((testTHR_turningLevels[j]), font_dataBold));
+                        turnLeveles.setBorder(PdfPCell.NO_BORDER);
+                        tableTHR.addCell(turnLeveles);
+                    }
                 }
                 else {
 

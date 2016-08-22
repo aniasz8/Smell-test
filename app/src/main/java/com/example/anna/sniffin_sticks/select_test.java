@@ -19,6 +19,7 @@ public class select_test extends AppCompatActivity {
     private Button select_export;
     private Button select_reset;
     private String message = "Nicht alle Teste sind gemacht";
+    private String diagnose;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,24 +45,14 @@ public class select_test extends AppCompatActivity {
                 TotalScore total_score = new TotalScore(testTHR_total, testDIS_total, testID_total);
                 String score = total_score.totalResult();
                 MainActivity.DATA.setScore(score);
-                Diagnosis patientDiagnose = new Diagnosis(total_score.resultDouble());
+                Diagnosis patientDiagnose = new Diagnosis(total_score.resultDouble(),
+                        testTHR_total, testDIS_total, testID_total);
 
-                if(testTHR_total=="0"){
-                    if (testDIS_total=="0"){
-
-                    }
-                    else {
-
-                    }
-                }
-
-
-
-                String diagnose = patientDiagnose.diagnoseAll();
+                diagnose = patientDiagnose.diagnose();
                 MainActivity.DATA.setDiagnosis(diagnose);
 
-                Toast.makeText(getBaseContext(), "Schwelle: " + total_score.getTestTHR() + "\nDiskriminierung: "
-                        + total_score.getTestDIS() + "\nErkennung: " + total_score.getTestID()
+                Toast.makeText(getBaseContext(), "Schwelle: " + patientDiagnose.getTestTHR() + "\nDiskriminierung: "
+                        + patientDiagnose.getTestDIS() + "\nErkennung: " + patientDiagnose.getTestID()
                         + "\nSDI-Wert: " + score + "\n" + MainActivity.DATA.getDiagnosis(), Toast.LENGTH_LONG).show();
             }
         });
@@ -106,13 +97,22 @@ public class select_test extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (MainActivity.DATA.getTestID_total() == null) {
-                    AlertDialog();
-                } else {
-                    CreationOfPdf pdf = new CreationOfPdf();
-                    pdf.createPdf();
-                    Toast.makeText(getApplicationContext(), "Pdf ist gemacht.", Toast.LENGTH_SHORT).show();
-                }
+//                if (MainActivity.DATA.getTestID_total() == null) {
+//                    if (MainActivity.DATA.getTestDIS_total() == null) {
+//                        AlertDialogTHR();
+//                    }
+//                }
+//                if (MainActivity.DATA.getTestDIS_total()==null){
+//                    if (MainActivity.DATA.getTes)
+//                }
+//
+////                } else {
+//
+////                }
+
+                CreationOfPdf pdf = new CreationOfPdf();
+                pdf.createPdf();
+                Toast.makeText(getApplicationContext(), "Pdf ist gemacht.", Toast.LENGTH_SHORT).show();
             }
         });
     }

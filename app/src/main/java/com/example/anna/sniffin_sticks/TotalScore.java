@@ -57,13 +57,13 @@ public class TotalScore {
         return total_score;
     }
 
-    public String getTestTHR (){
-        return testTHR;
-    };
-    public String getTestDIS (){
-        return testDIS;
-    };
-    public String getTestID (){
-        return testID;
-    }
+//    public String getTestTHR (){
+//        return testTHR;
+//    };
+//    public String getTestDIS (){
+//        return testDIS;
+//    };
+//    public String getTestID (){
+//        return testID;
+//    }
 }
