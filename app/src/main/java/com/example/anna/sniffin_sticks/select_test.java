@@ -18,7 +18,12 @@ public class select_test extends AppCompatActivity {
     private Button select_button_score;
     private Button select_export;
     private Button select_reset;
-    private String message = "Nicht alle Teste sind gemacht";
+
+    private String mNone="Bisher wurde kein Test durchgeführt.";
+    private String mOne = "Bisher wurde nur ein Test durchgeführt. Fortfahren? ";
+    private String mTwo = "Bisher wurden nur zwei Tests durchgeführt. Bitte füllen Sie den letzten Test aus.";
+    private String mReset = "Möchten Sie eine neue Untersuchung beginnen?";
+
     private String diagnose;
 
     @Override
@@ -96,30 +101,113 @@ public class select_test extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-//                if (MainActivity.DATA.getTestID_total() == null) {
-//                    if (MainActivity.DATA.getTestDIS_total() == null) {
-//                        AlertDialogTHR();
-//                    }
-//                }
-//                if (MainActivity.DATA.getTestDIS_total()==null){
-//                    if (MainActivity.DATA.getTes)
-//                }
-//
-////                } else {
-//
-////                }
+                String testTHR = MainActivity.DATA.getTestTHR_total();
+                String testDIS = MainActivity.DATA.getTestDIS_total();
+                String testID = MainActivity.DATA.getTestID_total();
 
                 CreationOfPdf pdf = new CreationOfPdf();
-                pdf.createPdf();
-                Toast.makeText(getApplicationContext(), "Pdf ist gemacht.", Toast.LENGTH_SHORT).show();
+
+                if (testTHR==null){
+                    if(testDIS==null){
+
+                        if (testID==null){
+                            // THR=null, DIS=null, ID=null
+                            AlertNone();
+                        }
+                        else{
+                            //THR=null, DIS=null, ID=value
+                            AlertOne();
+                        }
+                    }
+                    else{
+                        if (testID==null){
+                            //THR=null, DIS=value, ID=null
+                            AlertOne();
+                        }
+                        else{
+                            //THR=null, DIS=value, ID=value
+                            AlertTwo();
+                        }
+                    }
+                }
+                else{
+                    if (testDIS==null){
+
+                        if(testID==null){
+                            //THR=value, DIS=null, ID=null
+                            AlertOne();
+                        }
+                        else{
+                            //THR=value, DIS=null, ID=value
+                            AlertTwo();
+                        }
+                    }
+                    else{
+                        if(testID==null){
+                            //THR=value, DIS=value, ID=null
+                            AlertTwo();
+                        }
+                        else{
+                            //THR=value, DIS=value, ID=value
+                            pdf.createPdf();
+                            Toast.makeText(getApplicationContext(), "Pdf ist gemacht.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
             }
         });
     }
 
-    private void AlertDialog(){
+
+    // diffrent alerts
+    private void AlertNone(){
 
         android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(select_test.this);
-        alertDialogBuilder.setMessage(message).setCancelable(false)
+        alertDialogBuilder.setMessage(mNone).setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener(){
+
+                    public void onClick(DialogInterface dialog, int id){
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+    }
+
+    private void AlertOne (){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(select_test.this);
+        builder1.setMessage(mOne);
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Ja",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        CreationOfPdf pdf = new CreationOfPdf();
+                        pdf.createPdf();
+                        Toast.makeText(getApplicationContext(), "Pdf ist gemacht.", Toast.LENGTH_SHORT).show();
+                        dialog.cancel();
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "Nein",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    }
+
+
+    private void AlertTwo(){
+
+        android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(select_test.this);
+        alertDialogBuilder.setMessage(mTwo).setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener(){
 
                     public void onClick(DialogInterface dialog, int id){
@@ -132,7 +220,7 @@ public class select_test extends AppCompatActivity {
 
     private void AlertReset (){
         AlertDialog.Builder builder1 = new AlertDialog.Builder(select_test.this);
-        builder1.setMessage("Möchten Sie alle datum löschen?");
+        builder1.setMessage(mReset);
         builder1.setCancelable(true);
 
         builder1.setPositiveButton(
@@ -140,7 +228,6 @@ public class select_test extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        clear();
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                         dialog.cancel();
@@ -157,24 +244,5 @@ public class select_test extends AppCompatActivity {
 
         AlertDialog alert11 = builder1.create();
         alert11.show();
-    }
-    public void clear (){
-        MainActivity.DATA.setDiagnosis(null);
-        MainActivity.DATA.setScore(null);
-
-        MainActivity.DATA.setTestTHR_total(null);
-        MainActivity.DATA.setTestTHR_levels(null);
-        MainActivity.DATA.setTestTHR_turningLevels(null);
-        MainActivity.DATA.setTestTHR_answers(null);
-
-        MainActivity.DATA.setTestDIS_choices(null);
-        MainActivity.DATA.setTestDIS_points(null);
-        MainActivity.DATA.setTestDIS_points(null);
-
-        MainActivity.DATA.setTestID_total(null);
-        MainActivity.DATA.setTestID_choices(null);
-        MainActivity.DATA.setTestID_points(null);
-
-        MainActivity.DATA=null;
     }
 }

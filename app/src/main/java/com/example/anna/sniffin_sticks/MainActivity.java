@@ -46,10 +46,31 @@ public class MainActivity extends AppCompatActivity {
         new_patient.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clear();
                 Intent intent = new Intent(getApplicationContext(), patient_data.class);
                 startActivity(intent);
             }
         });
 
+    }
+
+    public void clear (){
+        MainActivity.DATA.setDiagnosis(null);
+        MainActivity.DATA.setScore(null);
+
+        MainActivity.DATA.setTestTHR_total(null);
+        MainActivity.DATA.setTestTHR_levels(null);
+        MainActivity.DATA.setTestTHR_turningLevels(null);
+        MainActivity.DATA.setTestTHR_answers(null);
+
+        MainActivity.DATA.setTestDIS_choices(null);
+        MainActivity.DATA.setTestDIS_points(null);
+        MainActivity.DATA.setTestDIS_points(null);
+
+        MainActivity.DATA.setTestID_total(null);
+        MainActivity.DATA.setTestID_choices(null);
+        MainActivity.DATA.setTestID_points(null);
+
+        MainActivity.DATA=null;
     }
 }

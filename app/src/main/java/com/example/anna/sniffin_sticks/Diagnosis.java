@@ -77,7 +77,7 @@ public class Diagnosis {
                 if(testID==null){
                     //THR=value, DIS=value, ID=null
                     testID="-";
-                    diagnosis=diagnoseDIS();
+                    diagnosis="-";
                 }
                 else{
                     //THR=value, DIS=value, ID=value
