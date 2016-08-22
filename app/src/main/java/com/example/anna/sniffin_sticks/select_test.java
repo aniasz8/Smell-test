@@ -24,6 +24,7 @@ public class select_test extends AppCompatActivity {
     private String mTwo = "Bisher wurden nur zwei Tests durchgeführt. Bitte füllen Sie den letzten Test aus.";
     private String mReset = "Möchten Sie eine neue Untersuchung beginnen?";
 
+    private String score;
     private String diagnose;
 
     @Override
@@ -48,17 +49,14 @@ public class select_test extends AppCompatActivity {
                 String testTHR_total = MainActivity.DATA.getTestTHR_total();
 
                 TotalScore total_score = new TotalScore(testTHR_total, testDIS_total, testID_total);
-                String score = total_score.totalResult();
-                MainActivity.DATA.setScore(score);
+                score = total_score.totalResult();
                 Diagnosis patientDiagnose = new Diagnosis(total_score.resultDouble(),
                         testTHR_total, testDIS_total, testID_total);
-
                 diagnose = patientDiagnose.diagnose();
-                MainActivity.DATA.setDiagnosis(diagnose);
 
                 Toast.makeText(getBaseContext(), "Schwelle: " + patientDiagnose.getTestTHR() + "\nDiskriminierung: "
                         + patientDiagnose.getTestDIS() + "\nErkennung: " + patientDiagnose.getTestID()
-                        + "\nSDI-Wert: " + score + "\n" + MainActivity.DATA.getDiagnosis(), Toast.LENGTH_LONG).show();
+                        + "\nSDI-Wert: " + score + "\n" + diagnose, Toast.LENGTH_LONG).show();
             }
         });
 
