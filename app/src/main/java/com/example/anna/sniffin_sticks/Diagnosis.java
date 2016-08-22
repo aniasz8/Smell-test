@@ -23,80 +23,69 @@ public class Diagnosis {
 
     public String diagnose (){
 
-        // single tests and none
-        // THR==null, DIS==null, ID== value // or everything "-"
+        // option with at least one test not done
         if (testTHR==null){
-            if (testDIS==null){
-                if(testID==null){
-                    diagnosis="-";
+            if(testDIS==null){
+
+                if (testID==null){
+                    // THR=null, DIS=null, ID=null
                     testTHR="-";
                     testDIS="-";
                     testID="-";
+                    diagnosis="-";
                 }
                 else{
+                    //THR=null, DIS=null, ID=value
+                    testTHR="-";
+                    testDIS="-";
                     diagnosis=diagnoseID();
+                }
+
+            }
+            else{
+                if (testID==null){
+                    //THR=null, DIS=value, ID=null
                     testTHR="-";
-                    testDIS="-";
-                }
-            }
-        }
-
-        //THR==value, DIS== null, ID==null
-        if (testDIS==null || "-".equals(testDIS)){
-            if (testID==null || "-".equals(testID)){
-                if(testTHR!=null|| !"-".equals(testTHR)) {
-                    diagnosis = diagnoseTHR();
-                    testDIS="-";
                     testID="-";
-                }
-            }
-        }
-
-        //THR==null, DIS== value, ID==null
-        if (testID==null || "-".equals(testID)){
-            if (testTHR==null || "-".equals(testTHR)){
-                if (testDIS!=null || !"-".equals(testDIS)){
                     diagnosis=diagnoseDIS();
+                }
+                else{
+                    //THR=null, DIS=value, ID=value
                     testTHR="-";
-                    testID="-";
+                    diagnosis="-";
                 }
             }
         }
 
+        // option with at least one test done
+        else{
+            if (testDIS==null){
 
-        // double tests and all
-        // THR= value, DIS= value, ID= null or all
-        if (testTHR!=null || !"-".equals(testTHR)){
-            if (testDIS!=null || !"-".equals(testDIS)){
-                if (testID!=null || !"-".equals(testID)){
+                if(testID==null){
+                    //THR=value, DIS=null, ID=null
+                    testDIS="-";
+                    testID="-";
+                    diagnosis=diagnoseTHR();
+                }
+                else{
+                    //THR=value, DIS=null, ID=value
+                    testDIS="-";
+                    diagnosis="-";
+                }
+            }
+            else{
+                if(testID==null){
+                    //THR=value, DIS=value, ID=null
+                    testID="-";
+                    diagnosis=diagnoseDIS();
+                }
+                else{
+                    //THR=value, DIS=value, ID=value
                     diagnosis=diagnoseAll();
                 }
-                else{
-                    diagnosis="-";
-                    testID="-";
-                }
             }
         }
 
-        //THR= null, DIS=value, ID=value
-        if(testTHR==null || "-".equals(testTHR)){
-            if(testDIS!=null || !"-".equals(testDIS)){
-                if(testID!=null || !"-".equals(testID)){
-                    diagnosis="-";
-                    testTHR="-";
-                }
-            }
-        }
-
-        //THR= value, DIS= null, ID= value
-        if(testTHR!=null || !"-".equals(testTHR)){
-            if(testDIS==null || "-".equals(testDIS)){
-                if(testID!=null || !"-".equals(testID)){
-                    diagnosis="-";
-                    testDIS="-";
-                }
-            }
-        }
 
         return diagnosis;
     }

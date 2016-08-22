@@ -203,7 +203,7 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
 
                         if (mon > 12) mon = 12;
                         cal.set(Calendar.MONTH, mon - 1);
-                        year = (year < 1900) ? 1900 : (year > 2100) ? 2100 : year;
+                        year = (year < 1900) ? 1900 : (year > 2015) ? 2015 : year;
                         cal.set(Calendar.YEAR, year);
 
                         day = (day > cal.getActualMaximum(Calendar.DATE)) ? cal.getActualMaximum(Calendar.DATE) : day;
