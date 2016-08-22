@@ -10,11 +10,10 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
 
 public class test_threshold extends AppCompatActivity {
 

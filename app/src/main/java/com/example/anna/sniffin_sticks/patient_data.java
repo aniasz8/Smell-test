@@ -1,10 +1,8 @@
 package com.example.anna.sniffin_sticks;
 
-import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,16 +10,13 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
 
 public class patient_data extends AppCompatActivity implements View.OnFocusChangeListener{
 
@@ -145,19 +140,19 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
             return false;
         if (patient_birth.getText().toString().equalsIgnoreCase("Geburtsdatum"))
             return false;
-//        if (patient_date.getText().toString().equalsIgnoreCase("Datum"))
-//            return false;
-//        if (patient_name.getText().toString().equalsIgnoreCase("Vorname") ||
-//                patient_name.getText().toString().equalsIgnoreCase("") )
-//            return false;
-//        if (patient_surname.getText().toString().equalsIgnoreCase("Name")||
-//                patient_surname.getText().toString().equalsIgnoreCase(""))
-//            return false;
-//        if (patient_hour.getText().toString().equalsIgnoreCase("Uhrzeit"))
-//            return false;
-//        if (patient_researcher.getText().toString().equalsIgnoreCase("Untersucher")||
-//                patient_researcher.getText().toString().equalsIgnoreCase(""))
-//            return false;
+        if (patient_date.getText().toString().equalsIgnoreCase("Datum"))
+            return false;
+        if (patient_name.getText().toString().equalsIgnoreCase("Vorname") ||
+                patient_name.getText().toString().equalsIgnoreCase("") )
+            return false;
+        if (patient_surname.getText().toString().equalsIgnoreCase("Name")||
+                patient_surname.getText().toString().equalsIgnoreCase(""))
+            return false;
+        if (patient_hour.getText().toString().equalsIgnoreCase("Uhrzeit"))
+            return false;
+        if (patient_researcher.getText().toString().equalsIgnoreCase("Untersucher")||
+                patient_researcher.getText().toString().equalsIgnoreCase(""))
+            return false;
 
         return true;
     }

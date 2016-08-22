@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,16 +54,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clear (){
-        MainActivity.DATA.setDiagnosis(null);
-        MainActivity.DATA.setScore(null);
 
         MainActivity.DATA.setTestTHR_total(null);
         MainActivity.DATA.setTestTHR_levels(null);
         MainActivity.DATA.setTestTHR_turningLevels(null);
         MainActivity.DATA.setTestTHR_answers(null);
 
+        MainActivity.DATA.setTestDIS_total(null);
         MainActivity.DATA.setTestDIS_choices(null);
-        MainActivity.DATA.setTestDIS_points(null);
         MainActivity.DATA.setTestDIS_points(null);
 
         MainActivity.DATA.setTestID_total(null);

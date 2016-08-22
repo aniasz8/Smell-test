@@ -1,6 +1,5 @@
 package com.example.anna.sniffin_sticks;
 
-import java.text.NumberFormat;
 import java.util.Locale;
 
 /**
@@ -25,8 +24,4 @@ public class TestTHR_score {
 
         return testTHR_result_string;
     }
-
-
-
-
 }

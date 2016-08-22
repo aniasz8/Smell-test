@@ -1,7 +1,5 @@
 package com.example.anna.sniffin_sticks;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by Anna on 2016-08-16.

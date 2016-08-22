@@ -1,6 +1,5 @@
 package com.example.anna.sniffin_sticks;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
