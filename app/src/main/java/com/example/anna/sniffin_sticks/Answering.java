@@ -20,7 +20,7 @@ public class Answering {
 
 
         // if we are after second answering
-        if (index >= 1) {
+        if (index > 1) {
             switch (point) {
                 case 0:
                     // check if previous there was any good answer- if not, decrese twice
@@ -35,12 +35,19 @@ public class Answering {
 
                         switch (previous) {
                             case 1:
-                                // if there is 10 - it means we should increase change and add level to table
-                                listTHR_turningLevels[change] = level;
-                                level = level - 1;
-                                change = change + 1;
-                                break;
-
+                                // two possibilites (11)(0) and (11)(10) to be a turning point and increase change
+                                //we check if it is 110 if so turning point
+                                if (listTHR_answers.get(index - 2) == 1){
+                                    listTHR_turningLevels[change] = level;
+                                    level = level - 1;
+                                    change = change + 1;
+                                    break;
+                                }
+                                //if it is just (x0)(10) just decrease level
+                                else{
+                                    level=level-1;
+                                    break;
+                                }
                             case 0:
                                 level = level - 1;
                                 break;
@@ -51,28 +58,19 @@ public class Answering {
                 case 1:
                     //good answer = checking if the previous answer was also correct
                     if (listTHR_answers.get(index - 1) == 1) {
+
                         // checking if good answers were at the same level
-                        switch (point) {
-                            case 1:
-                                if (listTHR_levels.get(index) == listTHR_levels.get(index - 1)) {
+                        if (listTHR_levels.get(index) == listTHR_levels.get(index - 1)) {
 
-                                    // if they were = going to higher level
-                                    level = level + 1;
+                            // if they were = going to higher level
+                            level = level + 1;
 
-                                    //if there is 110 = increase change
-                                    if (listTHR_answers.get(index - 2) == 0) {
+                            //if there is (x0)(11) = increase change
+                            if (listTHR_answers.get(index - 2) == 0) {
 
-                                        listTHR_turningLevels[change] = level - 1;
-                                        change = change + 1;
-                                    }
-                                }
-                                break;
-
-                            case 0:
-                                listTHR_turningLevels[change] = level;
-                                level = level - 1;
+                                listTHR_turningLevels[change] = level - 1;
                                 change = change + 1;
-                                break;
+                            }
                         }
                     }
                     // otherwise level stays the same
@@ -81,11 +79,27 @@ public class Answering {
         }
         // or we are just after first answering
         else {
+
             switch (point) {
                 case 1:
+                    //in case first 2 answers are good- first turning point
+                    if(index==1){
+                        if(listTHR_answers.get(index - 1) == 1){
+                            listTHR_turningLevels[change] = level;
+                            change = change + 1;
+                        }
+                    }
                     break;
                 case 0:
-                    level = level - 2;
+                    //if the first answer is bad then level-2, if second level-1
+                    if(index==0)
+                        level = level - 2;
+                    else {
+                        if (listTHR_answers.get(index - 1) == 1)
+                            level = level - 1;
+                        else
+                            level=level-2;
+                    }
                     break;
             }
         }

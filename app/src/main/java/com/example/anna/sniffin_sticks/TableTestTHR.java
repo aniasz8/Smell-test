@@ -38,18 +38,26 @@ public class TableTestTHR {
                             //check if there was a good or a wrong answer
                             //if good we have to chech whether the previous point was also good - pu 111
                             if (points[levelsInd].equals("1")) {
-                                if (points[levelsInd-1].equals("1")) {
-                                    scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = "111";
-                                    levelsInd++;
-
-                                    // TURNING POINT
-                                    break;
-
-                                }
-                                else {
+                                //check if it is a first answer
+                                if (levelsInd==0){
                                     scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = "1";
                                     levelsInd++;
                                     i++;
+                                }
+                                else {
+
+                                    if (points[levelsInd - 1].equals("1")) {
+                                        scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = "111";
+                                        levelsInd++;
+
+                                        // TURNING POINT
+                                        break;
+
+                                    } else {
+                                        scheme[Integer.parseInt(levels[levelsInd]) - 1][j] = "1";
+                                        levelsInd++;
+                                        i++;
+                                    }
                                 }
                             }
                             // if wrong we search for good ones - put in table 0

@@ -58,6 +58,17 @@ public class test_threshold extends AppCompatActivity {
                     listTHR_levels.add(index, level);
 
 
+                    //answering
+                    Answering current_answering = new Answering(point, change, level, index, listTHR_answers,
+                            listTHR_levels, listTHR_turningLevels);
+                    index = current_answering.getIndex();
+                    level = current_answering.getLevel();
+                    index = current_answering.getIndex();
+                    change = current_answering.getChange();
+                    listTHR_answers = current_answering.getListTHR_answers();
+                    listTHR_levels = current_answering.getListTHR_levels();
+                    listTHR_turningLevels = current_answering.getListTHR_turningLevels();
+
                     // check if the test is over
                     // 1) we always answered wrongly  2) change ==7, then we calculate the final score
                     if (level < 1) {
@@ -73,27 +84,13 @@ public class test_threshold extends AppCompatActivity {
                         TestTHR_score testTHR_score_string = new TestTHR_score(listTHR_turningLevels);
                         testTHR_finalResult = testTHR_score_string.testTHR_StringResult();
 
-
-                        Intent intent = new Intent(test_threshold.this, select_test.class);
                         MainActivity.DATA.setTestTHR_answers(ConvertArrayIntToString.convertList(listTHR_answers));
                         MainActivity.DATA.setTestTHR_levels(ConvertArrayIntToString.convertList(listTHR_levels));
                         MainActivity.DATA.setTestTHR_turningLevels(ConvertArrayIntToString.convertArray(listTHR_turningLevels));
                         MainActivity.DATA.setTestTHR_total(testTHR_finalResult);
 
+                        Intent intent = new Intent(test_threshold.this, select_test.class);
                         startActivity(intent);
-                    }
-
-                    // if the test is not over - check the result
-                    else {
-                        Answering current_answering = new Answering(point, change, level, index, listTHR_answers,
-                                listTHR_levels, listTHR_turningLevels);
-                        index = current_answering.getIndex();
-                        level = current_answering.getLevel();
-                        index = current_answering.getIndex();
-                        change = current_answering.getChange();
-                        listTHR_answers = current_answering.getListTHR_answers();
-                        listTHR_levels = current_answering.getListTHR_levels();
-                        listTHR_turningLevels = current_answering.getListTHR_turningLevels();
                     }
 
                     //setting the title

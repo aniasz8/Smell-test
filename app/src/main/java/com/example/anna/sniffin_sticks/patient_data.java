@@ -65,6 +65,7 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
         patient_name.setOnFocusChangeListener(this);
         patient_surname.setOnFocusChangeListener(this);
         patient_researcher.setOnFocusChangeListener(this);
+        patient_birth.setOnFocusChangeListener(this);
         patient_date.setOnFocusChangeListener(this);
         patient_hour.setOnFocusChangeListener(this);
 
@@ -109,6 +110,9 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
 
         if(v.equals(patient_researcher) && hasFocus)
             patient_researcher.setText("");
+
+        if(v.equals(patient_birth) && hasFocus)
+            patient_birth.setText("");
 
         if(v.equals(patient_date) && hasFocus) {
             Calendar c = Calendar.getInstance();
