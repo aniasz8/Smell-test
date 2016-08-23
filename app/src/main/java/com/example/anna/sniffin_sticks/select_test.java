@@ -54,8 +54,8 @@ public class select_test extends AppCompatActivity {
                         testTHR_total, testDIS_total, testID_total);
                 diagnose = patientDiagnose.diagnose();
 
-                Toast.makeText(getBaseContext(), "Schwelle: " + patientDiagnose.getTestTHR() + "\nDiskriminierung: "
-                        + patientDiagnose.getTestDIS() + "\nErkennung: " + patientDiagnose.getTestID()
+                Toast.makeText(getBaseContext(), "Schwelle: " + patientDiagnose.getTestTHR() + "\nDiskrimination: "
+                        + patientDiagnose.getTestDIS() + "\nIdentifikation: " + patientDiagnose.getTestID()
                         + "\nAktuell Wert: " + score + "\n" + diagnose, Toast.LENGTH_LONG).show();
             }
         });
