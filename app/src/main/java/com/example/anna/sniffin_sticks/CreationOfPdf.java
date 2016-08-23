@@ -11,8 +11,11 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.ColumnText;
+import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfPageEventHelper;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.File;
@@ -62,7 +65,11 @@ public class CreationOfPdf {
             File file = new File(dir, name + surname + ".pdf");
             FileOutputStream fileOut = new FileOutputStream(file);
 
-            PdfWriter.getInstance(current_document, fileOut);
+            PdfWriter writer = PdfWriter.getInstance(current_document, fileOut);
+
+            // adding a footer
+            MyFooter footer = new MyFooter();
+            writer.setPageEvent(footer);
 
             current_document.open();
             addTitle(current_document);
@@ -193,14 +200,6 @@ public class CreationOfPdf {
                 createtableID(tableID);
                 document.add(tableID);
             }
-
-            // part 5 - comments
-            Paragraph comments = new Paragraph("Kurzfassungen: SDI Wert - Summe der Untertestegebnisse für Schwelle, " +
-                    "Diskrimination und Identifikation; WP - Wendepunkt; Symbolen: o - nicht identifiziert," +
-                    "xx- identifiziert, !-Wendepunkt, 1- richtig, 0- falsch, grauhinterlegt - Auswahl;" +
-                    " Font: fett - richtige Antworten" , font_comment);
-            document.add(comments);
-
 
         } catch (DocumentException e) {
             e.printStackTrace();
@@ -522,5 +521,27 @@ public class CreationOfPdf {
 
         maintable.addCell(cell2);
         paragraph.add(maintable);
+    }
+
+    class MyFooter extends PdfPageEventHelper {
+
+        public void onEndPage(PdfWriter writer, Document document) {
+            PdfContentByte cb = writer.getDirectContent();
+            Phrase footer = new Phrase("Kurzfassungen: SDI Wert - Summe der Untertestegebnisse für Schwelle, " +
+                    "Diskrimination und Identifikation; WP - Wendepunkt; Symbolen: o - nicht identifiziert," +
+                    "xx- identifiziert, !-Wendepunkt, 1- richtig, 0- falsch,", font_comment);
+            PdfContentByte cb2 = writer.getDirectContent();
+            Phrase footer2 = new Phrase("grauhinterlegt - Auswahl;" +
+                    " Font: fett - richtige Antworten", font_comment);
+
+            ColumnText.showTextAligned(cb, Element.ALIGN_CENTER,
+                    footer,
+                    (document.right() - document.left()) / 2 + document.leftMargin(),
+                    document.bottom() -3, 0);
+            ColumnText.showTextAligned(cb2, Element.ALIGN_CENTER,
+                    footer2,
+                    (document.right() - document.left()) / 2 + document.leftMargin(),
+                    document.bottom() - 10, 0);
+        }
     }
 }
