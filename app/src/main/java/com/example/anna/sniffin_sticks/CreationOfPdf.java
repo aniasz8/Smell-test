@@ -150,13 +150,13 @@ public class CreationOfPdf {
 
             Paragraph par_result_title = new Paragraph();
             Chunk result_title = new Chunk(title_result, font_dataUnderline);
-            Chunk par_results = new Chunk("           Schwelle: " + testTHR_total+ "     Diskriminierung: "+ testDIS_total
-                    + "     Erkennung: " + testID_total, font_data);
+            Chunk par_results = new Chunk("           Schwelle: (" + testTHR_total+ ")"+ "     Diskrimination: ("+ testDIS_total
+                    + ")" + "     Identifikation: (" + testID_total +")", font_data);
             par_result_title.add(result_title);
             par_result_title.add(par_results);
             document.add(par_result_title);
 
-            Paragraph par_total = new Paragraph("SDI Wert: "+ score + "   ", font_data);
+            Paragraph par_total = new Paragraph("SDI Wert: ("+ score + ")   ", font_data);
             Chunk diagnosis = new Chunk (diagnose,font_dataUnderline);
             par_total.add(diagnosis);
             par_total.setAlignment(Element.ALIGN_CENTER);
@@ -166,29 +166,39 @@ public class CreationOfPdf {
             // part 2 - threshold
             Paragraph test1 = new Paragraph("2. Schwelle (" + testTHR_total + ")",font_title);
             document.add(test1);
-            Paragraph tableTHR = new Paragraph();
-            createtableTHR(tableTHR);
-            document.add(tableTHR);
+            // check if we have done the threshold ( we have the threshold result)
+            if (testTHR_total!="-") {
+                Paragraph tableTHR = new Paragraph();
+                createtableTHR(tableTHR);
+                document.add(tableTHR);
+            }
 
             // part 3 - discrimination
-            Paragraph test2 = new Paragraph("3. Diskriminierung (" + testDIS_total + ")" ,font_title);
+            Paragraph test2 = new Paragraph("3. Diskrimination (" + testDIS_total + ")" ,font_title);
             document.add(test2);
-            Paragraph tableDIS = new Paragraph();
-            createtableDIS(tableDIS);
-            document.add(tableDIS);
+            // check if we have done the DIS ( we have the dis result)
+            if (testDIS_total!="-") {
+                Paragraph tableDIS = new Paragraph();
+                createtableDIS(tableDIS);
+                document.add(tableDIS);
+            }
+
 
             // part 4 - identification
-            Paragraph test3 = new Paragraph("4. Erkennung (" + testID_total + ")",font_title);
+            Paragraph test3 = new Paragraph("4. Identifikation (" + testID_total + ")",font_title);
             document.add(test3);
-            Paragraph tableID = new Paragraph();
-            createtableID(tableID);
-            document.add(tableID);
+            // check if we have done the DIS ( we have the dis result)
+            if (testID_total!="-") {
+                Paragraph tableID = new Paragraph();
+                createtableID(tableID);
+                document.add(tableID);
+            }
 
             // part 5 - comments
-            Paragraph comments = new Paragraph("Kurzfassungen: SDI Wert - total score of Schwelle, " +
-                    "Diskriminierung und Erkennung Tests; WP - turning point; Symbole: o - nicht identifiziert," +
-                    "xx- identifiziert, !-turning point, 1- good answer, 0- bad answer, grey background - patient's answer;" +
-                    " Font: bold - gute Antworte, bold and underline - diagnosis" , font_comment);
+            Paragraph comments = new Paragraph("Kurzfassungen: SDI Wert - Summe der Untertestegebnisse für Schwelle, " +
+                    "Diskrimination und Identifikation; WP - Wendepunkt; Symbolen: o - nicht identifiziert," +
+                    "xx- identifiziert, !-Wendepunkt, 1- richtig, 0- falsch, grauhinterlegt - Auswahl;" +
+                    " Font: fett - richtige Antworten" , font_comment);
             document.add(comments);
 
 

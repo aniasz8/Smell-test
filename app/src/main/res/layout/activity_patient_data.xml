@@ -103,10 +103,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="2dp"
             android:text="@string/data_sexMann"
             android:id="@+id/data_sexMann"
             android:layout_below="@+id/data_birth"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="#e9e9e4" />
         <RadioButton
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
@@ -115,7 +117,8 @@
             android:id="@+id/data_sexFrau"
             android:layout_below="@+id/data_birth"
             android:layout_alignStart="@+id/data_sex"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="#e9e9e4" />
     </RadioGroup>
 
 

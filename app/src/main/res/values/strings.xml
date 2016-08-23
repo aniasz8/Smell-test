@@ -6,12 +6,12 @@
     <string name="data_ok"> OK </string>
     <string name="data_name"> Vorname  </string>
     <string name="data_surname"> Name  </string>
-    <string name="data_birth">  Geburtsdatum  </string>
+    <string name="data_birth">  Geburtsdatum (dd-mm-yyyy)  </string>
     <string name="data_sex"> Geschlecht </string>
-    <string name="data_sexFrau">Frau </string>
-    <string name="data_sexMann">Mann </string>
+    <string name="data_sexFrau">weiblich </string>
+    <string name="data_sexMann">männlich </string>
     <string name="data_researcher"> Untersucher  </string>
-    <string name="data_date"> Datum (dd-MM-yyyy) </string>
+    <string name="data_date"> Datum  </string>
     <string name="data_hour"> Uhrzeit  </string>
 
     <string name="select_title"> Test wählen </string>
