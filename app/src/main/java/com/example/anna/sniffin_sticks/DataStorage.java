@@ -3,6 +3,7 @@ package com.example.anna.sniffin_sticks;
 /**
  * Created by Anna on 2016-08-10.
  */
+// Copyright (C) <2016> <Anna Szagdaj with the help of Jakub Licznerski>
 public class DataStorage {
 
     private static String name;

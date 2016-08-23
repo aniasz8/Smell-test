@@ -5,6 +5,7 @@ import java.util.Locale;
 /**
  * Created by Anna on 2016-08-08.
  */
+// Copyright (C) <2016> <Anna Szagdaj with the help of Jakub Licznerski>
 public class TestTHR_score {
 
     private double testTHR_result=0;

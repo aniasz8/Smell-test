@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-
+// Copyright (C) <2016> <Anna Szagdaj with the help of Jakub Licznerski>
 public class select_test extends AppCompatActivity {
 
     private Button select_test1;

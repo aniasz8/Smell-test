@@ -18,6 +18,8 @@ import android.widget.TimePicker;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+// Copyright (C) <2016> <Anna Szagdaj with the help of Jakub Licznerski>
+
 public class patient_data extends AppCompatActivity implements View.OnFocusChangeListener{
 
     private Button ok;

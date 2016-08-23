@@ -4,6 +4,7 @@ package com.example.anna.sniffin_sticks;
 /**
  * Created by Anna on 2016-08-16.
  */
+// Copyright (C) <2016> <Anna Szagdaj with the help of Jakub Licznerski>
 public class DateParser {
 
 

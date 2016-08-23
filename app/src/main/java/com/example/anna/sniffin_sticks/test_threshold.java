@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-
+// Copyright (C) <2016> <Anna Szagdaj with the help of Jakub Licznerski>
 public class test_threshold extends AppCompatActivity {
 
     private int level =15;

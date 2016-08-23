@@ -5,6 +5,7 @@ import java.util.List;
 /**
  * Created by Anna on 2016-08-10.
  */
+// Copyright (C) <2016> <Anna Szagdaj with the help of Jakub Licznerski>
 public class ConvertArrayIntToString {
 
 

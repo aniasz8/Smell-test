@@ -11,7 +11,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-
+// Copyright (C) <2016> <Anna Szagdaj with the help of Jakub Licznerski>
 public class test_discrimination extends AppCompatActivity {
 
     private RadioGroup radioGroup;

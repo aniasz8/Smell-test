@@ -26,6 +26,7 @@ import java.io.IOException;
 /**
  * Created by Anna on 2016-08-10.
  */
+// Copyright (C) <2016> <Anna Szagdaj with the help of Jakub Licznerski>
 public class CreationOfPdf {
 
     private Font font_bigTitle = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
