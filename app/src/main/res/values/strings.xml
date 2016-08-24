@@ -1,24 +1,26 @@
 <resources>
-    <string name="app_name">Sniffin\' sticks</string>
-    <string name="main_new"> Neue Forschung </string>
+    <string name="app_name">Sniffin\' Sticks DE</string>
+    <string name="main_new"> Neue Untersuchung </string>
 
     <string name="data_title"> Daten </string>
     <string name="data_ok"> OK </string>
     <string name="data_name"> Vorname  </string>
     <string name="data_surname"> Name  </string>
     <string name="data_birth">  Geburtsdatum  </string>
-    <string name="data_sex"> Geschlecht (m/w)  </string>
+    <string name="data_sex"> Geschlecht </string>
+    <string name="data_sexFrau">weiblich </string>
+    <string name="data_sexMann">männlich </string>
     <string name="data_researcher"> Untersucher  </string>
-    <string name="data_date"> Datum (dd-MM-yyyy) </string>
+    <string name="data_date"> Datum  </string>
     <string name="data_hour"> Uhrzeit  </string>
 
     <string name="select_title"> Test wählen </string>
     <string name="select_button_test1"> 1. Schwelle </string>
-    <string name="select_button_test2"> 2. Diskriminierung </string>
-    <string name="select_button_test3"> 3. Erkennung </string>
-    <string name="select_button_export"> Export</string>
-    <string name="select_button_reset">Reset</string>
-    <string name="select_button_score">Score</string>
+    <string name="select_button_test2"> 2. Diskrimination </string>
+    <string name="select_button_test3"> 3. Identifikation </string>
+    <string name="select_button_export"> Fertig</string>
+    <string name="select_button_reset">Von vorn</string>
+    <string name="select_button_score">Ergebnis</string>
 
     <string name="testID_counter"> Counter </string>
     <string name="testID_choice1"> Choice 1 </string>
@@ -27,8 +29,14 @@
     <string name="testID_choice4"> Choice 4 </string>
     <string name="testID_ok"> OK </string>
 
+    <string name="testDIS_counter">Counter</string>
+    <string name="testDIS_ok">OK</string>
+    <string name="testDIS_blue">Blau</string>
+    <string name="testDIS_green">Grün</string>
+    <string name="testDIS_red">Rot</string>
+
     <string name="testTHR_title"> Level 15 </string>
-    <string name="testTHR_button_yes"> YES </string>
-    <string name="testTHR_button_no"> NO </string>
+    <string name="testTHR_button_yes"> Ja </string>
+    <string name="testTHR_button_no"> Nein </string>
     <string name="testTHR_button_ok"> OK </string>
 </resources>

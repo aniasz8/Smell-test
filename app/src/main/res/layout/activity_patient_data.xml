@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -15,6 +17,7 @@
         android:layout_height="wrap_content"
         android:text="@string/data_ok"
         android:id="@+id/data_ok"
+        android:textSize="20sp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
@@ -23,9 +26,9 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/data_title"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:id="@+id/textView"
+        android:id="@+id/data_title"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -34,74 +37,132 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:text="@string/data_name"
+        android:textSize="20sp"
         android:ems="10"
         android:id="@+id/data_name"
-        android:layout_below="@+id/textView"
+        android:layout_alignEnd="@+id/data_researcher"
+        android:layout_below="@+id/data_title"
         android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/data_surname"
-        android:hint="BLABLABL" />
+        android:nextFocusUp="@id/data_name"
+        android:nextFocusLeft="@id/data_name"
+
+        android:hint="Vorname" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:text="@string/data_surname"
+        android:textSize="20sp"
         android:ems="10"
         android:id="@+id/data_surname"
+        android:layout_alignEnd="@+id/data_researcher"
         android:layout_below="@+id/data_name"
         android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/data_birth" />
+
+        android:hint="Name"/>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="date"
         android:ems="10"
+        android:textSize="20sp"
         android:id="@+id/data_birth"
         android:layout_below="@+id/data_surname"
         android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/data_researcher"
         android:text="@string/data_birth"
-        android:layout_alignEnd="@+id/data_sex" />
 
-    <EditText
+        android:hint="dd-mm-yyyy (Geburtsdatum)"/>
+
+    <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:textSize="20sp"
         android:id="@+id/data_sex"
         android:layout_below="@+id/data_birth"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:text="@string/data_sex" />
+        android:layout_marginTop="10dp"
+        android:text="@string/data_sex"
+        android:layout_weight="1"
+        android:focusable="false"
+        android:textColor="#000000" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/data_birth"
+        android:layout_toEndOf="@+id/data_sex"
+        android:orientation="horizontal"
+        android:id="@+id/data_RadioGroup"
+        android:layout_alignEnd="@+id/data_researcher"
+        android:layout_above="@+id/data_researcher">
+
+        <RadioButton
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="2dp"
+            android:text="@string/data_sexMann"
+            android:id="@+id/data_sexMann"
+            android:layout_below="@+id/data_birth"
+            android:layout_weight="1"
+            android:background="#e9e9e4" />
+        <RadioButton
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/data_sexFrau"
+            android:id="@+id/data_sexFrau"
+            android:layout_below="@+id/data_birth"
+            android:layout_alignStart="@+id/data_sex"
+            android:layout_weight="1"
+            android:background="#e9e9e4" />
+    </RadioGroup>
+
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:text="@string/data_researcher"
+        android:textSize="20sp"
         android:ems="10"
         android:id="@+id/data_researcher"
         android:layout_below="@+id/data_sex"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+
+        android:hint="Untersucher"/>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="date"
+        android:textSize="20sp"
         android:ems="10"
         android:id="@+id/data_date"
         android:layout_below="@+id/data_researcher"
         android:layout_alignParentStart="true"
         android:text="@string/data_date"
-        android:layout_alignEnd="@+id/data_researcher" />
+        android:layout_alignEnd="@+id/data_researcher"
+
+        android:hint="Datum (dd-mm-yyyy)"/>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="time"
+        android:textSize="20sp"
         android:ems="10"
         android:id="@+id/data_hour"
         android:layout_below="@+id/data_date"
         android:layout_alignParentStart="true"
         android:text="@string/data_hour"
-        android:layout_alignEnd="@+id/data_date" />
+        android:layout_alignEnd="@+id/data_date"
+
+        android:hint="Uhrzeit"/>
+
+
 </RelativeLayout>

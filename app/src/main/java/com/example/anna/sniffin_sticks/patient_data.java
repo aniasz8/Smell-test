@@ -1,20 +1,24 @@
 package com.example.anna.sniffin_sticks;
 
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
-import java.util.Date;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TimePicker;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+// Copyright (C) <2016> <Anna Szagdaj with the help of Jakub Licznerski>
 
 public class patient_data extends AppCompatActivity implements View.OnFocusChangeListener{
 
@@ -22,10 +26,22 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
     private EditText patient_name;
     private EditText patient_surname;
     private EditText patient_birth;
-    private EditText patient_sex;
     private EditText patient_researcher;
     private EditText patient_date;
     private EditText patient_hour;
+    private RadioGroup radioGroup;
+    private RadioButton radioButton;
+    private String message = "Ergänzen Sie alle Felde";
+
+    private int year;
+    private int mon;
+    private int day;
+
+    private String current = "";
+    private String ddmmyyyy = "DDMMYYYY";
+    private Calendar cal = Calendar.getInstance();
+
+    //final Calendar myCalendar = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,219 +52,188 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
         patient_name=(EditText) findViewById(R.id.data_name);
         patient_surname=(EditText) findViewById(R.id.data_surname);
         patient_birth = (EditText) findViewById(R.id.data_birth);
-        patient_sex = (EditText) findViewById(R.id.data_sex);
         patient_researcher = (EditText) findViewById(R.id.data_researcher);
         patient_date = (EditText) findViewById(R.id.data_date);
         patient_hour =(EditText) findViewById(R.id.data_hour);
+        radioGroup =(RadioGroup) findViewById(R.id.data_RadioGroup);
 
         // correct date of birth
-        TextWatcher tw = new TextWatcher() {
-            private String current = "";
-            private String ddmmyyyy = "DDMMYYYY";
-            private Calendar cal = Calendar.getInstance();
-
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!s.toString().equals(current)) {
-                    String clean = s.toString().replaceAll("[^\\d.]", "");
-                    String cleanC = current.replaceAll("[^\\d.]", "");
-
-                    int cl = clean.length();
-                    int sel = cl;
-                    for (int i = 2; i <= cl && i < 6; i += 2) {
-                        sel++;
-                    }
-                    if (clean.equals(cleanC)) sel--;
-
-                    if (clean.length() < 8) {
-                        clean = clean + ddmmyyyy.substring(clean.length());
-                    } else {
-                        int day = Integer.parseInt(clean.substring(0, 2));
-                        int mon = Integer.parseInt(clean.substring(2, 4));
-                        int year = Integer.parseInt(clean.substring(4, 8));
-
-                        if (mon > 12) mon = 12;
-                        cal.set(Calendar.MONTH, mon - 1);
-                        year = (year < 1900) ? 1900 : (year > 2100) ? 2100 : year;
-                        cal.set(Calendar.YEAR, year);
-
-                        day = (day > cal.getActualMaximum(Calendar.DATE)) ? cal.getActualMaximum(Calendar.DATE) : day;
-                        clean = String.format("%02d%02d%02d", day, mon, year);
-                    }
-
-                    clean = String.format("%s/%s/%s", clean.substring(0, 2),
-                            clean.substring(2, 4),
-                            clean.substring(4, 8));
-
-                    sel = sel < 0 ? 0 : sel;
-                    current = clean;
-                    patient_birth.setText(current);
-                    patient_birth.setSelection(sel < current.length() ? sel : current.length());
-                }
-            }
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        };
-        patient_birth.addTextChangedListener(tw);
+        patient_birth = correctDate(patient_birth);
 
 
-        // correct date
-        TextWatcher TW = new TextWatcher() {
-            private String current = "";
-            private String ddmmyyyy = "DDMMYYYY";
-            private Calendar cal = Calendar.getInstance();
-
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!s.toString().equals(current)) {
-                    String clean = s.toString().replaceAll("[^\\d.]", "");
-                    String cleanC = current.replaceAll("[^\\d.]", "");
-
-                    int cl = clean.length();
-                    int sel = cl;
-                    for (int i = 2; i <= cl && i < 6; i += 2) {
-                        sel++;
-                    }
-                    if (clean.equals(cleanC)) sel--;
-
-                    if (clean.length() < 8) {
-                        clean = clean + ddmmyyyy.substring(clean.length());
-                    } else {
-                        int day = Integer.parseInt(clean.substring(0, 2));
-                        int mon = Integer.parseInt(clean.substring(2, 4));
-                        int year = Integer.parseInt(clean.substring(4, 8));
-
-                        if (mon > 12) mon = 12;
-                        cal.set(Calendar.MONTH, mon - 1);
-                        year = (year < 1900) ? 1900 : (year > 2100) ? 2100 : year;
-                        cal.set(Calendar.YEAR, year);
-
-                        day = (day > cal.getActualMaximum(Calendar.DATE)) ? cal.getActualMaximum(Calendar.DATE) : day;
-                        clean = String.format("%02d%02d%02d", day, mon, year);
-                    }
-
-                    clean = String.format("%s/%s/%s", clean.substring(0, 2),
-                            clean.substring(2, 4),
-                            clean.substring(4, 8));
-
-                    sel = sel < 0 ? 0 : sel;
-                    current = clean;
-                    patient_date.setText(current);
-                    patient_date.setSelection(sel < current.length() ? sel : current.length());
-                }
-            }
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        };
-        patient_date.addTextChangedListener(TW);
-
-        //correct hour
-        patient_hour.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Calendar mcurrentTime = Calendar.getInstance();
-                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-                int minute = mcurrentTime.get(Calendar.MINUTE);
-                TimePickerDialog mTimePicker;
-                mTimePicker = new TimePickerDialog(patient_data.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        patient_hour.setText( selectedHour + ":" + selectedMinute);
-                    }
-                }, hour, minute, true);//Yes 24 hour time
-                mTimePicker.setTitle("Select Time");
-                mTimePicker.show();
-            }
-        });
-
-        // clear EditText (name, surname, sex, researcher) when clicked
-
-//        patient_name.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick (View v) {
-//                if(v == patient_name) {
-//
-//                }
-//            }
-//        });
+        // clear EditText (name, surname,  researcher) when clicked
         patient_name.setOnFocusChangeListener(this);
-
-        patient_surname.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick (View v) {
-                if(v == patient_surname) {
-                    patient_surname.setText("");
-                }
-            }
-        });
-
-        patient_sex.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick (View v) {
-                if(v == patient_sex) {
-                    patient_sex.setText("");
-                }
-            }
-        });
-
-        patient_researcher.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick (View v) {
-                if(v == patient_researcher) {
-                    patient_researcher.setText("");
-                }
-            }
-        });
-
+        patient_surname.setOnFocusChangeListener(this);
+        patient_researcher.setOnFocusChangeListener(this);
+        patient_birth.setOnFocusChangeListener(this);
+        patient_date.setOnFocusChangeListener(this);
+        patient_hour.setOnFocusChangeListener(this);
 
 
         // after clicking a ok button
-
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //passing values to next activity
-                Intent intent=new Intent(patient_data.this, select_test.class);
+                if (filledFields()) {
 
-                // declaration of passed values (putExtra(name of value, passed value)
-                String name=patient_name.getText().toString();
-                intent.putExtra("name", name);
+                    int radioButtonID = radioGroup.getCheckedRadioButtonId();
+                    radioButton = (RadioButton) findViewById(radioButtonID);
 
-                String surname=patient_surname.getText().toString();
-                intent.putExtra("surname", surname);
+                    MainActivity.DATA = new DataStorage(patient_name.getText().toString(),
+                            patient_surname.getText().toString(), patient_birth.getText().toString(),
+                            radioButton.getText().toString(), patient_researcher.getText().toString(),
+                            patient_date.getText().toString(),patient_hour.getText().toString());
 
-                String birth = patient_birth.getText().toString();
-                intent.putExtra("birth", birth);
+                    Intent intent = new Intent(patient_data.this, select_test.class);
+                    startActivity(intent);
 
-                String sex = patient_sex.getText().toString();
-                intent.putExtra("sex", sex);
-
-                String researcher = patient_researcher.getText().toString();
-                intent.putExtra("researcher", researcher);
-
-                String date = patient_date.getText().toString();
-                intent.putExtra("date", date);
-
-                String hour = patient_hour.getText().toString();
-                intent.putExtra("hour", hour);
-
-                // starting another activity
-                startActivity(intent);
+                }else{
+                    AlertDialog();
+                }
             }
         });
     }
+
+
+    //
+    // extra methods
+    //
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         if(v.equals(patient_name) && hasFocus)
                 patient_name.setText("");
+
+        if(v.equals(patient_surname) && hasFocus)
+            patient_surname.setText("");
+
+        if(v.equals(patient_researcher) && hasFocus)
+            patient_researcher.setText("");
+
+        if(v.equals(patient_birth) && hasFocus)
+            patient_birth.setText("");
+
+        if(v.equals(patient_date) && hasFocus) {
+            Calendar c = Calendar.getInstance();
+            System.out.println("Current time => " + c.getTime());
+            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            patient_date.setText(df.format(c.getTime()));
+        }
+
+        if(v.equals(patient_hour) && hasFocus){
+            Calendar mcurrentTime = Calendar.getInstance();
+            int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+            int minute = mcurrentTime.get(Calendar.MINUTE);
+            TimePickerDialog mTimePicker;
+            mTimePicker = new TimePickerDialog(patient_data.this, new TimePickerDialog.OnTimeSetListener() {
+                @Override
+                public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                    String selHour = String.format("%02d",selectedHour);
+                    String selMin = String.format("%02d",selectedMinute);
+                    patient_hour.setText(selHour + ":" + selMin);
+                }
+            }, hour, minute, true);//Yes 24 hour time
+            mTimePicker.setTitle("Select Time");
+            mTimePicker.show();
+        }
+    }
+
+    // check if sex is chosen
+    private Boolean filledFields(){
+
+        if(radioGroup.getCheckedRadioButtonId()<=0 )
+            return false;
+        if (patient_birth.getText().toString().equalsIgnoreCase("Geburtsdatum"))
+            return false;
+        if (patient_date.getText().toString().equalsIgnoreCase("Datum"))
+            return false;
+        if (patient_name.getText().toString().equalsIgnoreCase("Vorname") ||
+                patient_name.getText().toString().equalsIgnoreCase("") )
+            return false;
+        if (patient_surname.getText().toString().equalsIgnoreCase("Name")||
+                patient_surname.getText().toString().equalsIgnoreCase(""))
+            return false;
+        if (patient_hour.getText().toString().equalsIgnoreCase("Uhrzeit"))
+            return false;
+        if (patient_researcher.getText().toString().equalsIgnoreCase("Untersucher")||
+                patient_researcher.getText().toString().equalsIgnoreCase(""))
+            return false;
+
+        return true;
+    }
+
+    // if something not filled then an alert dialog
+    private void AlertDialog(){
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(patient_data.this);
+        alertDialogBuilder.setMessage(message).setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener(){
+
+            public void onClick(DialogInterface dialog, int id){
+                dialog.cancel();
+            }
+        });
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+    }
+
+    public EditText correctDate (final EditText some_date) {
+
+        TextWatcher tw = new TextWatcher() {
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().equals(current)) {
+                    String clean = s.toString().replaceAll("[^\\d.]", "");
+                    String cleanC = current.replaceAll("[^\\d.]", "");
+
+
+                    int cl = clean.length();
+                    int sel = cl;
+                    for (int i = 2; i <= cl && i < 6; i += 2) {
+                        sel++;
+                    }
+                    if (clean.equals(cleanC)) sel--;
+
+                    if (clean.length() < 8) {
+                        clean = clean + ddmmyyyy.substring(clean.length());
+                    } else {
+                        day = Integer.parseInt(clean.substring(0, 2));
+                        mon = Integer.parseInt(clean.substring(2, 4));
+                        year = Integer.parseInt(clean.substring(4, 8));
+
+                        if (mon > 12) mon = 12;
+                        cal.set(Calendar.MONTH, mon - 1);
+                        year = (year < 1900) ? 1900 : (year > 2015) ? 2015 : year;
+                        cal.set(Calendar.YEAR, year);
+
+                        day = (day > cal.getActualMaximum(Calendar.DATE)) ? cal.getActualMaximum(Calendar.DATE) : day;
+                        clean = String.format("%02d%02d%02d", day, mon, year);
+                    }
+
+                    clean = String.format("%s/%s/%s", clean.substring(0, 2),
+                            clean.substring(2, 4),
+                            clean.substring(4, 8));
+
+                    sel = sel < 0 ? 0 : sel;
+                    current = clean;
+                    some_date.setText(current);
+                    some_date.setSelection(sel < current.length() ? sel : current.length());
+                }
+                year= cal.get(Calendar.YEAR);
+                mon = cal.get(Calendar.MONTH);
+                day = cal.get(Calendar.DAY_OF_MONTH);
+            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        };
+        some_date.addTextChangedListener(tw);
+
+        return some_date;
     }
 }
+

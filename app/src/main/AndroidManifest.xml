@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.anna.sniffin_sticks">
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/image_start"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -18,8 +20,8 @@
         <activity android:name=".patient_data" />
         <activity android:name=".select_test" />
         <activity android:name=".test_identification" />
-        <activity android:name=".pdfActivity" />
-        <activity android:name=".test_threshold"></activity>
+        <activity android:name=".test_threshold" />
+        <activity android:name=".test_discrimination"></activity>
     </application>
 
 </manifest>

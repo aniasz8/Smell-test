@@ -28,7 +28,6 @@
         android:textSize="45sp"
         android:id="@+id/testTHR_button_ok"
         android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/textView2"
         android:layout_centerHorizontal="true"/>
 
     <RadioGroup
@@ -36,7 +35,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="false"
         android:layout_above="@+id/testTHR_button_ok"
-        android:layout_below="@+id/textView2"
         android:id="@+id/testTHR_radioGroup"
         android:layout_centerInParent="true">
 

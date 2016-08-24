@@ -29,8 +29,8 @@
         android:textSize="30dp"
         android:layout_below="@+id/select_title"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="54dp"
-        android:background="#e6be39" />
+        android:layout_marginTop="24dp"
+        android:background="@drawable/button_color" />
 
     <Button
         android:layout_width="400dp"
@@ -40,7 +40,7 @@
         android:textSize="30dp"
         android:layout_below="@+id/select_button_test1"
         android:layout_centerHorizontal="true"
-        android:background="#e6be39"
+        android:background="@drawable/button_color"
         android:layout_marginTop="14dp"/>
 
     <Button
@@ -51,13 +51,13 @@
         android:textSize="30dp"
         android:layout_below="@+id/select_button_test2"
         android:layout_centerHorizontal="true"
-        android:background="#e6be39"
+        android:background="@drawable/button_color"
         android:layout_marginTop="14dp"/>
 
     <Button
         android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:text="@string/select_button_export"
         android:id="@+id/select_button_export"
         android:layout_alignParentBottom="true"
@@ -67,7 +67,7 @@
     <Button
         android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:text="@string/select_button_reset"
         android:id="@+id/select_button_reset"
         android:layout_alignParentBottom="true"
@@ -75,11 +75,14 @@
         android:background="#e6be39" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:text="@string/select_button_score"
+        android:textSize="30dp"
         android:id="@+id/select_button_score"
-        android:layout_above="@+id/select_button_export"
-        android:layout_alignParentStart="true" />
+        android:background="#e6be39"
+        android:layout_marginTop="14dp"
+        android:layout_below="@+id/select_button_test3"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
