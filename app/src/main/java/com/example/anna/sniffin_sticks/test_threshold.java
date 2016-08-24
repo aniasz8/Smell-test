@@ -93,7 +93,9 @@ public class test_threshold extends AppCompatActivity {
                         startActivity(intent);
                     }
 
-                    //setting the title
+                    //setting the new title and uncheck answers
+                    radioGroup.clearCheck();
+
                     if (((TextView) findViewById(R.id.testTHR_title)) != null) {
                         ((TextView) findViewById(R.id.testTHR_title)).setText("Level" + String.valueOf(level));
                     }

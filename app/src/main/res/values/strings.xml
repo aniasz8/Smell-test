@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sniffin\' Sticks</string>
+    <string name="app_name">Sniffin\' Sticks DE</string>
     <string name="main_new"> Neue Untersuchung </string>
 
     <string name="data_title"> Daten </string>
@@ -18,8 +18,8 @@
     <string name="select_button_test1"> 1. Schwelle </string>
     <string name="select_button_test2"> 2. Diskrimination </string>
     <string name="select_button_test3"> 3. Identifikation </string>
-    <string name="select_button_export"> Export</string>
-    <string name="select_button_reset">Reset</string>
+    <string name="select_button_export"> Fertig</string>
+    <string name="select_button_reset">Von vorn</string>
     <string name="select_button_score">Ergebnis</string>
 
     <string name="testID_counter"> Counter </string>
