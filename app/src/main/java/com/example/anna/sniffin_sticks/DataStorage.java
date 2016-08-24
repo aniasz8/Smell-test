@@ -13,6 +13,7 @@ public class DataStorage {
     private static String researcher;
     private static String date;
     private static String hour;
+    private static String nostril;
 
     private static String testTHR_total;
     private static String [] testTHR_turningLevels;
@@ -28,7 +29,7 @@ public class DataStorage {
     private static String [] testID_choices;
 
 
-    public DataStorage (String name, String surname, String birth, String sex, String researcher, String date, String hour){
+    public DataStorage (String name, String surname, String birth, String sex, String researcher, String date, String hour, String nostril){
         this.name = name;
         this.surname = surname;
         this.birth = birth;
@@ -36,6 +37,7 @@ public class DataStorage {
         this.researcher=researcher;
         this.date=date;
         this.hour= hour;
+        this.nostril=nostril;
     }
 
     //getters for patient_data
@@ -59,6 +61,9 @@ public class DataStorage {
     }
     public static String getHour() {
         return hour;
+    }
+    public static String getNostril() {
+        return nostril;
     }
 
     //THR

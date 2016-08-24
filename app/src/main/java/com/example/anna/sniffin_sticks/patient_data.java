@@ -31,6 +31,8 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
     private EditText patient_hour;
     private RadioGroup radioGroup;
     private RadioButton radioButton;
+    private RadioGroup radioGroupN;
+    private RadioButton radioButtonN;
     private String message = "Ergänzen Sie alle Felde";
 
     private int year;
@@ -56,6 +58,7 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
         patient_date = (EditText) findViewById(R.id.data_date);
         patient_hour =(EditText) findViewById(R.id.data_hour);
         radioGroup =(RadioGroup) findViewById(R.id.data_RadioGroup);
+        radioGroupN = (RadioGroup) findViewById(R.id.radioGroupN);
 
         // correct date of birth
         patient_birth = correctDate(patient_birth);
@@ -77,13 +80,18 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
 
                 if (filledFields()) {
 
+                    // take sex
                     int radioButtonID = radioGroup.getCheckedRadioButtonId();
                     radioButton = (RadioButton) findViewById(radioButtonID);
+
+                    //take nostril
+                    int radioButtID= radioGroupN.getCheckedRadioButtonId();
+                    radioButtonN = (RadioButton) findViewById(radioButtID);
 
                     MainActivity.DATA = new DataStorage(patient_name.getText().toString(),
                             patient_surname.getText().toString(), patient_birth.getText().toString(),
                             radioButton.getText().toString(), patient_researcher.getText().toString(),
-                            patient_date.getText().toString(),patient_hour.getText().toString());
+                            patient_date.getText().toString(),patient_hour.getText().toString(), radioButtonN.getText().toString());
 
                     Intent intent = new Intent(patient_data.this, select_test.class);
                     startActivity(intent);
@@ -143,6 +151,8 @@ public class patient_data extends AppCompatActivity implements View.OnFocusChang
     private Boolean filledFields(){
 
         if(radioGroup.getCheckedRadioButtonId()<=0 )
+            return false;
+        if(radioGroupN.getCheckedRadioButtonId()<=0 )
             return false;
         if (patient_birth.getText().toString().equalsIgnoreCase("Geburtsdatum"))
             return false;

@@ -109,6 +109,7 @@ public class CreationOfPdf {
             String researcher = MainActivity.DATA.getResearcher();
             String date = MainActivity.DATA.getDate();
             String hour = MainActivity.DATA.getHour();
+            String nostril = MainActivity.DATA.getNostril();
 
             int birth [] = DateParser.parseDate(MainActivity.DATA.getBirth());
             CountAge patientAge = new CountAge();
@@ -150,7 +151,7 @@ public class CreationOfPdf {
             Paragraph par_patient_title = new Paragraph();
             Chunk patientTitle = new Chunk(title_patient, font_dataUnderline);
             Chunk patient = new Chunk("        Vorname: " + name + "     Name: " +surname+
-                    "     Geschlecht: " +sex + "      Alter: " + age, font_data);
+                    "     Geschlecht: " +sex + "     Alter: " + age + "    Nasenloch: " + nostril, font_data);
             par_patient_title.add(patientTitle);
             par_patient_title.add(patient);
             document.add(par_patient_title);
@@ -529,11 +530,11 @@ public class CreationOfPdf {
         public void onEndPage(PdfWriter writer, Document document) {
             PdfContentByte cb = writer.getDirectContent();
             Phrase footer = new Phrase("Kurzfassungen: SDI Wert - Summe der Untertestegebnisse für Schwelle, " +
-                    "Diskrimination und Identifikation; WP - Wendepunkt; Symbolen: o - nicht identifiziert," +
+                    "Diskrimination und Identifikation; WP - Wendepunkt; Symbole: o - nicht identifiziert," +
                     "xx- identifiziert, !-Wendepunkt, 1- richtig, 0- falsch,", font_comment);
             PdfContentByte cb2 = writer.getDirectContent();
-            Phrase footer2 = new Phrase("grauhinterlegt - Auswahl;" +
-                    " Font: fett - richtige Antworten", font_comment);
+            Phrase footer2 = new Phrase("grau hinterlegt - Auswahl;" +
+                    " Schrift: fett - richtige Antworten", font_comment);
 
             ColumnText.showTextAligned(cb, Element.ALIGN_CENTER,
                     footer,

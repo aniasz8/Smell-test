@@ -20,27 +20,27 @@ public class MainActivity extends AppCompatActivity {
     public static DataStorage DATA;
 
     public static final String tab_answers[][] = {
-            {"Orange", "Blackberry", "Strawberry", "Pineapple"},
-            {"Smoke", "Leather", "Glue", "Grass"},
-            {"Honey", "Vanilla", "Cinnamon", "Chocolate"},
-            {"Chives", "Onion", "Wood", "Peppermint"},
-            {"Coconut", "Cherry", "Walnut", "Banana",},
-            {"Peach", "Apple", "Lemon", "Grapefruit"},
-            {"Gummibears", "Licorice", "Chewing gum", "Cookies"},
-            {"Turpentine", "Rubber", "Menthol", "Mustard"},
-            {"Garlic", "Onion", "Sauerkraut", "Carrot"},
-            {"Cigarette", "Coffee", "Wine", "Candle smoke"},
-            {"Melon", "Peach", "Apple", "Orange"},
-            {"Mustard", "Pepper", "Cinnamon", "Cloves"},
-            {"Pear", "Plum", "Peach", "Pineapple"},
-            {"Chamomile", "Raspberry", "Rose", "Cherry"},
-            {"Rum", "Aniseed", "Honey", "Wood"},
-            {"Fish", "Bread", "Cheese", "Ham"},
+            {"Orange", "Brombeere", "Erdbeere", "Ananas"},
+            {"Rauch", "Schuhleder", "Klebstoff", "Gras"},
+            {"Honig", "Vanille", "Zimt", "Schokolade"},
+            {"Schnittlauch", "Zwiebel", "Fichte", "Pfefferminz"},
+            {"Kokos", "Kirsche", "Walnuss", "Banane",},
+            {"Pfirsich", "Apfel", "Zitrone", "Grapefruit"},
+            {"Gummibärchen", "Lakritz", "Kaugummi", "Kekse"},
+            {"Terpentin", "Gummi", "Menthol", "Senf"},
+            {"Knoblauch", "Zwiebel", "Sauerkraut", "Möhren"},
+            {"Zigarette", "Kaffee", "Wein", "Kerzenrauch"},
+            {"Melone", "Pfirsich", "Apfel", "Orange"},
+            {"Senf", "Pfeffer", "Zimt", "Gewürznelke"},
+            {"Birne", "Pflaume", "Pfirsich", "Ananas"},
+            {"Kamille", "Himbeere", "Rose", "Kirsche"},
+            {"Rum", "Anis", "Honig", "Fichte"},
+            {"Fisch", "Brot", "Käse", "Schinken"},
             {"", "", "", ""}
     };
 
-    public static final String tab_good [] = {"Orange","Leather","Cinnamon","Peppermint","Banana","Lemon","Licorice",
-            "Turpentine", "Garlic","Coffee","Apple","Cloves","Pineapple","Rose","Aniseed","Fish",""};
+    public static final String tab_good [] = {"Orange","Schuhleder","Zimt","Pfefferminz","Banane","Zitrone","Lakritz",
+            "Terpentin", "Knoblauch","Kaffee","Apfel","Gewürznelke","Ananas","Rose","Anis","Fisch",""};
 
     private Button new_patient;
 
