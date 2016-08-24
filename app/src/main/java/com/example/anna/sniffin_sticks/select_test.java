@@ -56,7 +56,7 @@ public class select_test extends AppCompatActivity {
 
                 Toast.makeText(getBaseContext(), "Schwelle: " + patientDiagnose.getTestTHR() + "\nDiskrimination: "
                         + patientDiagnose.getTestDIS() + "\nIdentifikation: " + patientDiagnose.getTestID()
-                        + "\nAktueller Wert: " + score + "\n" + diagnose, Toast.LENGTH_LONG).show();
+                        + "\nAktueller Wert: " + score + "\n" + diagnose, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -184,7 +184,7 @@ public class select_test extends AppCompatActivity {
 
                         CreationOfPdf pdf = new CreationOfPdf();
                         pdf.createPdf();
-                        Toast.makeText(getApplicationContext(), "Pdf ist gemacht.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Pdf ist erstellt.", Toast.LENGTH_SHORT).show();
                         dialog.cancel();
                     }
                 });

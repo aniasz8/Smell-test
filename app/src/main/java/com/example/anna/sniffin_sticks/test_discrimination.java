@@ -70,6 +70,7 @@ public class test_discrimination extends AppCompatActivity {
 
                     } else {
                         counter++;
+                        radioGroup.clearCheck();
                         ((TextView) findViewById(R.id.testDIS_counter)).setText(String.valueOf(counter + 1));
                     }
                 }else

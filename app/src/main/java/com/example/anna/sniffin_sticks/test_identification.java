@@ -96,6 +96,7 @@ public class test_identification extends AppCompatActivity {
 
                     } else {
                         counter++;
+                        radioGroup.clearCheck();
 
                         ((TextView) findViewById(R.id.testID_counter)).setText(String.valueOf(counter + 1));
 

@@ -57,7 +57,7 @@
     <Button
         android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:text="@string/select_button_export"
         android:id="@+id/select_button_export"
         android:layout_alignParentBottom="true"
@@ -67,7 +67,7 @@
     <Button
         android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:text="@string/select_button_reset"
         android:id="@+id/select_button_reset"
         android:layout_alignParentBottom="true"
