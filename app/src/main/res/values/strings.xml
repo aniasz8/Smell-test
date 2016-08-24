@@ -7,12 +7,16 @@
     <string name="data_name"> Vorname  </string>
     <string name="data_surname"> Name  </string>
     <string name="data_birth">  Geburtsdatum  </string>
-    <string name="data_sex"> Geschlecht </string>
+    <string name="data_sex"> Geschlecht: </string>
     <string name="data_sexFrau">weiblich </string>
     <string name="data_sexMann">männlich </string>
     <string name="data_researcher"> Untersucher  </string>
     <string name="data_date"> Datum  </string>
     <string name="data_hour"> Uhrzeit  </string>
+    <string name="data_nostril">Nasenloch: </string>
+    <string name="data_nost_r">Rechtes</string>
+    <string name="data_nost_l">Linkes</string>
+    <string name="data_nost_b">Beidseitig</string>
 
     <string name="select_title"> Test wählen </string>
     <string name="select_button_test1"> 1. Schwelle </string>
